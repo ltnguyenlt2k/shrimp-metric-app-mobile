@@ -23,12 +23,19 @@ class HistoryScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         title: Text('Xóa mẫu ${sample.id}?'),
         content: const Text('Lần đo này sẽ bị xóa khỏi lịch sử và biểu đồ.'),
+        scrollable: true,
+        actionsOverflowButtonSpacing: 8,
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
             child: const Text('Hủy'),
           ),
           FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size(48, 48),
+              backgroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(context).colorScheme.onError,
+            ),
             onPressed: () => Navigator.pop(context, true),
             child: const Text('Xóa mẫu'),
           ),

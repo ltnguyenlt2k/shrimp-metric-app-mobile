@@ -50,6 +50,7 @@ class OverviewScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(14),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   for (final metric in SampleMetric.values)
                     Padding(
@@ -83,19 +84,39 @@ class OverviewScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text('Cỡ tôm theo thời gian', style: theme.textTheme.titleLarge),
-          Text('${samples.length} lần đo', style: theme.textTheme.bodySmall),
           const SizedBox(height: 12),
-          MeasurementChart(
-            samples: samples.reversed.toList(),
-            metric: SampleMetric.size,
-          ),
-          const SizedBox(height: 8),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: OutlinedButton.icon(
-              onPressed: onAnalysis,
-              icon: const Icon(Icons.show_chart),
-              label: const Text('Mở phân tích'),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerLow,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    '${samples.length} lần đo',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 8),
+                  MeasurementChart(
+                    samples: samples.reversed.toList(),
+                    metric: SampleMetric.size,
+                  ),
+                  const SizedBox(height: 12),
+                  const Divider(),
+                  const SizedBox(height: 4),
+                  OutlinedButton.icon(
+                    onPressed: onAnalysis,
+                    icon: const Icon(Icons.show_chart),
+                    label: const Text(
+                      'Mở phân tích',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

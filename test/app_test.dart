@@ -152,6 +152,13 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Xóa mẫu 4'));
     await tester.pumpAndSettle();
+    final cancel = find.widgetWithText(TextButton, 'Hủy');
+    final delete = find.widgetWithText(FilledButton, 'Xóa mẫu');
+    expect(
+      tester.getCenter(cancel).dy,
+      closeTo(tester.getCenter(delete).dy, 1),
+    );
+    expect(tester.getCenter(cancel).dx, lessThan(tester.getCenter(delete).dx));
     await tester.tap(find.text('Hủy'));
     await tester.pumpAndSettle();
     expect(find.byTooltip('Xóa mẫu 4'), findsOneWidget);

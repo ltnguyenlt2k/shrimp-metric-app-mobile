@@ -40,6 +40,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         const SizedBox(height: 6),
         const Text('Dữ liệu mẫu'),
         const SizedBox(height: 16),
+        Text('Khoảng thời gian', style: theme.textTheme.titleMedium),
+        const SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -64,7 +66,9 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           Text('${samples.first.dateLabel} – ${samples.last.dateLabel}'),
           const SizedBox(height: 12),
           Text('${samples.length} lần đo · $total con đã đếm'),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
+          Text('Chỉ số theo dõi', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -80,23 +84,38 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           ),
           const SizedBox(height: 12),
           Text(
-            _metric == SampleMetric.count
-                ? '${(total / samples.length).toStringAsFixed(1).replaceAll('.', ',')} con'
-                : _metric.format(metricTotal / samples.length),
-            style: theme.textTheme.displaySmall,
-          ),
-          Text(
-            _metric == SampleMetric.count
-                ? 'Số đếm trung bình mỗi mẫu'
-                : 'Trung bình theo lần đo',
-          ),
-          const SizedBox(height: 24),
-          Text(
             '${_metric.label} theo lần đo',
             style: theme.textTheme.titleLarge,
           ),
-          const SizedBox(height: 12),
-          MeasurementChart(samples: samples, metric: _metric),
+          const SizedBox(height: 8),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerLow,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    _metric == SampleMetric.count
+                        ? '${(total / samples.length).toStringAsFixed(1).replaceAll('.', ',')} con'
+                        : _metric.format(metricTotal / samples.length),
+                    style: theme.textTheme.displaySmall,
+                  ),
+                  Text(
+                    _metric == SampleMetric.count
+                        ? 'Số đếm trung bình mỗi mẫu'
+                        : 'Trung bình theo lần đo',
+                  ),
+                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
+                  MeasurementChart(samples: samples, metric: _metric),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(height: 24),
           Text('Chi tiết từng lần đo', style: theme.textTheme.titleLarge),
           for (final sample in samples)

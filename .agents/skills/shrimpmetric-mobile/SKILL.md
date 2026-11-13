@@ -4,6 +4,7 @@ description: Implement and verify ShrimpMetric Flutter screens and mobile featur
 ---
 
 # ShrimpMetric mobile workflow
+For every UI change, follow the mandatory rules in `docs/UI-REVIEW.md`.
 
 - Check `docs/ROADMAP.md`, `docs/PLAN.md` and the relevant decision in `docs/ADR.md`. M1 is a navigable prototype using sample data. Review the overall layout and navigation with the user before wiring M2 features. Android is the first verification target for the shared Android/iOS app.
 - In UI reviews, use the approved ShrimpMetric mark in `assets/branding/shrimpmetric-icon.png`. Make the sample image and count easy to read, check Vietnamese text, large text and safe areas, and verify the narrow, reference, and wide viewports in the development guide, and capture the main flow on both Android AVDs. Label demo results.
