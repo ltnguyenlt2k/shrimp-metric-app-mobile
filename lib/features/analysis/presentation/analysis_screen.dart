@@ -50,6 +50,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
               (30, '30 ngày'),
             ])
               ChoiceChip(
+                showCheckmark: false,
                 label: Text(label),
                 selected: _days == value,
                 onSelected: (_) => setState(() => _days = value),
@@ -70,6 +71,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
             children: [
               for (final metric in SampleMetric.values)
                 ChoiceChip(
+                  showCheckmark: false,
                   label: Text(metric.label),
                   selected: _metric == metric,
                   onSelected: (_) => setState(() => _metric = metric),

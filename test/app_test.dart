@@ -53,16 +53,23 @@ void main() {
       await tester.tap(find.text('Phân tích'));
       await tester.pumpAndSettle();
       expect(find.text('5 lần đo · 189 con đã đếm'), findsOneWidget);
-      await tester.tap(find.text('7 ngày'));
+      final dateChip = find.widgetWithText(ChoiceChip, '7 ngày');
+      final dateBounds = tester.getRect(dateChip);
+      await tester.tap(dateChip);
       await tester.pumpAndSettle();
+      expect(tester.getRect(dateChip), dateBounds);
+      expect(tester.widget<ChoiceChip>(dateChip).showCheckmark, isFalse);
       final average = find.text('Số đếm trung bình mỗi mẫu');
       await tester.scrollUntilVisible(average, 120);
       expect(average, findsOneWidget);
       final sizeMetric = find.widgetWithText(ChoiceChip, 'Cỡ tôm');
       await tester.ensureVisible(sizeMetric);
       await tester.pumpAndSettle();
+      final metricBounds = tester.getRect(sizeMetric);
       await tester.tap(sizeMetric);
       await tester.pumpAndSettle();
+      expect(tester.getRect(sizeMetric), metricBounds);
+      expect(tester.widget<ChoiceChip>(sizeMetric).showCheckmark, isFalse);
       await tester.scrollUntilVisible(find.text('2.193 con/kg').first, 100);
       expect(find.text('2.193 con/kg'), findsWidgets);
 
