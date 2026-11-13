@@ -106,6 +106,7 @@ class HistoryScreen extends StatelessWidget {
               trailing: IconButton(
                 tooltip: 'Xóa mẫu ${sample.id}',
                 icon: const Icon(Icons.delete_outline),
+                color: theme.colorScheme.error,
                 onPressed: () => _confirmDelete(context, sample),
               ),
             ),

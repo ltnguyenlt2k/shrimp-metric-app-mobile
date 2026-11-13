@@ -7,3 +7,5 @@
 5. Trước khi bàn giao, kiểm tra luồng chính, cuộn, chạm vào vùng đọc, nút quay lại, trạng thái trống và các màn hệ thống liên quan. Thử ở chiều rộng 360, 411 và 450 pixel logic với chữ lớn. Xem ảnh chụp thực tế trên giả lập cho màn đã sửa, ghi rõ cấu hình và các kiểm tra còn thiếu. Chạy `flutter analyze` và `flutter test`.
 
 Khi sửa theme chung, kiểm tra các hộp thoại, màn Giấy phép và điều hướng quay lại. Nút toàn chiều ngang chỉ áp dụng ở khu vực cần nó. Hộp xác nhận xóa phải tách rõ Hủy và Xóa, có trạng thái đọc được khi tăng cỡ chữ.
+
+Dùng màu lỗi của theme cho biểu tượng và nút xác nhận xóa. Kèm biểu tượng thùng rác, nhãn hoặc tooltip chỉ rõ mục sẽ xóa để người dùng nhận biết thao tác qua cả hình dạng và chữ.
