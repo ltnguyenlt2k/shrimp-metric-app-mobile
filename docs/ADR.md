@@ -14,7 +14,7 @@ Các mục **Đã chốt** phản ánh yêu cầu của người dùng. Các m�
 
 **Trạng thái** · Đề xuất.
 
-**Bối cảnh và quyết định** · UI cần được phát triển song song với model. Tổ chức theo tính năng, với trạng thái màn hình và logic thao tác gọi lớp lưu trữ hoặc dịch vụ camera/phân tích. Dùng bộ ảnh cố định và kết quả mẫu cho kiểm thử, rồi thay bộ phân tích tại cùng điểm tích hợp. Chọn thư viện quản lý trạng thái và lưu dữ liệu khi xác nhận nhu cầu thực tế.
+**Bối cảnh và quyết định** · Duyệt prototype giao diện tổng thể bằng dữ liệu mẫu ở M1 trước khi triển khai tính năng chi tiết ở M2. Sau khi duyệt bố cục, UI và model có thể tiếp tục phát triển độc lập. Tổ chức theo tính năng, với trạng thái màn hình và logic thao tác gọi lớp lưu trữ hoặc dịch vụ camera/phân tích. Dùng bộ ảnh cố định và kết quả mẫu cho kiểm thử, rồi thay bộ phân tích tại cùng điểm tích hợp. Chọn thư viện quản lý trạng thái và lưu dữ liệu khi xác nhận nhu cầu thực tế.
 
 **Đánh đổi và xem xét lại** · Gọi trực tiếp plugin từ widget có ít mã ban đầu nhưng khiến UI khó kiểm thử bằng ảnh mẫu. Tách ở các điểm có phụ thuộc nền tảng hoặc cần thay thế. [Hướng dẫn kiến trúc Flutter](https://docs.flutter.dev/app-architecture/guide)
 

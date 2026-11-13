@@ -12,11 +12,13 @@ App Flutter cho iPhone và Android, phát triển và kiểm thử Android trư�
 2. Dùng `flutter doctor -v`, `flutter devices` và `adb devices` để xác nhận Android toolchain. Tạo hai cấu hình màn hình điện thoại khác kích thước, có ít nhất một máy Android thật để thử camera và hiệu năng. Chạy thử project mẫu trước khi bắt đầu khung sản phẩm.
 3. Chuẩn bị một nguồn skill dự án cho Codex và Claude Code, với hướng dẫn dùng chung về phát triển Flutter, thiết kế, kiểm thử, bảo mật và đo hiệu năng. Đặt nội dung vào vị trí mà mỗi agent hỗ trợ khi thiết lập. Dùng cùng ảnh mẫu được phép sử dụng và cùng lệnh kiểm tra. Ghi kết quả kiểm thử kèm phiên bản app, thiết bị, lệnh và ảnh màn hình khi phù hợp. [Thiết lập Android](https://docs.flutter.dev/platform-integration/android/setup) · [Flutter cho coding agent](https://docs.flutter.dev/ai/get-started)
 
-## 1. Thiết kế và khung app
+## 1. Prototype giao diện tổng thể và duyệt bố cục
 
 1. Duyệt màn hình Tổng quan, Chụp mẫu, Kết quả, Lịch sử và Cài đặt bằng dữ liệu mẫu. Định hình màu, chữ tiếng Việt, khoảng cách và thành phần theo tình huống dùng ngoài hiện trường. Ưu tiên ảnh mẫu, số liệu dễ đọc, thao tác chụp rõ ràng. Dùng thẻ, màu nhấn và chuyển động khi có tác dụng cụ thể.
 2. Tạo điều hướng và theme Flutter dùng chung, cấu trúc bản dịch ngay từ đầu, lưu lựa chọn ngôn ngữ. Cài đặt có Hiệu chỉnh camera, Ngôn ngữ và Thông tin app gồm phiên bản và giấy phép. Dashboard hiển thị hành động chụp, lần đo gần nhất và lối vào lịch sử.
 3. Thiết kế các trạng thái trống, tải, lỗi, bị từ chối quyền, chưa có AI, ước tính AI và đã xác nhận. Kiểm tra ảnh màn hình trên hai kích thước, cỡ chữ lớn, vùng an toàn, tương phản và TalkBack. [Flutter adaptive UI](https://docs.flutter.dev/ui/adaptive-responsive)
+
+**Bàn giao M1** · Một prototype có thể bấm qua các màn hình chính trên Android Emulator, dùng dữ liệu mẫu. Duyệt bố cục, thứ tự thông tin và luồng điều hướng từ Tổng quan → Chụp mẫu → Kết quả → Lịch sử, cùng lối vào Cài đặt. Camera thật, hiệu chỉnh, lưu lịch sử và AI thuộc các mốc sau. Bắt đầu M2 sau khi người dùng duyệt bố cục tổng thể.
 
 ## 2. Luồng chụp, xác nhận và lưu cục bộ
 
