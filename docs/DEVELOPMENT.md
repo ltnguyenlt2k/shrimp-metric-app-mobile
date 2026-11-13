@@ -54,6 +54,8 @@ Pixel 6 là cấu hình chạy hằng ngày. Redmi Note 14 và moto g55 5G cũng
 
 Viewport thứ ba là kích thước kiểm thử đề xuất, có thể dùng trong widget test hoặc mô phỏng trên cùng AVD. Chạy từng AVD một và dùng lại bản debug để kiểm tra hai cấu hình. Kích thước cửa sổ giả lập trên Windows chỉ ảnh hưởng mức phóng khi xem.
 
+Khi duyệt UI, kiểm tra giờ, sóng, pin và thanh điều hướng ngay trên cửa sổ giả lập. Có thể bật vùng khuyết camera trên AVD chính bằng `adb -s <device-id> shell cmd overlay enable-exclusive --category com.android.internal.display.cutout.emulation.hole`, sau đó mở lại app. Đây là cấu hình Android cục bộ để kiểm tra vùng an toàn. Ngày thường xuất hiện ở màn hình chính hoặc màn hình khóa, còn thanh trạng thái trong app hiển thị giờ.
+
 Dùng `LayoutBuilder` cho không gian của từng vùng và `MediaQuery` khi cần thông tin toàn cửa sổ. Dùng `SafeArea` cho nút và nội dung cần tránh vùng khuyết hoặc thanh hệ thống. Khi thiếu chỗ, cho nội dung xuống dòng, xếp dọc hoặc cuộn. Giữ tỷ lệ ảnh và kiểm tra khung căn mẫu khi camera được tích hợp. Duyệt chữ tiếng Việt ở cỡ mặc định và cỡ lớn, thao tác với bàn phím mở, và khả năng chạm tới các nút chính. [Flutter adaptive layouts](https://docs.flutter.dev/ui/adaptive-responsive/general) · [SafeArea và MediaQuery](https://docs.flutter.dev/ui/adaptive-responsive/safearea-mediaquery)
 
 ## Vị trí mã nguồn

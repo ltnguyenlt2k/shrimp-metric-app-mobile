@@ -9,6 +9,7 @@ class ShrimpMetricApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetsApp(
       title: 'ShrimpMetric',
+      debugShowCheckedModeBanner: false,
       color: const Color(0xFF003E46),
       builder: (context, child) => const OverviewScreen(),
     );
