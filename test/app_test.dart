@@ -38,7 +38,7 @@ void main() {
       await tester.tap(save);
       await tester.pumpAndSettle();
       expect(find.text('Lịch sử phân tích'), findsOneWidget);
-      await tester.tap(find.text('Mẫu 3 · 38 con'));
+      await tester.tap(find.text('Mẫu 5 · 38 con'));
       await tester.pumpAndSettle();
       final contribute = find.text('Đóng góp mẫu');
       await tester.scrollUntilVisible(contribute, 120);
@@ -52,7 +52,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Phân tích'));
       await tester.pumpAndSettle();
-      expect(find.text('3 lần đo · 111 con đã đếm'), findsOneWidget);
+      expect(find.text('5 lần đo · 189 con đã đếm'), findsOneWidget);
       await tester.tap(find.text('7 ngày'));
       await tester.pumpAndSettle();
       final average = find.text('Số đếm trung bình mỗi mẫu');

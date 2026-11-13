@@ -59,26 +59,6 @@ class _CaptureScreenState extends State<CaptureScreen> {
               colorBlendMode: BlendMode.srcOver,
               excludeFromSemantics: true,
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: DecoratedBox(
-                  position: DecorationPosition.foreground,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFF96E1CB),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    child: SamplePreview(),
-                  ),
-                ),
-              ),
-            ),
-            if (processing) const ColoredBox(color: Color(0xB3001719)),
             SafeArea(
               minimum: const EdgeInsets.all(12),
               child: Column(
@@ -103,23 +83,51 @@ class _CaptureScreenState extends State<CaptureScreen> {
                     style: TextStyle(color: Colors.white70),
                   ),
                   Expanded(
-                    child: processing
-                        ? const Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                CircularProgressIndicator(
-                                  color: Color(0xFF96E1CB),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: DecoratedBox(
+                              position: DecorationPosition.foreground,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color(0xFF96E1CB),
+                                  width: 2,
                                 ),
-                                SizedBox(height: 16),
-                                Text(
-                                  'Đang xử lý ảnh mẫu…',
-                                  style: TextStyle(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: const ClipRRect(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
                                 ),
-                              ],
+                                child: SamplePreview(),
+                              ),
                             ),
-                          )
-                        : const SizedBox.shrink(),
+                          ),
+                        ),
+                        if (processing)
+                          const ColoredBox(
+                            color: Color(0xB3001719),
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CircularProgressIndicator(
+                                    color: Color(0xFF96E1CB),
+                                  ),
+                                  SizedBox(height: 16),
+                                  Text(
+                                    'Đang xử lý ảnh mẫu…',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                   if (!processing) ...[
                     const Text(

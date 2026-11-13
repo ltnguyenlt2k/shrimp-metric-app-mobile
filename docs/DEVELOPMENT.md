@@ -81,3 +81,9 @@ Dùng ISO 9241-11:2018 làm khung đánh giá trong bối cảnh người nuôi 
 - **Hiệu quả:** chụp mẫu, nhận biết trạng thái đang xử lý, đọc đúng số đếm, lưu và mở lại đúng lần đo. Kiểm tra ngày giờ, bật/tắt khung nhận diện, và đối chiếu số lần đo, trung bình và biểu đồ sau khi đổi khoảng ngày.
 - **Hiệu suất:** từ Tổng quan đến nút chụp trong hai thao tác, từ Lịch sử đến chi tiết trong một thao tác, từ Tổng quan đến Phân tích trong một thao tác. Ghi thời gian và số thao tác thực tế khi thử với người dùng.
 - **Sự hài lòng:** nhờ người dùng mục tiêu thử luồng mẫu và phản hồi về độ dễ đọc, độ rõ của trạng thái xử lý và mức tự tin khi đọc biểu đồ. Cần buổi thử thực tế để đánh giá mục này.
+
+### Bố cục và biểu đồ M1
+
+Tomota S3+ là tham chiếu cho bố cục kết quả từng mẫu. JALA là tham chiếu cho việc tách ghi nhận mẫu và theo dõi theo thời gian. Tổng quan của ShrimpMetric đặt thao tác chụp trước, sau đó hiển thị kết quả gần nhất và biểu đồ cỡ tôm. Phân tích có bộ lọc ngày và chỉ số, trục thời gian, đơn vị và danh sách giá trị để đọc hoặc mở lại từng lần đo. [Tomota S3+](https://tomota.vn/tomota-s3-plus) · [JALA App](https://next.jala.tech/app) · [Apple HIG Charts](https://developer.apple.com/design/human-interface-guidelines/charts)
+
+Kiểu chữ chính dùng cỡ 26 cho tên màn, 19 cho tên mục, 15–16 cho nội dung và thao tác, 13 cho ngày, đơn vị và ghi chú. Nút chụp cao tối thiểu 52 pixel logic. Khi thử với người ít kinh nghiệm, quan sát họ tìm nút chụp, đọc giá trị kèm đơn vị và mở lại một lần đo từ biểu đồ qua danh sách. [Android Accessibility](https://developer.android.com/design/ui/mobile/guides/foundations/accessibility)

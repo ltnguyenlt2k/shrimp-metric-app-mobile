@@ -43,7 +43,7 @@ class _ResultScreenState extends State<ResultScreen> {
             if (hasPreview) ...[
               Row(
                 children: [
-                  const SizedBox(width: 64, child: SamplePreview()),
+                  const SizedBox(width: 42, child: SamplePreview()),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(

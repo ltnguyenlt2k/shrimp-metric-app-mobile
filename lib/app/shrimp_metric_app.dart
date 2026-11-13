@@ -7,6 +7,7 @@ import '../features/analysis/presentation/analysis_screen.dart';
 import '../features/capture/presentation/capture_screen.dart';
 import '../features/history/presentation/history_screen.dart';
 import '../features/overview/presentation/overview_screen.dart';
+import '../features/results/presentation/result_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
 
 class ShrimpMetricApp extends StatelessWidget {
@@ -19,6 +20,33 @@ class ShrimpMetricApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
+        textTheme: const TextTheme(
+          headlineMedium: TextStyle(
+            fontSize: 26,
+            height: 1.25,
+            fontWeight: FontWeight.w700,
+          ),
+          titleLarge: TextStyle(
+            fontSize: 19,
+            height: 1.3,
+            fontWeight: FontWeight.w700,
+          ),
+          titleMedium: TextStyle(
+            fontSize: 16,
+            height: 1.35,
+            fontWeight: FontWeight.w600,
+          ),
+          bodyLarge: TextStyle(fontSize: 16, height: 1.4),
+          bodyMedium: TextStyle(fontSize: 15, height: 1.4),
+          bodySmall: TextStyle(fontSize: 13, height: 1.4),
+          labelLarge: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52)),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00675D)),
         scaffoldBackgroundColor: const Color(0xFFF8FAF6),
       ),
@@ -38,17 +66,31 @@ class _HomeState extends State<_Home> {
   int index = 0;
   late final samples = [
     SampleMeasurement(
-      id: 2,
+      id: 4,
       count: demoDetectionCount,
       measuredAt: DateTime.now().subtract(const Duration(days: 1)),
       hasPreview: true,
     ),
     SampleMeasurement(
-      id: 1,
+      id: 3,
       count: 35,
       averageWeightGrams: 0.264,
       averageLengthMm: 28.6,
       measuredAt: DateTime.now().subtract(const Duration(days: 10)),
+    ),
+    SampleMeasurement(
+      id: 2,
+      count: 36,
+      averageWeightGrams: 0.211,
+      averageLengthMm: 25.4,
+      measuredAt: DateTime.now().subtract(const Duration(days: 16)),
+    ),
+    SampleMeasurement(
+      id: 1,
+      count: 42,
+      averageWeightGrams: 0.173,
+      averageLengthMm: 22.1,
+      measuredAt: DateTime.now().subtract(const Duration(days: 23)),
     ),
   ];
 
@@ -105,11 +147,17 @@ class _HomeState extends State<_Home> {
               constraints: const BoxConstraints(maxWidth: 560),
               child: switch (index) {
                 0 => OverviewScreen(
-                  count: samples.first.count,
-                  sampleCount: samples.length,
+                  samples: samples,
                   onAnalysis: () => setState(() => index = 2),
                   onCapture: capture,
-                  onHistory: () => setState(() => index = 1),
+                  onHistory: () => Navigator.of(context).push<void>(
+                    MaterialPageRoute(
+                      builder: (_) => ResultScreen(
+                        count: samples.first.count,
+                        measurement: samples.first,
+                      ),
+                    ),
+                  ),
                 ),
                 1 => HistoryScreen(samples: samples),
                 2 => AnalysisScreen(samples: samples),

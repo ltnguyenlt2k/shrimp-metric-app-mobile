@@ -50,18 +50,21 @@ class SamplePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1000 / 667,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/demo/shrimp-tray.jpg',
-            fit: BoxFit.fill,
-            semanticLabel: 'Ảnh minh họa khay tôm',
-          ),
-          if (marked) const CustomPaint(painter: _DetectionPainter()),
-        ],
+    return RotatedBox(
+      quarterTurns: 1,
+      child: AspectRatio(
+        aspectRatio: 1000 / 667,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'assets/demo/shrimp-tray.jpg',
+              fit: BoxFit.fill,
+              semanticLabel: 'Ảnh minh họa khay tôm',
+            ),
+            if (marked) const CustomPaint(painter: _DetectionPainter()),
+          ],
+        ),
       ),
     );
   }
