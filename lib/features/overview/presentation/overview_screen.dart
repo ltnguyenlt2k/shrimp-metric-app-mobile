@@ -3,12 +3,16 @@ import 'package:material_ui/material_ui.dart';
 class OverviewScreen extends StatelessWidget {
   const OverviewScreen({
     required this.count,
+    required this.sampleCount,
+    required this.onAnalysis,
     required this.onCapture,
     required this.onHistory,
     super.key,
   });
 
   final int count;
+  final int sampleCount;
+  final VoidCallback onAnalysis;
   final VoidCallback onCapture;
   final VoidCallback onHistory;
 
@@ -25,12 +29,12 @@ class OverviewScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        const Text('Chụp mẫu để ghi nhận số lượng tôm.'),
+        const Text('Dữ liệu mẫu · Nhật ký đo tôm'),
         const SizedBox(height: 24),
         ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: AspectRatio(
-            aspectRatio: 1.8,
+            aspectRatio: 2.25,
             child: Image.asset(
               'assets/demo/shrimp-tray.jpg',
               fit: BoxFit.cover,
@@ -67,6 +71,16 @@ class OverviewScreen extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_rounded),
             onTap: onHistory,
           ),
+        ),
+        const SizedBox(height: 22),
+        Text('Tổng hợp lần đo', style: theme.textTheme.titleLarge),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.bar_chart_rounded),
+          title: Text('$sampleCount mẫu trong lịch sử'),
+          subtitle: const Text('So sánh số đếm giữa các mẫu'),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: onAnalysis,
         ),
       ],
     );

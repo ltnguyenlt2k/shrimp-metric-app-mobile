@@ -71,3 +71,13 @@ Dùng `LayoutBuilder` cho không gian của từng vùng và `MediaQuery` khi c�
 
 - `material_ui` 1.11.0, BSD-3-Clause. Nội dung giấy phép có trong màn hình giấy phép Flutter. [Nguồn package](https://pub.dev/packages/material_ui/versions/1.11.0)
 - `assets/demo/shrimp-tray.jpg` là ảnh minh họa do OpenAI ImageGen tạo cho prototype M1. Số đếm trong giao diện là dữ liệu mẫu độc lập với ảnh.
+
+## Duyệt khả dụng của prototype M1
+
+Từ màn hình giới thiệu và ảnh thao tác Tomota S3+, lấy ba ý cho ShrimpMetric: dành diện tích cho khay lúc chụp, sắp xếp kết quả theo ảnh gốc → tổng số tôm → ảnh có khung → cỡ tôm, khối lượng và chiều dài, và tách lịch sử từng lần đo khỏi tổng hợp theo thời gian. [Tomota S3+](https://tomota.vn/tomota-s3-plus)
+
+Dùng ISO 9241-11:2018 làm khung đánh giá trong bối cảnh người nuôi thao tác trên điện thoại cạnh ao. Các bước dưới đây là tiêu chí thử của dự án. [ISO 9241-11:2018](https://www.iso.org/standard/63500.html)
+
+- **Hiệu quả:** chụp mẫu, nhận biết trạng thái đang xử lý, đọc đúng số đếm, lưu và mở lại đúng lần đo. Kiểm tra ngày giờ, bật/tắt khung nhận diện, và đối chiếu số lần đo, trung bình và biểu đồ sau khi đổi khoảng ngày.
+- **Hiệu suất:** từ Tổng quan đến nút chụp trong hai thao tác, từ Lịch sử đến chi tiết trong một thao tác, từ Tổng quan đến Phân tích trong một thao tác. Ghi thời gian và số thao tác thực tế khi thử với người dùng.
+- **Sự hài lòng:** nhờ người dùng mục tiêu thử luồng mẫu và phản hồi về độ dễ đọc, độ rõ của trạng thái xử lý và mức tự tin khi đọc biểu đồ. Cần buổi thử thực tế để đánh giá mục này.

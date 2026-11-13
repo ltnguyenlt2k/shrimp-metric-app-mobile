@@ -1,6 +1,9 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
+import '../demo/sample_preview.dart';
+import '../demo/sample_measurement.dart';
+import '../features/analysis/presentation/analysis_screen.dart';
 import '../features/capture/presentation/capture_screen.dart';
 import '../features/history/presentation/history_screen.dart';
 import '../features/overview/presentation/overview_screen.dart';
@@ -33,14 +36,36 @@ class _Home extends StatefulWidget {
 
 class _HomeState extends State<_Home> {
   int index = 0;
-  final samples = <int>[48, 35];
+  late final samples = [
+    SampleMeasurement(
+      id: 2,
+      count: demoDetectionCount,
+      measuredAt: DateTime.now().subtract(const Duration(days: 1)),
+      hasPreview: true,
+    ),
+    SampleMeasurement(
+      id: 1,
+      count: 35,
+      averageWeightGrams: 0.264,
+      averageLengthMm: 28.6,
+      measuredAt: DateTime.now().subtract(const Duration(days: 10)),
+    ),
+  ];
 
   void capture() async {
     final count = await Navigator.of(context)
         .push<int>(MaterialPageRoute(builder: (_) => const CaptureScreen()));
     if (!mounted || count == null) return;
     setState(() {
-      samples.insert(0, count);
+      samples.insert(
+        0,
+        SampleMeasurement(
+          id: samples.length + 1,
+          count: count,
+          measuredAt: DateTime.now(),
+          hasPreview: true,
+        ),
+      );
       index = 1;
     });
   }
@@ -80,11 +105,14 @@ class _HomeState extends State<_Home> {
               constraints: const BoxConstraints(maxWidth: 560),
               child: switch (index) {
                 0 => OverviewScreen(
-                  count: samples.first,
+                  count: samples.first.count,
+                  sampleCount: samples.length,
+                  onAnalysis: () => setState(() => index = 2),
                   onCapture: capture,
                   onHistory: () => setState(() => index = 1),
                 ),
                 1 => HistoryScreen(samples: samples),
+                2 => AnalysisScreen(samples: samples),
                 _ => const SettingsScreen(),
               },
             ),
@@ -101,6 +129,10 @@ class _HomeState extends State<_Home> {
             NavigationDestination(
               icon: Icon(Icons.history_rounded),
               label: 'Lịch sử',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.bar_chart_rounded),
+              label: 'Phân tích',
             ),
             NavigationDestination(
               icon: Icon(Icons.tune_rounded),
