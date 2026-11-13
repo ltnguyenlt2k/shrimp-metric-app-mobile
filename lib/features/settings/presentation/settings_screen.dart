@@ -19,6 +19,33 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  Future<void> _showAppInfo(BuildContext context) async {
+    final openLicenses = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Thông tin app'),
+        content: const Text('ShrimpMetric · 0.1.0'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Đóng'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Giấy phép nguồn mở'),
+          ),
+        ],
+      ),
+    );
+
+    if (openLicenses != true || !context.mounted) return;
+    showLicensePage(
+      context: context,
+      applicationName: 'ShrimpMetric',
+      applicationVersion: '0.1.0',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -59,18 +86,8 @@ class SettingsScreen extends StatelessWidget {
           leading: const Icon(Icons.info_outline),
           title: const Text('Thông tin app'),
           subtitle: const Text('ShrimpMetric · 0.1.0'),
-        ),
-        const Divider(),
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.description_outlined),
-          title: const Text('Giấy phép nguồn mở'),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () => showLicensePage(
-            context: context,
-            applicationName: 'ShrimpMetric',
-            applicationVersion: '0.1.0',
-          ),
+          onTap: () => _showAppInfo(context),
         ),
       ],
     );

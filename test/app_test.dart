@@ -121,7 +121,10 @@ void main() {
       ),
     );
     addTearDown(LicenseRegistry.reset);
-    await tester.scrollUntilVisible(find.text('Giấy phép nguồn mở'), 120);
+    expect(find.text('Giấy phép nguồn mở'), findsNothing);
+    await tester.scrollUntilVisible(find.text('Thông tin app'), 120);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Thông tin app'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Giấy phép nguồn mở'));
     await tester.pumpAndSettle();
@@ -137,7 +140,8 @@ void main() {
     );
     await tester.pageBack();
     await tester.pumpAndSettle();
-    expect(find.text('Giấy phép nguồn mở'), findsOneWidget);
+    expect(find.text('Thông tin app'), findsOneWidget);
+    expect(find.text('Giấy phép nguồn mở'), findsNothing);
     expect(find.byType(AlertDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
