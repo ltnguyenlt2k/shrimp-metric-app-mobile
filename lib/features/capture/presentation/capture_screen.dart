@@ -44,6 +44,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final processing = _timer != null;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
@@ -70,10 +71,12 @@ class _CaptureScreenState extends State<CaptureScreen> {
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(Icons.close, color: Colors.white),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: Text(
                           'Chụp mẫu',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: textTheme.titleLarge?.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

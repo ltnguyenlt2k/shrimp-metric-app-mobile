@@ -29,6 +29,15 @@ class _ResultScreenState extends State<ResultScreen> {
     final hasPreview = widget.measurement?.hasPreview ?? true;
     return Scaffold(
       appBar: AppBar(title: const Text('Kết quả')),
+      bottomNavigationBar: widget.measurement == null
+          ? SafeArea(
+              minimum: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: FilledButton(
+                onPressed: () => Navigator.pop(context, widget.count),
+                child: const Text('Lưu kết quả mẫu'),
+              ),
+            )
+          : null,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
@@ -129,11 +138,6 @@ class _ResultScreenState extends State<ResultScreen> {
                 onChanged: (value) => setState(() => marked = value),
               ),
             const SizedBox(height: 12),
-            if (widget.measurement == null)
-              FilledButton(
-                onPressed: () => Navigator.pop(context, widget.count),
-                child: const Text('Lưu kết quả mẫu'),
-              ),
             if (widget.measurement != null) ...[
               const Divider(),
               OutlinedButton(

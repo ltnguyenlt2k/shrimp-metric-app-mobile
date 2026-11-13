@@ -10,6 +10,8 @@ import '../features/overview/presentation/overview_screen.dart';
 import '../features/results/presentation/result_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
 
+import 'shrimp_metric_scroll_behavior.dart';
+
 class ShrimpMetricApp extends StatelessWidget {
   const ShrimpMetricApp({super.key});
 
@@ -17,6 +19,7 @@ class ShrimpMetricApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ShrimpMetric',
+      scrollBehavior: const ShrimpMetricScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -48,6 +51,24 @@ class ShrimpMetricApp extends StatelessWidget {
           style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00675D)),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFF8FAF6),
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          titleTextStyle: TextStyle(
+            color: Color(0xFF14312E),
+            fontSize: 19,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        listTileTheme: const ListTileThemeData(
+          contentPadding: EdgeInsets.zero,
+          minTileHeight: 56,
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48)),
+        ),
         scaffoldBackgroundColor: const Color(0xFFF8FAF6),
       ),
       home: const _Home(),
@@ -118,7 +139,6 @@ class _HomeState extends State<_Home> {
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF8FAF6),
           title: Row(
             children: [
               ClipRRect(
@@ -131,11 +151,7 @@ class _HomeState extends State<_Home> {
               ),
               const SizedBox(width: 10),
               const Flexible(
-                child: Text(
-                  'ShrimpMetric',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-                ),
+                child: Text('ShrimpMetric', overflow: TextOverflow.ellipsis),
               ),
             ],
           ),

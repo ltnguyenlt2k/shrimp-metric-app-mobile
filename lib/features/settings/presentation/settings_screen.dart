@@ -21,11 +21,14 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        Text('Cài đặt', style: Theme.of(context).textTheme.headlineMedium),
+        Text('Cài đặt', style: theme.textTheme.headlineMedium),
         const SizedBox(height: 20),
+        Text('Thiết lập đo', style: theme.textTheme.titleLarge),
+        const SizedBox(height: 4),
         ListTile(
           leading: const Icon(Icons.center_focus_strong),
           title: const Text('Hiệu chỉnh camera'),
@@ -37,7 +40,9 @@ class SettingsScreen extends StatelessWidget {
             'Đặt khay trên mặt phẳng, dùng ánh sáng đều và giữ camera song song với khay.',
           ),
         ),
-        const Divider(),
+        const SizedBox(height: 20),
+        Text('Ứng dụng', style: theme.textTheme.titleLarge),
+        const SizedBox(height: 4),
         ListTile(
           leading: const Icon(Icons.language),
           title: const Text('Ngôn ngữ'),

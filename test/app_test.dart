@@ -15,6 +15,10 @@ void main() {
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
       await tester.pumpWidget(const ShrimpMetricApp());
+      expect(find.byType(StretchingOverscrollIndicator), findsNothing);
+      await tester.drag(find.byType(ListView), const Offset(0, 220));
+      await tester.pumpAndSettle();
+      expect(find.byType(StretchingOverscrollIndicator), findsNothing);
       await tester.tap(find.widgetWithText(FilledButton, 'Chụp mẫu'));
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('Chụp ảnh mẫu'));
@@ -33,8 +37,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(tester.widget<SwitchListTile>(overlay).value, isFalse);
       final save = find.text('Lưu kết quả mẫu');
-      await tester.scrollUntilVisible(save, 100);
-      await tester.pumpAndSettle();
+      expect(save.hitTestable(), findsOneWidget);
       await tester.tap(save);
       await tester.pumpAndSettle();
       expect(find.text('Lịch sử phân tích'), findsOneWidget);

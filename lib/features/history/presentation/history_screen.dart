@@ -18,7 +18,10 @@ class HistoryScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(height: 6),
-        const Text('Dữ liệu mẫu'),
+        Text(
+          '${samples.length} lần đo · Dữ liệu mẫu',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
         const SizedBox(height: 16),
         for (final sample in samples) ...[
           ListTile(
