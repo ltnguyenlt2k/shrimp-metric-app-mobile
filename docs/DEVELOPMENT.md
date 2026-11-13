@@ -42,6 +42,20 @@ Dùng một giả lập mỗi lần. Chạy `flutter devices` rồi `flutter run
 
 Logo nguồn nằm tại `assets/branding/shrimpmetric-icon.png`. Android và iOS có các ảnh launcher xuất từ nguồn này. Bản iOS cần macOS và Xcode để build và kiểm thử.
 
+## Kiểm tra bố cục trên nhiều màn hình
+
+Pixel 6 là cấu hình chạy hằng ngày. Redmi Note 14 và moto g55 5G cũng có màn hình 1080 × 2400. Galaxy A56 5G dùng 1080 × 2340. Các thông số vật lý này giúp chọn cấu hình tham chiếu, còn bố cục Flutter dựa trên không gian khả dụng theo pixel logic. [Xiaomi](https://www.mi.com/global/product/redmi-note-14/specs/) · [Motorola](https://en-us.support.motorola.com/app/answers/detail/a_id/183716/~/specifications---moto-g55-5g) · [Samsung](https://www.samsung.com/au/smartphones/galaxy-a/galaxy-a56-5g-awesome-graphite-128gb-sm-a566bzkkats/)
+
+| Cấu hình kiểm thử | Kích thước logic xấp xỉ trước khi trừ vùng hệ thống |
+|---|---|
+| AVD Compact, 720 × 1600 ở 320 dpi | 360 × 800 |
+| AVD chính, 1080 × 2400 ở 420 dpi | 411 × 914 |
+| Viewport kiểm thử rộng và thấp hơn, tỷ lệ 19.5:9 | 450 × 975 |
+
+Viewport thứ ba là kích thước kiểm thử đề xuất, có thể dùng trong widget test hoặc mô phỏng trên cùng AVD. Chạy từng AVD một và dùng lại bản debug để kiểm tra hai cấu hình. Kích thước cửa sổ giả lập trên Windows chỉ ảnh hưởng mức phóng khi xem.
+
+Dùng `LayoutBuilder` cho không gian của từng vùng và `MediaQuery` khi cần thông tin toàn cửa sổ. Dùng `SafeArea` cho nút và nội dung cần tránh vùng khuyết hoặc thanh hệ thống. Khi thiếu chỗ, cho nội dung xuống dòng, xếp dọc hoặc cuộn. Giữ tỷ lệ ảnh và kiểm tra khung căn mẫu khi camera được tích hợp. Duyệt chữ tiếng Việt ở cỡ mặc định và cỡ lớn, thao tác với bàn phím mở, và khả năng chạm tới các nút chính. [Flutter adaptive layouts](https://docs.flutter.dev/ui/adaptive-responsive/general) · [SafeArea và MediaQuery](https://docs.flutter.dev/ui/adaptive-responsive/safearea-mediaquery)
+
 ## Vị trí mã nguồn
 
 - `lib/main.dart` khởi động app.

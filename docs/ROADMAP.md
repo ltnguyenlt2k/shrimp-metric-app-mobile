@@ -5,7 +5,7 @@ Trình tự đề xuất, chưa ấn định ngày hoặc số tuần. Chi tiế
 | Mốc | Kết quả bàn giao | Điều kiện qua mốc |
 |---|---|---|
 | M0 · Môi trường | Toolchain Android cục bộ, giả lập, kết nối máy thật và quy trình agent dùng chung | Project Flutter mẫu chạy được trên giả lập. Máy thật được nhận diện để kiểm thử camera. Ghi phiên bản và cách chạy. |
-| M1 · Prototype giao diện tổng thể | Bản có thể bấm qua Tổng quan, Chụp, Kết quả, Lịch sử và Cài đặt bằng dữ liệu mẫu trên Android Emulator | Người dùng duyệt bố cục và điều hướng tổng thể trước M2. Kiểm tra hai kích thước màn hình, cỡ chữ lớn và các trạng thái chính. |
+| M1 · Prototype giao diện tổng thể | Bản có thể bấm qua Tổng quan, Chụp, Kết quả, Lịch sử và Cài đặt bằng dữ liệu mẫu trên Android Emulator | Người dùng duyệt bố cục và điều hướng tổng thể trước M2. Kiểm tra viewport hẹp, chuẩn và rộng theo [hướng dẫn phát triển](DEVELOPMENT.md), cỡ chữ lớn và các trạng thái chính. |
 | M2 · Luồng cục bộ | Camera, thiết lập chụp, xác nhận số đếm, lưu và mở lại kết quả, nút Đóng góp mẫu | Chụp thật và lưu/xem/xóa được khi offline. Kiểm tra quyền bị từ chối và rời app. Nút đóng góp hiển thị đúng trạng thái và không truyền dữ liệu. |
 | M3 · AI thử nghiệm | Model đếm tại máy, phiên bản model trong lịch sử, bản thử Android | Báo cáo sai số trên tập giữ riêng và baseline độ trễ, bộ nhớ, nhiệt trên máy thật. Nếu model chưa đạt, bản thử giữ luồng đếm xác nhận thủ công và chỉ mở AI trong phạm vi thử nghiệm. |
 | M4 · iOS | Bản Flutter chạy trên iOS Simulator và iPhone thật | Qua luồng camera, offline, lưu lịch sử, UI thích ứng và hiệu năng trên iPhone. Phụ thuộc môi trường macOS và cách cài bản thử. |

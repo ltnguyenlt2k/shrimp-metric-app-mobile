@@ -16,7 +16,7 @@ App Flutter cho iPhone và Android, phát triển và kiểm thử Android trư�
 
 1. Duyệt màn hình Tổng quan, Chụp mẫu, Kết quả, Lịch sử và Cài đặt bằng dữ liệu mẫu. Định hình màu, chữ tiếng Việt, khoảng cách và thành phần theo tình huống dùng ngoài hiện trường. Ưu tiên ảnh mẫu, số liệu dễ đọc, thao tác chụp rõ ràng. Dùng thẻ, màu nhấn và chuyển động khi có tác dụng cụ thể.
 2. Tạo điều hướng và theme Flutter dùng chung, cấu trúc bản dịch ngay từ đầu, lưu lựa chọn ngôn ngữ. Cài đặt có Hiệu chỉnh camera, Ngôn ngữ và Thông tin app gồm phiên bản và giấy phép. Dashboard hiển thị hành động chụp, lần đo gần nhất và lối vào lịch sử.
-3. Thiết kế các trạng thái trống, tải, lỗi, bị từ chối quyền, chưa có AI, ước tính AI và đã xác nhận. Kiểm tra ảnh màn hình trên hai kích thước, cỡ chữ lớn, vùng an toàn, tương phản và TalkBack. [Flutter adaptive UI](https://docs.flutter.dev/ui/adaptive-responsive)
+3. Thiết kế các trạng thái trống, tải, lỗi, bị từ chối quyền, chưa có AI, ước tính AI và đã xác nhận. Bố trí theo chiều rộng và chiều cao khả dụng bằng pixel logic. Kiểm tra các cấu hình hẹp, chuẩn và rộng theo [hướng dẫn phát triển](DEVELOPMENT.md), với cỡ chữ lớn, vùng an toàn, tương phản và TalkBack. [Flutter adaptive UI](https://docs.flutter.dev/ui/adaptive-responsive)
 
 **Bàn giao M1** · Một prototype có thể bấm qua các màn hình chính trên Android Emulator, dùng dữ liệu mẫu. Duyệt bố cục, thứ tự thông tin và luồng điều hướng từ Tổng quan → Chụp mẫu → Kết quả → Lịch sử, cùng lối vào Cài đặt. Camera thật, hiệu chỉnh, lưu lịch sử và AI thuộc các mốc sau. Bắt đầu M2 sau khi người dùng duyệt bố cục tổng thể.
 
