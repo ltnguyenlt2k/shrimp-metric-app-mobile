@@ -66,3 +66,8 @@ Dùng `LayoutBuilder` cho không gian của từng vùng và `MediaQuery` khi c�
 - `lib/features/<tính-năng>/presentation/` chứa các màn hình và trạng thái giao diện của tính năng. Đặt widget riêng trong `presentation/widgets/` khi cần tách. Ví dụ màn hình tổng quan ở `lib/features/overview/presentation/overview_screen.dart`.
 - Đặt phần xử lý dữ liệu, camera hoặc AI cạnh tính năng dùng nó khi triển khai. Chỉ đưa một widget hay dịch vụ vào thư mục dùng chung khi có nhiều tính năng cần dùng.
 - `test/` chứa các bài kiểm thử. `android/` và `ios/` chứa cấu hình native và icon từng nền tảng.
+
+## Nguồn tài nguyên prototype M1
+
+- `material_ui` 1.11.0, BSD-3-Clause. Nội dung giấy phép có trong màn hình giấy phép Flutter. [Nguồn package](https://pub.dev/packages/material_ui/versions/1.11.0)
+- `assets/demo/shrimp-tray.jpg` là ảnh minh họa do OpenAI ImageGen tạo cho prototype M1. Số đếm trong giao diện là dữ liệu mẫu độc lập với ảnh.
