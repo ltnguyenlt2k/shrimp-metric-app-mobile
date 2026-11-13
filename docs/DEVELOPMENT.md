@@ -38,7 +38,7 @@ sg kvm -c 'emulator -avd ShrimpMetric_API35 -gpu swiftshader'
 
 Lệnh trên mở cửa sổ Android Emulator riêng trên Windows qua WSLg. Có thể bấm, vuốt, nhập bằng bàn phím và dùng các nút điều khiển ngay trong cửa sổ đó. ADB dùng để cài app và debug.
 
-Dùng terminal khác để chạy `flutter devices` rồi `flutter run -d <device-id>`. Thêm `-no-window` vào lệnh emulator khi chỉ cần kiểm thử qua ADB. Nếu trình kiểm tra Android báo chưa rõ trạng thái license do proxy môi trường, thử chạy lại với các biến proxy rỗng được bỏ khỏi lệnh đó.
+Dùng một giả lập mỗi lần. Chạy `flutter devices` rồi `flutter run -d <device-id>` trong terminal riêng. Giữ phiên debug mở và nhấn `r` để hot reload các chỉnh sửa Dart/UI, hoặc `R` khi cần chạy lại từ đầu. Khởi động lại phiên build khi thay đổi plugin, dependency hoặc cấu hình native. Mở cấu hình màn hình nhỏ khi đến lượt kiểm tra bố cục. Nếu trình kiểm tra Android báo chưa rõ trạng thái license do proxy môi trường, thử chạy lại với các biến proxy rỗng được bỏ khỏi lệnh đó.
 
 Logo nguồn nằm tại `assets/branding/shrimpmetric-icon.png`. Android và iOS có các ảnh launcher xuất từ nguồn này. Bản iOS cần macOS và Xcode để build và kiểm thử.
 
@@ -49,7 +49,3 @@ Logo nguồn nằm tại `assets/branding/shrimpmetric-icon.png`. Android và iO
 - `lib/features/<tính-năng>/presentation/` chứa các màn hình và trạng thái giao diện của tính năng. Đặt widget riêng trong `presentation/widgets/` khi cần tách. Ví dụ màn hình tổng quan ở `lib/features/overview/presentation/overview_screen.dart`.
 - Đặt phần xử lý dữ liệu, camera hoặc AI cạnh tính năng dùng nó khi triển khai. Chỉ đưa một widget hay dịch vụ vào thư mục dùng chung khi có nhiều tính năng cần dùng.
 - `test/` chứa các bài kiểm thử. `android/` và `ios/` chứa cấu hình native và icon từng nền tảng.
-
-## Xem giả lập trong Codex (tùy chọn)
-
-Sau khi bật giả lập và nạp môi trường, chạy `python3 scripts/android-preview.py --device emulator-5554`. Mở `http://localhost:8765` bằng tab Browser ở khung phải Codex. Trang làm mới ảnh từ màn hình Android qua ADB và chỉ lắng nghe trên máy cục bộ. Bấm hoặc kéo trên ảnh để chạm hoặc vuốt. Các nút Back, Home và Recent gửi lệnh đến cùng thiết bị. Dùng cửa sổ Android Emulator khi cần nhập liệu bằng bàn phím hoặc thao tác đa điểm. Khi chạy `flutter run`, dùng hot reload trong terminal để cập nhật màn hình sau khi sửa Dart.
