@@ -29,7 +29,7 @@ M1 bàn giao prototype có thể bấm qua các màn hình bằng dữ liệu m�
 
 ## Giả lập đã cấu hình trong WSL
 
-AVD `ShrimpMetric_API35` dùng cấu hình Pixel 6 và ảnh hệ thống Android 35 Google APIs x86_64. Từ terminal đã nạp môi trường:
+Hai AVD dùng ảnh hệ thống Android 35 Google APIs x86_64. `ShrimpMetric_API35` có màn hình 1080 × 2400, còn `ShrimpMetric_Compact_API35` có màn hình 720 × 1600 để kiểm tra bố cục hẹp. Từ terminal đã nạp môi trường:
 
 ```bash
 adb start-server
