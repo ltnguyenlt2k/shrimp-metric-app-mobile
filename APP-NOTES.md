@@ -2,7 +2,7 @@
 
 ## Đã chốt
 
-- Tên app đã chọn là **ShrimpMetric**. Repo là `shrimp-metric-app-mobile`. Bản logo đề xuất lồng chữ N vào hình tôm: [icon ShrimpMetric](assets/branding/shrimpmetric-icon.png).
+- Tên app đã chọn là **ShrimpMetric**. Repo là `shrimp-metric-app-mobile`. Đã chốt logo chính thức và ảnh nguồn cho icon Android/iOS là [ShrimpMetric PNG](assets/branding/shrimpmetric-icon.png), bản chữ N nét dày đan sau thân tôm. Dùng ảnh nguồn này để tạo các biến thể icon theo yêu cầu từng nền tảng khi triển khai.
 
 - Sản phẩm là app di động đa nền tảng cho iPhone (iOS) và Android, dùng Flutter. Android là nền tảng phát triển và kiểm thử đầu tiên. iOS sẽ được tích hợp và kiểm thử ở giai đoạn sau. Người dùng không có máy Mac.
 - App dùng camera để chụp ảnh và lấy thông tin từ ảnh. AI xử lý ảnh ngay trên điện thoại.
