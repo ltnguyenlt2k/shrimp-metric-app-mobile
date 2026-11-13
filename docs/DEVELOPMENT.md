@@ -50,4 +50,4 @@ Logo nguồn nằm tại `assets/branding/shrimpmetric-icon.png`. Android và iO
 
 ## Xem giả lập trong Codex
 
-Sau khi bật giả lập và nạp môi trường, chạy `python3 scripts/android-preview.py --device emulator-5554`. Mở `http://localhost:8765` bằng tab Browser ở khung phải Codex. Trang làm mới ảnh từ màn hình Android qua ADB và chỉ lắng nghe trên máy cục bộ. Để thao tác trực tiếp, dùng cửa sổ Android Emulator. Khi chạy `flutter run`, dùng hot reload trong terminal để cập nhật màn hình sau khi sửa Dart.
+Sau khi bật giả lập và nạp môi trường, chạy `python3 scripts/android-preview.py --device emulator-5554`. Mở `http://localhost:8765` bằng tab Browser ở khung phải Codex. Trang làm mới ảnh từ màn hình Android qua ADB và chỉ lắng nghe trên máy cục bộ. Bấm hoặc kéo trên ảnh để chạm hoặc vuốt. Các nút Back, Home và Recent gửi lệnh đến cùng thiết bị. Dùng cửa sổ Android Emulator khi cần nhập liệu bằng bàn phím hoặc thao tác đa điểm. Khi chạy `flutter run`, dùng hot reload trong terminal để cập nhật màn hình sau khi sửa Dart.
