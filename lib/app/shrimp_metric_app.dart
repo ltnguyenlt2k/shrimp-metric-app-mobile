@@ -62,10 +62,7 @@ class ShrimpMetricApp extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        listTileTheme: const ListTileThemeData(
-          contentPadding: EdgeInsets.zero,
-          minTileHeight: 56,
-        ),
+        listTileTheme: const ListTileThemeData(minTileHeight: 56),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(minimumSize: const Size(48, 48)),
         ),
@@ -85,6 +82,7 @@ class _Home extends StatefulWidget {
 
 class _HomeState extends State<_Home> {
   int index = 0;
+  int _nextSampleId = 5;
   late final samples = [
     SampleMeasurement(
       id: 4,
@@ -123,7 +121,7 @@ class _HomeState extends State<_Home> {
       samples.insert(
         0,
         SampleMeasurement(
-          id: samples.length + 1,
+          id: _nextSampleId++,
           count: count,
           measuredAt: DateTime.now(),
           hasPreview: true,
@@ -175,7 +173,12 @@ class _HomeState extends State<_Home> {
                     ),
                   ),
                 ),
-                1 => HistoryScreen(samples: samples),
+                1 => HistoryScreen(
+                  samples: samples,
+                  onDelete: (id) => setState(
+                    () => samples.removeWhere((sample) => sample.id == id),
+                  ),
+                ),
                 2 => AnalysisScreen(samples: samples),
                 _ => const SettingsScreen(),
               },

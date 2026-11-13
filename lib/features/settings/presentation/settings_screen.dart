@@ -30,6 +30,7 @@ class SettingsScreen extends StatelessWidget {
         Text('Thiết lập đo', style: theme.textTheme.titleLarge),
         const SizedBox(height: 4),
         ListTile(
+          contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.center_focus_strong),
           title: const Text('Hiệu chỉnh camera'),
           subtitle: const Text('Căn khay và ánh sáng'),
@@ -44,6 +45,7 @@ class SettingsScreen extends StatelessWidget {
         Text('Ứng dụng', style: theme.textTheme.titleLarge),
         const SizedBox(height: 4),
         ListTile(
+          contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.language),
           title: const Text('Ngôn ngữ'),
           subtitle: const Text('Tiếng Việt'),
@@ -53,6 +55,7 @@ class SettingsScreen extends StatelessWidget {
         ),
         const Divider(),
         ListTile(
+          contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.info_outline),
           title: const Text('Thông tin app'),
           subtitle: const Text('ShrimpMetric · 0.1.0'),

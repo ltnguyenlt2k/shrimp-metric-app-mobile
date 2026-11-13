@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shrimp_metric/app/shrimp_metric_app.dart';
@@ -82,4 +83,65 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+  testWidgets('License list preserves padding with large text', (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(360, 800);
+    tester.platformDispatcher.textScaleFactorTestValue = 1.6;
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+
+    await tester.pumpWidget(const ShrimpMetricApp());
+    await tester.tap(find.text('Cài đặt'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Thông tin app'));
+    await tester.pumpAndSettle();
+    LicenseRegistry.addLicense(
+      () => Stream.value(
+        const LicenseEntryWithLineBreaks(['Test package'], 'Sample license'),
+      ),
+    );
+    addTearDown(LicenseRegistry.reset);
+    await tester.tap(find.text('View licenses'));
+    await tester.pumpAndSettle();
+    final licensePage = find.byType(LicensePage);
+    expect(licensePage, findsOneWidget);
+    final row = find
+        .descendant(of: licensePage, matching: find.byType(ListTile))
+        .first;
+    final title = tester.widget<ListTile>(row).title!;
+    expect(
+      tester.getTopLeft(find.byWidget(title)).dx,
+      greaterThanOrEqualTo(16),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Confirms deletion and handles empty history', (tester) async {
+    await tester.pumpWidget(const ShrimpMetricApp());
+    await tester.tap(find.text('Lịch sử'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Xóa mẫu 4'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Hủy'));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Xóa mẫu 4'), findsOneWidget);
+
+    for (final id in [4, 3, 2, 1]) {
+      await tester.tap(find.byTooltip('Xóa mẫu $id'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Xóa mẫu'));
+      await tester.pumpAndSettle();
+      expect(find.byTooltip('Xóa mẫu $id'), findsNothing);
+    }
+
+    expect(find.text('0 lần đo · Dữ liệu mẫu'), findsOneWidget);
+    await tester.tap(find.text('Phân tích'));
+    await tester.pumpAndSettle();
+    expect(find.text('Chưa có lần đo trong khoảng này.'), findsOneWidget);
+    await tester.tap(find.text('Tổng quan'));
+    await tester.pumpAndSettle();
+    expect(find.text('Chưa có lần đo. Chụp mẫu để bắt đầu.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

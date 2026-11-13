@@ -87,3 +87,11 @@ Dùng ISO 9241-11:2018 làm khung đánh giá trong bối cảnh người nuôi 
 Tomota S3+ là tham chiếu cho bố cục kết quả từng mẫu. JALA là tham chiếu cho việc tách ghi nhận mẫu và theo dõi theo thời gian. Tổng quan của ShrimpMetric đặt thao tác chụp trước, sau đó hiển thị kết quả gần nhất và biểu đồ cỡ tôm. Phân tích có bộ lọc ngày và chỉ số, trục thời gian, đơn vị và danh sách giá trị để đọc hoặc mở lại từng lần đo. [Tomota S3+](https://tomota.vn/tomota-s3-plus) · [JALA App](https://next.jala.tech/app) · [Apple HIG Charts](https://developer.apple.com/design/human-interface-guidelines/charts)
 
 Kiểu chữ chính dùng cỡ 26 cho tên màn, 19 cho tên mục, 15–16 cho nội dung và thao tác, 13 cho ngày, đơn vị và ghi chú. Nút chụp cao tối thiểu 52 pixel logic. Khi thử với người ít kinh nghiệm, quan sát họ tìm nút chụp, đọc giá trị kèm đơn vị và mở lại một lần đo từ biểu đồ qua danh sách. [Android Accessibility](https://developer.android.com/design/ui/mobile/guides/foundations/accessibility)
+
+## Hiệu năng qua từng mốc
+
+- Dựng danh sách lịch sử theo vùng nhìn thấy và giải mã thumbnail theo kích thước hiển thị. Trước khi phát hành lưu trữ thật, kiểm tra với lịch sử lớn, truy vấn phân trang và xóa cả ảnh gốc/thumbnail thuộc bản ghi nếu chúng không còn được tham chiếu.
+- Khi thay đổi luồng nặng, đo khởi động, thời gian khung hình khi cuộn, RAM đỉnh và dung lượng bản phát hành. Ghi thiết bị, chế độ build, kịch bản, kích thước dữ liệu và kết quả để so với baseline trước. Với camera/AI, bổ sung độ trễ và nhiệt khi chụp lặp trên Android thật ở profile hoặc release.
+- Widget test kiểm tra hành vi UI. Benchmark trên thiết bị mục tiêu dùng để kết luận về tốc độ và bộ nhớ.
+
+Baseline thăm dò M1 trên Android Emulator API 35 x86_64, debug, 4 bản ghi mẫu: một lần mở lạnh qua `adb shell am start -W` báo 3.363 ms, PSS ngay sau khi mở khoảng 270 MiB, APK debug khoảng 136 MiB. Đây là số đo một lần của prototype trên giả lập. Cần đo nhiều lượt ở profile/release trên máy thật, với lịch sử lớn, để đánh giá thời gian khung hình và bộ nhớ.
