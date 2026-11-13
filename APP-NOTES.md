@@ -65,3 +65,10 @@
 ## Tài liệu triển khai
 
 - [Kế hoạch](docs/PLAN.md) · [Roadmap](docs/ROADMAP.md) · [ADR](docs/ADR.md).
+
+## Tham khảo thao tác đo tôm tại ao
+
+- Ảnh 1–2 từ video “Nuôi tôm cùng Biogency” cho thấy lấy mẫu ở ao bằng vợt rồi đưa vào khay. Ảnh 4 cho thấy màn hình chụp từ trên xuống với các dấu ở góc vùng mẫu. Ảnh 3 hiển thị “Số tôm lần đo này: 56 con” và các khung quanh tôm. Chức năng chính xác của dấu góc và cách tính cỡ tôm chưa được xác minh từ ảnh.
+- Video nêu cỡ thay đổi từ 3.786 xuống 2.191 con/kg sau 5 ngày. Số đếm trong mẫu và cỡ con/kg là hai chỉ số khác nhau. Nếu có số đếm xác nhận và khối lượng tịnh của cùng mẫu, cỡ con/kg = số con × 1.000 / khối lượng mẫu tính bằng gram. Ước tính từ ảnh cần dữ liệu đo/cân đối chiếu.
+- [Tomota S3+](https://tomota.vn/tomota-s3-plus) tham chiếu theo dõi tôm đang nuôi, tăng trưởng và lịch sử. [Tomota S3T](https://tomota.vn/tomota-s3t) tham chiếu tôm giống, số lượng, chiều dài và độ đồng đều. Kích thước ghi trên hình hộp trong ảnh 5 khác dòng thông số bên dưới, cần xác minh nếu thiết kế phần cứng.
+- Đề xuất cho lượt duyệt M1 tiếp theo: khung căn mẫu rõ trên ảnh chụp, nút chụp dễ bấm, tùy chọn bật/tắt dấu nhận diện ở kết quả, và lịch sử có ngày đo cùng ao/lô khi phù hợp. Nền sáng và nhận diện ShrimpMetric. Đề xuất cần chốt là ưu tiên đo cỡ tôm tại ao hay đếm tôm giống, và dùng khay với giá đỡ/hộp hay chụp cầm tay.
