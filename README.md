@@ -23,3 +23,4 @@ ShrimpMetric là app Flutter cho Android và iPhone. App được phát triển 
 Prototype dùng dữ liệu mẫu để duyệt bố cục và điều hướng giữa **Tổng quan, Chụp mẫu, Kết quả, Lịch sử và Cài đặt**. Sau khi duyệt, dự án sẽ triển khai luồng camera, lưu lịch sử và AI theo roadmap.
 
 Xem [ghi chú yêu cầu](APP-NOTES.md) để biết các quyết định sản phẩm đã chốt.
+Xem [hướng dẫn phát triển](docs/DEVELOPMENT.md) để chạy app và dùng skill dự án.
