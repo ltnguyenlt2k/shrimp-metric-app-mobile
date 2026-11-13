@@ -29,14 +29,15 @@ M1 bàn giao prototype có thể bấm qua các màn hình bằng dữ liệu m�
 
 ## Mở cửa sổ Android Emulator trực tiếp
 
-Hai AVD dùng ảnh hệ thống Android 35 Google APIs x86_64. `ShrimpMetric_API35` có màn hình 1080 × 2400, còn `ShrimpMetric_Compact_API35` có màn hình 720 × 1600 để kiểm tra bố cục hẹp. Từ terminal đã nạp môi trường:
+Hai AVD dùng ảnh hệ thống Android 35 Google APIs x86_64. `ShrimpMetric_API35` có màn hình 1080 × 2400, còn `ShrimpMetric_Compact_API35` có màn hình 720 × 1600 để kiểm tra bố cục hẹp. Từ thư mục gốc repo trong terminal đã nạp môi trường:
 
 ```bash
 adb start-server
-sg kvm -c 'emulator -avd ShrimpMetric_API35 -gpu swiftshader'
+export SHRIMPMETRIC_SKINS="$(pwd)/tools/android-emulator"
+sg kvm -c 'emulator -avd ShrimpMetric_API35 -skindir "$SHRIMPMETRIC_SKINS" -skin phone -gpu swiftshader'
 ```
 
-Lệnh trên mở cửa sổ Android Emulator riêng trên Windows qua WSLg. Có thể bấm, vuốt, nhập bằng bàn phím và dùng các nút điều khiển ngay trong cửa sổ đó. ADB dùng để cài app và debug.
+Lệnh trên mở cửa sổ Android Emulator riêng trên Windows qua WSLg, với khung thân máy và lớp bo cả bốn góc màn hình đã duyệt. Skin nằm trong `tools/android-emulator/phone` và dành cho AVD chính 1080 × 2400. Dùng AVD Compact với skin mặc định khi kiểm tra bố cục hẹp. Có thể bấm, vuốt, nhập bằng bàn phím và dùng các nút điều khiển ngay trong cửa sổ đó. ADB dùng để cài app và debug.
 
 Dùng một giả lập mỗi lần. Chạy `flutter devices` rồi `flutter run -d <device-id>` trong terminal riêng. Giữ phiên debug mở và nhấn `r` để hot reload các chỉnh sửa Dart/UI, hoặc `R` khi cần chạy lại từ đầu. Khởi động lại phiên build khi thay đổi plugin, dependency hoặc cấu hình native. Mở cấu hình màn hình nhỏ khi đến lượt kiểm tra bố cục. Nếu trình kiểm tra Android báo chưa rõ trạng thái license do proxy môi trường, thử chạy lại với các biến proxy rỗng được bỏ khỏi lệnh đó.
 
