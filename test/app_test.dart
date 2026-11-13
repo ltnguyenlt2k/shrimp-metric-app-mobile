@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shrimp_metric/main.dart';
+import 'package:shrimp_metric/app/shrimp_metric_app.dart';
 
 void main() {
   testWidgets('Launches ShrimpMetric', (tester) async {
