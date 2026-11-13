@@ -101,11 +101,18 @@ class HistoryScreen extends StatelessWidget {
                 icon: const Icon(Icons.delete_outline),
                 onPressed: () => _confirmDelete(context, sample),
               ),
-              onTap: () => Navigator.push<void>(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      ResultScreen(count: sample.count, measurement: sample),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.arrow_forward),
+                label: const Text('Xem mẫu'),
+                onPressed: () => Navigator.push<void>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        ResultScreen(count: sample.count, measurement: sample),
+                  ),
                 ),
               ),
             ),

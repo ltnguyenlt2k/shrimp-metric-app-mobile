@@ -20,7 +20,25 @@ void main() {
       await tester.drag(find.byType(ListView), const Offset(0, 220));
       await tester.pumpAndSettle();
       expect(find.byType(StretchingOverscrollIndicator), findsNothing);
-      await tester.tap(find.widgetWithText(FilledButton, 'Chụp mẫu'));
+      await tester.tap(find.text('38 con'));
+      await tester.pumpAndSettle();
+      expect(find.text('Nhật ký đo tôm'), findsOneWidget);
+      final details = find.widgetWithText(
+        OutlinedButton,
+        'Xem kết quả chi tiết',
+      );
+      await tester.scrollUntilVisible(details, 100);
+      await tester.tap(details);
+      await tester.pumpAndSettle();
+      expect(find.text('Kết quả'), findsOneWidget);
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+      final capture = find.widgetWithText(FilledButton, 'Chụp mẫu');
+      await tester.drag(find.byType(ListView), const Offset(0, 500));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(capture);
+      await tester.pumpAndSettle();
+      await tester.tap(capture);
       await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('Chụp ảnh mẫu'));
       await tester.pump();
@@ -43,6 +61,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Lịch sử phân tích'), findsOneWidget);
       await tester.tap(find.text('Mẫu 5 · 38 con'));
+      await tester.pumpAndSettle();
+      expect(find.text('Lịch sử phân tích'), findsOneWidget);
+      await tester.tap(find.widgetWithText(OutlinedButton, 'Xem mẫu').first);
       await tester.pumpAndSettle();
       final contribute = find.text('Đóng góp mẫu');
       await tester.scrollUntilVisible(contribute, 120);
@@ -94,15 +115,15 @@ void main() {
     await tester.pumpWidget(const ShrimpMetricApp());
     await tester.tap(find.text('Cài đặt'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Thông tin app'));
-    await tester.pumpAndSettle();
     LicenseRegistry.addLicense(
       () => Stream.value(
         const LicenseEntryWithLineBreaks(['Test package'], 'Sample license'),
       ),
     );
     addTearDown(LicenseRegistry.reset);
-    await tester.tap(find.text('View licenses'));
+    await tester.scrollUntilVisible(find.text('Giấy phép nguồn mở'), 120);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Giấy phép nguồn mở'));
     await tester.pumpAndSettle();
     final licensePage = find.byType(LicensePage);
     expect(licensePage, findsOneWidget);
@@ -114,6 +135,10 @@ void main() {
       tester.getTopLeft(find.byWidget(title)).dx,
       greaterThanOrEqualTo(16),
     );
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.text('Giấy phép nguồn mở'), findsOneWidget);
+    expect(find.byType(AlertDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 

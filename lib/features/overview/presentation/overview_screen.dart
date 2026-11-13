@@ -47,36 +47,37 @@ class OverviewScreen extends StatelessWidget {
             color: theme.colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(12),
             clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: onHistory,
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  children: [
-                    for (final metric in SampleMetric.values)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          children: [
-                            Expanded(child: Text(metric.label)),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                metric.format(metric.value(latest)),
-                                textAlign: TextAlign.end,
-                                style: theme.textTheme.titleMedium,
-                              ),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                children: [
+                  for (final metric in SampleMetric.values)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          Expanded(child: Text(metric.label)),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              metric.format(metric.value(latest)),
+                              textAlign: TextAlign.end,
+                              style: theme.textTheme.titleMedium,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    const SizedBox(height: 6),
-                    const Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text('Xem kết quả →'),
                     ),
-                  ],
-                ),
+                  const SizedBox(height: 6),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: OutlinedButton.icon(
+                      onPressed: onHistory,
+                      icon: const Icon(Icons.arrow_forward),
+                      label: const Text('Xem kết quả chi tiết'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -91,9 +92,10 @@ class OverviewScreen extends StatelessWidget {
           const SizedBox(height: 8),
           Align(
             alignment: AlignmentDirectional.centerStart,
-            child: TextButton(
+            child: OutlinedButton.icon(
               onPressed: onAnalysis,
-              child: const Text('Mở phân tích'),
+              icon: const Icon(Icons.show_chart),
+              label: const Text('Mở phân tích'),
             ),
           ),
         ],

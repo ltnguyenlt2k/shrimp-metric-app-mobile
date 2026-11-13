@@ -34,7 +34,7 @@ class SettingsScreen extends StatelessWidget {
           leading: const Icon(Icons.center_focus_strong),
           title: const Text('Hiệu chỉnh camera'),
           subtitle: const Text('Căn khay và ánh sáng'),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: const Icon(Icons.chevron_right, semanticLabel: 'Mở'),
           onTap: () => _show(
             context,
             'Hiệu chỉnh camera',
@@ -49,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
           leading: const Icon(Icons.language),
           title: const Text('Ngôn ngữ'),
           subtitle: const Text('Tiếng Việt'),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: const Icon(Icons.chevron_right, semanticLabel: 'Mở'),
           onTap: () =>
               _show(context, 'Ngôn ngữ', 'Bản xem trước dùng tiếng Việt.'),
         ),
@@ -59,8 +59,14 @@ class SettingsScreen extends StatelessWidget {
           leading: const Icon(Icons.info_outline),
           title: const Text('Thông tin app'),
           subtitle: const Text('ShrimpMetric · 0.1.0'),
+        ),
+        const Divider(),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.description_outlined),
+          title: const Text('Giấy phép nguồn mở'),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () => showAboutDialog(
+          onTap: () => showLicensePage(
             context: context,
             applicationName: 'ShrimpMetric',
             applicationVersion: '0.1.0',

@@ -100,18 +100,30 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           const SizedBox(height: 24),
           Text('Chi tiết từng lần đo', style: theme.textTheme.titleLarge),
           for (final sample in samples)
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text('${sample.dateLabel} · Mẫu ${sample.id}'),
-              subtitle: Text(sample.timeLabel),
-              trailing: Text(_metric.format(_metric.value(sample))),
-              onTap: () => Navigator.push<void>(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      ResultScreen(count: sample.count, measurement: sample),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  title: Text('${sample.dateLabel} · Mẫu ${sample.id}'),
+                  subtitle: Text(
+                    '${sample.timeLabel} · ${_metric.format(_metric.value(sample))}',
+                  ),
                 ),
-              ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.arrow_forward),
+                  label: const Text('Xem mẫu'),
+                  onPressed: () => Navigator.push<void>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ResultScreen(
+                        count: sample.count,
+                        measurement: sample,
+                      ),
+                    ),
+                  ),
+                ),
+                const Divider(),
+              ],
             ),
         ],
       ],
