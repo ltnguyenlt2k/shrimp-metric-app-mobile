@@ -27,7 +27,7 @@ Mở repo trong phiên Codex hoặc Claude Code. Dùng `$shrimpmetric-mobile` tr
 
 M1 bàn giao prototype có thể bấm qua các màn hình bằng dữ liệu mẫu. Dùng [roadmap](ROADMAP.md) và [kế hoạch](PLAN.md) khi duyệt bố cục và điều hướng.
 
-## Giả lập đã cấu hình trong WSL
+## Mở cửa sổ Android Emulator trực tiếp
 
 Hai AVD dùng ảnh hệ thống Android 35 Google APIs x86_64. `ShrimpMetric_API35` có màn hình 1080 × 2400, còn `ShrimpMetric_Compact_API35` có màn hình 720 × 1600 để kiểm tra bố cục hẹp. Từ terminal đã nạp môi trường:
 
@@ -35,6 +35,8 @@ Hai AVD dùng ảnh hệ thống Android 35 Google APIs x86_64. `ShrimpMetric_AP
 adb start-server
 sg kvm -c 'emulator -avd ShrimpMetric_API35 -gpu swiftshader'
 ```
+
+Lệnh trên mở cửa sổ Android Emulator riêng trên Windows qua WSLg. Có thể bấm, vuốt, nhập bằng bàn phím và dùng các nút điều khiển ngay trong cửa sổ đó. ADB dùng để cài app và debug.
 
 Dùng terminal khác để chạy `flutter devices` rồi `flutter run -d <device-id>`. Thêm `-no-window` vào lệnh emulator khi chỉ cần kiểm thử qua ADB. Nếu trình kiểm tra Android báo chưa rõ trạng thái license do proxy môi trường, thử chạy lại với các biến proxy rỗng được bỏ khỏi lệnh đó.
 
@@ -48,6 +50,6 @@ Logo nguồn nằm tại `assets/branding/shrimpmetric-icon.png`. Android và iO
 - Đặt phần xử lý dữ liệu, camera hoặc AI cạnh tính năng dùng nó khi triển khai. Chỉ đưa một widget hay dịch vụ vào thư mục dùng chung khi có nhiều tính năng cần dùng.
 - `test/` chứa các bài kiểm thử. `android/` và `ios/` chứa cấu hình native và icon từng nền tảng.
 
-## Xem giả lập trong Codex
+## Xem giả lập trong Codex (tùy chọn)
 
 Sau khi bật giả lập và nạp môi trường, chạy `python3 scripts/android-preview.py --device emulator-5554`. Mở `http://localhost:8765` bằng tab Browser ở khung phải Codex. Trang làm mới ảnh từ màn hình Android qua ADB và chỉ lắng nghe trên máy cục bộ. Bấm hoặc kéo trên ảnh để chạm hoặc vuốt. Các nút Back, Home và Recent gửi lệnh đến cùng thiết bị. Dùng cửa sổ Android Emulator khi cần nhập liệu bằng bàn phím hoặc thao tác đa điểm. Khi chạy `flutter run`, dùng hot reload trong terminal để cập nhật màn hình sau khi sửa Dart.
