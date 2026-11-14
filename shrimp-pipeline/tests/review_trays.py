@@ -1,4 +1,4 @@
-"""Run the existing export on actual tray photographs from Li et al., Figure 2."""
+"""Run the existing export on published photographs of shrimp in trays."""
 import io
 import json
 
@@ -28,6 +28,9 @@ def main():
         buffer = io.BytesIO()
         panel.save(buffer, format="PNG")
         rows.append(("li2023", name, "external", buffer.getvalue(), None))
+    for name in ("thenho-tray-a", "thenho-tray-b"):
+        photo = ROOT / "artifacts/external" / f"{name}.jpg"
+        rows.append(("thenho", name, "external", photo.read_bytes(), None))
     threshold = json.loads((output / "config.json").read_text())["threshold"]
     results = run(output / "count-fp16-storage.onnx", rows, threshold, render=True)
     (output / "tray-predictions.json").write_text(json.dumps(results, indent=2) + "\n")

@@ -4,8 +4,8 @@
     "image": "pl-tiger-a",
     "label": null,
     "predicted": 2,
-    "runtime_ms": 2.586198999779299,
-    "end_to_end_ms": 34.3033520039171,
+    "runtime_ms": 2.138501004083082,
+    "end_to_end_ms": 26.52279700851068,
     "points": [
       [
         189.10714285714286,
@@ -22,8 +22,8 @@
     "image": "pl-tiger-b",
     "label": null,
     "predicted": 1,
-    "runtime_ms": 2.0301540207583457,
-    "end_to_end_ms": 25.76984598999843,
+    "runtime_ms": 2.080512000247836,
+    "end_to_end_ms": 22.135286999400705,
     "points": [
       [
         609.8705357142858,
@@ -36,8 +36,8 @@
     "image": "pl-tiger-c",
     "label": null,
     "predicted": 1,
-    "runtime_ms": 2.0811950089409947,
-    "end_to_end_ms": 27.466082014143467,
+    "runtime_ms": 1.8443310109432787,
+    "end_to_end_ms": 23.48945999983698,
     "points": [
       [
         496.40625,
@@ -50,8 +50,8 @@
     "image": "pl-tiger-d",
     "label": null,
     "predicted": 1,
-    "runtime_ms": 1.9410359964240342,
-    "end_to_end_ms": 25.712014990858734,
+    "runtime_ms": 1.8563150078989565,
+    "end_to_end_ms": 24.4835720222909,
     "points": [
       [
         567.3214285714286,
@@ -64,8 +64,8 @@
     "image": "pl-tiger-e",
     "label": null,
     "predicted": 2,
-    "runtime_ms": 2.1554560225922614,
-    "end_to_end_ms": 27.605128998402506,
+    "runtime_ms": 1.8937679997179657,
+    "end_to_end_ms": 23.718445998383686,
     "points": [
       [
         189.10714285714286,
@@ -82,8 +82,8 @@
     "image": "pl-tiger-f",
     "label": null,
     "predicted": 1,
-    "runtime_ms": 2.230298996437341,
-    "end_to_end_ms": 27.984479995211586,
+    "runtime_ms": 1.93186299293302,
+    "end_to_end_ms": 25.22170598967932,
     "points": [
       [
         269.47767857142856,
@@ -96,12 +96,48 @@
     "image": "pl-tiger-g",
     "label": null,
     "predicted": 1,
-    "runtime_ms": 2.156465983716771,
-    "end_to_end_ms": 28.19744701264426,
+    "runtime_ms": 1.9155059999320656,
+    "end_to_end_ms": 24.22372900764458,
     "points": [
       [
         113.46428571428572,
         283.6607142857143
+      ]
+    ]
+  },
+  {
+    "source": "thenho",
+    "image": "thenho-tray-a",
+    "label": null,
+    "predicted": 3,
+    "runtime_ms": 1.9333439995534718,
+    "end_to_end_ms": 44.2819089803379,
+    "points": [
+      [
+        822.8571428571429,
+        1234.2857142857144
+      ],
+      [
+        731.4285714285714,
+        1965.7142857142858
+      ],
+      [
+        1371.4285714285716,
+        1965.7142857142858
+      ]
+    ]
+  },
+  {
+    "source": "thenho",
+    "image": "thenho-tray-b",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 1.8657519831322134,
+    "end_to_end_ms": 40.63446697546169,
+    "points": [
+      [
+        1280.0,
+        1691.4285714285716
       ]
     ]
   }

@@ -78,7 +78,7 @@ def video(rows, records, output, *, tray_only=False):
             frame = Image.new("RGB", (960, 604), "#102322")
             photo = Image.open(io.BytesIO(raw)).convert("RGB")
             width = photo.width
-            photo.thumbnail((928, 520))
+            photo.thumbnail((928, 487))
             ratio = photo.width / width
             left, top = (960 - photo.width) // 2, 56
             frame.paste(photo, (left, top))
@@ -87,11 +87,15 @@ def video(rows, records, output, *, tray_only=False):
             label = "Unverified" if record["label"] is None else record["label"]
             draw.text((16, 34), f"{record['image'] if tray_only else record['source']} | Reference: {label} | Predicted: {record['predicted']}",
                       fill="#aaf5d1", font_size=16)
+            draw.text((16, 554), "Green circle = predicted point | May be misplaced or miss shrimp",
+                      fill="#aaf5d1", font_size=16)
             for x, y in record["points"]:
                 x, y = left + x * ratio, top + y * ratio
                 draw.ellipse((x-5, y-5, x+5, y+5), outline="#5affae", width=3)
             attribution = ("Li et al., Animals 2023, Fig. 2 (CC BY 4.0); panel cropped"
                            if tray_only else "Sources: CSIRO / Mendeley anatomical subset (CC BY 4.0)")
+            if record["source"] == "thenho":
+                attribution = "TheNho, Shrimp size, Roboflow Universe (CC BY 4.0); prediction overlay"
             draw.text((16, 580), attribution, fill="white", font_size=14)
             process.stdin.write(frame.tobytes())
         process.stdin.close()
