@@ -44,7 +44,7 @@ def run(path, rows, threshold, render=False):
         points = [(((cx + .5) * STRIDE - px) / scale, ((cy + .5) * STRIDE - py) / scale)
                   for _, _, cy, cx in peaks(logits, threshold)]
         completed = time.perf_counter()
-        records.append({"source": source, "image": name, "label": len(boxes),
+        records.append({"source": source, "image": name, "label": len(boxes) if boxes is not None else None,
                         "predicted": len(points), "runtime_ms": 1000 * (inferred - before_inference),
                         "end_to_end_ms": 1000 * (completed - started),
                         **({"points": points} if render else {})})
@@ -60,14 +60,14 @@ def summarize(records):
             "p95_end_to_end_ms": float(np.percentile([r["end_to_end_ms"] for r in records], 95))}
 
 
-def video(rows, records, output):
-    ranked = sorted(range(len(rows)), key=lambda i: abs(records[i]["predicted"] - records[i]["label"]))
-    indexes = sorted(set([*ranked[:3], *ranked[-4:],
-                         *[next(i for i, r in enumerate(records) if r["source"] == s)
-                           for s in ("vannamei", "csiro")]]))
-    external = next((i for i, row in enumerate(rows) if row[0] == "commons"), None)
-    if external is not None:
-        indexes.append(external)
+def video(rows, records, output, *, tray_only=False):
+    if tray_only:
+        indexes = range(len(rows))
+    else:
+        ranked = sorted(range(len(rows)), key=lambda i: abs(records[i]["predicted"] - records[i]["label"]))
+        indexes = sorted(set([*ranked[:3], *ranked[-4:],
+                             *[next(i for i, r in enumerate(records) if r["source"] == s)
+                               for s in ("vannamei", "csiro")]]))
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-threads", "2", "-f", "rawvideo", "-pix_fmt", "rgb24",
            "-s", "960x604", "-r", "1/3", "-i", "-", "-c:v", "libx264", "-threads", "2",
            "-vf", "fps=24,format=yuv420p", "-movflags", "+faststart", str(output)]
@@ -83,15 +83,15 @@ def video(rows, records, output):
             left, top = (960 - photo.width) // 2, 56
             frame.paste(photo, (left, top))
             draw = ImageDraw.Draw(frame)
-            draw.text((16, 10), "ShrimpMetric | Held-out images | ONNX FP16 weights", fill="white", font_size=20)
-            draw.text((16, 34), f"{record['source']} | Labels: {record['label']} | Predicted: {record['predicted']}",
+            draw.text((16, 10), "ShrimpMetric | Tray challenge" if tray_only else "ShrimpMetric | Dataset benchmark", fill="white", font_size=20)
+            label = "Unverified" if record["label"] is None else record["label"]
+            draw.text((16, 34), f"{record['image'] if tray_only else record['source']} | Reference: {label} | Predicted: {record['predicted']}",
                       fill="#aaf5d1", font_size=16)
             for x, y in record["points"]:
                 x, y = left + x * ratio, top + y * ratio
                 draw.ellipse((x-5, y-5, x+5, y+5), outline="#5affae", width=3)
-            attribution = ("Penaeus vannamei.jpg | Wikimedia Commons / iNaturalist (CC0)"
-                           if record["source"] == "commons"
-                           else "Sources: CSIRO / Mendeley anatomical subset (CC BY 4.0)")
+            attribution = ("Li et al., Animals 2023, Fig. 2 (CC BY 4.0); panel cropped"
+                           if tray_only else "Sources: CSIRO / Mendeley anatomical subset (CC BY 4.0)")
             draw.text((16, 580), attribution, fill="white", font_size=14)
             process.stdin.write(frame.tobytes())
         process.stdin.close()
@@ -146,11 +146,7 @@ def main():
             for group in ("all", "csiro", "vannamei")}}
         (run_dir / f"predictions-{label}.json").write_text(json.dumps(predictions, indent=2))
         if label == "fp16_storage":
-            external_path = ROOT / "artifacts/external/vannamei-commons.jpg"
-            external = [("commons", external_path.name, "external", external_path.read_bytes(), [[0, 0, 0, 0]])] if external_path.exists() else []
-            outside = run(path, external, threshold, render=True)
-            (run_dir / "external.json").write_text(json.dumps(outside, indent=2))
-            video(test + external, predictions + outside, run_dir / "count-review.mp4")
+            video(test, predictions, run_dir / "count-dataset-review.mp4")
     (run_dir / "metrics.json").write_text(json.dumps(reports, indent=2))
     print(json.dumps(reports, indent=2))
 

@@ -1,0 +1,108 @@
+[
+  {
+    "source": "li2023",
+    "image": "pl-tiger-a",
+    "label": null,
+    "predicted": 2,
+    "runtime_ms": 2.586198999779299,
+    "end_to_end_ms": 34.3033520039171,
+    "points": [
+      [
+        189.10714285714286,
+        510.5892857142857
+      ],
+      [
+        378.2142857142857,
+        775.3392857142858
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-b",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 2.0301540207583457,
+    "end_to_end_ms": 25.76984598999843,
+    "points": [
+      [
+        609.8705357142858,
+        926.625
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-c",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 2.0811950089409947,
+    "end_to_end_ms": 27.466082014143467,
+    "points": [
+      [
+        496.40625,
+        850.9821428571429
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-d",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 1.9410359964240342,
+    "end_to_end_ms": 25.712014990858734,
+    "points": [
+      [
+        567.3214285714286,
+        510.5892857142857
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-e",
+    "label": null,
+    "predicted": 2,
+    "runtime_ms": 2.1554560225922614,
+    "end_to_end_ms": 27.605128998402506,
+    "points": [
+      [
+        189.10714285714286,
+        699.6964285714286
+      ],
+      [
+        226.92857142857144,
+        926.625
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-f",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 2.230298996437341,
+    "end_to_end_ms": 27.984479995211586,
+    "points": [
+      [
+        269.47767857142856,
+        737.5178571428571
+      ]
+    ]
+  },
+  {
+    "source": "li2023",
+    "image": "pl-tiger-g",
+    "label": null,
+    "predicted": 1,
+    "runtime_ms": 2.156465983716771,
+    "end_to_end_ms": 28.19744701264426,
+    "points": [
+      [
+        113.46428571428572,
+        283.6607142857143
+      ]
+    ]
+  }
+]

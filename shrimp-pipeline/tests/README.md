@@ -12,9 +12,13 @@ python tests/review_weight.py
 
 Video MP4 dựng từ kết quả suy luận, có nhãn đối chứng và dự đoán, gồm cả mẫu tốt và mẫu sai nhiều. Đếm dùng ảnh giữ riêng CSIRO theo ngày chụp và Vannamei Anatomical theo nhóm DB. Cân dùng số đo bằng tay và kiểm thử giữ riêng từng DB, ảnh minh họa ghép đúng DB và mã cá thể. Xem JSON trong [reports/](reports/). Các tệp model và video nằm cục bộ trong `artifacts/count-v1/` và `artifacts/weight-v1/`.
 
-## Ảnh thử từ nguồn ngoài
+## Kiểm thử đúng bối cảnh app
 
-Ảnh [Penaeus vannamei.jpg](https://commons.wikimedia.org/wiki/File:Penaeus_vannamei.jpg) từ iNaturalist, CC0 1.0, lưu ở `artifacts/external/vannamei-commons.jpg`. Chạy riêng sau huấn luyện và loại khỏi chỉ số chung. Đây là ảnh một cá thể, dùng để quan sát tổng quát hóa. Video thêm điểm dự đoán và thu nhỏ ảnh để hiển thị. Bài nghiên cứu đếm trong trại của Bukas và cộng sự ghi dữ liệu cung cấp theo yêu cầu, chưa dùng trong lần chạy này. [Bài báo](https://epic.awi.de/id/eprint/58961/1/Bukasetal2024.pdf)
+Bộ review thực tế dùng ảnh hoặc clip điện thoại nhìn từ trên xuống khay lấy mẫu có nước. Kiểm theo nhóm tôm giống (PL), tôm nhỏ, tôm đang nuôi và tôm thương phẩm, theo loài và mật độ. Ảnh ngoài vuông, sàng lưới ở ao và ảnh chụp riêng từng con chỉ phục vụ benchmark dữ liệu tương ứng. Chúng không đại diện cho bài kiểm thử khay. Muốn báo sai số cần số đếm đối chứng cho từng khay hoặc phiên, và chiều dài/cân đối chứng nếu đánh giá chỉ số đo.
+
+Video `count-tray-review.mp4` chạy model hiện tại trên bảy ảnh tôm sú PL trong khay, các panel a–g của hình 2 trong Li và cộng sự. Đây là nhiều mức mật độ trong cùng giai đoạn PL. Model chỉ trả 1–2 điểm mỗi ảnh, bỏ sót rõ ràng. Hình công bố không kèm nhãn từng panel đã xác minh nên báo dự đoán riêng, không tính MAE. Chưa có mẫu khay đúng bối cảnh cho tôm lớn. [Bài báo và hình 2](https://doi.org/10.3390/ani13122036)
+
+Để chạy lại, tải [hình gốc](https://mdpi-res.com/animals/animals-13-02036/article_deploy/html/images/animals-13-02036-g002.png) vào `artifacts/external/li2023-figure2.png` rồi chạy `python tests/review_trays.py`. Video ghi công tác giả, cắt riêng từng panel và vẽ điểm dự đoán. Video benchmark dataset được đặt tên riêng `count-dataset-review.mp4`. Báo cáo benchmark trước đây vẫn dùng để so sánh bản export trên cùng tập kiểm thử.
 
 ## Phạm vi lần chạy v1
 
