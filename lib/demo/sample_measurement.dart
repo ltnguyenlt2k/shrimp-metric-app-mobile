@@ -6,12 +6,16 @@ class SampleMeasurement {
     this.averageWeightGrams = 0.456,
     this.averageLengthMm = 34.2,
     this.hasPreview = false,
+    this.imagePath,
+    this.storageId,
   });
 
   final int id;
   final int count;
   final DateTime measuredAt;
   final bool hasPreview;
+  final String? imagePath;
+  final String? storageId;
   final double averageWeightGrams;
   final double averageLengthMm;
 

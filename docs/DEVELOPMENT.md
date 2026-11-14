@@ -65,10 +65,16 @@ Dùng `LayoutBuilder` cho không gian của từng vùng và `MediaQuery` khi c�
 - `lib/app/` chứa cấu hình toàn app, điều hướng và giao diện dùng chung khi cần.
 - `lib/features/<tính-năng>/presentation/` chứa các màn hình và trạng thái giao diện của tính năng. Đặt widget riêng trong `presentation/widgets/` khi cần tách. Ví dụ màn hình tổng quan ở `lib/features/overview/presentation/overview_screen.dart`.
 - Đặt phần xử lý dữ liệu, camera hoặc AI cạnh tính năng dùng nó khi triển khai. Chỉ đưa một widget hay dịch vụ vào thư mục dùng chung khi có nhiều tính năng cần dùng.
+- `features/capture/data/` quản lý CameraController, quyền và luồng lấy frame qua camera. `features/capture/presentation/` quản lý màn chụp và vòng đời.
+- `features/processing/domain/` chứa dữ liệu frame độc lập với plugin camera. `features/processing/application/` nhận lô frame, M2 chọn frame giữa và encode JPEG trên isolate. Bộ phân tích AI/OpenCV sau này nhận lô frame ở đây trước khi giải phóng RAM.
+- `features/results/` chứa dữ liệu lần đo và màn xác nhận/xem ảnh. `features/history/data/` lưu ảnh đại diện và metadata theo từng lần đo, dùng đổi tên thư mục để tránh hiển thị bản ghi đang lưu hoặc xóa dở.
 - `test/` chứa các bài kiểm thử. `android/` và `ios/` chứa cấu hình native và icon từng nền tảng.
 
 ## Nguồn tài nguyên prototype M1
 
+- `camera` 0.12.2, BSD-3-Clause. Android tối thiểu API 24 ở baseline camera. [Nguồn](https://pub.dev/packages/camera/versions/0.12.2)
+- `image` 4.12.0, MIT. Dùng đổi hướng frame và encode JPEG. [Nguồn](https://pub.dev/packages/image/versions/4.12.0)
+- `path_provider` 2.1.6, BSD-3-Clause. Dùng tìm thư mục riêng của app. [Nguồn](https://pub.dev/packages/path_provider/versions/2.1.6)
 - `material_ui` 1.11.0, BSD-3-Clause. Nội dung giấy phép có trong màn hình giấy phép Flutter. [Nguồn package](https://pub.dev/packages/material_ui/versions/1.11.0)
 - `assets/demo/shrimp-tray.jpg` là ảnh minh họa do OpenAI ImageGen tạo cho prototype M1. Số đếm trong giao diện là dữ liệu mẫu độc lập với ảnh.
 
@@ -97,3 +103,9 @@ Kiểu chữ chính dùng cỡ 26 cho tên màn, 19 cho tên mục, 15–16 cho 
 Baseline thăm dò M1 trên Android Emulator API 35 x86_64, debug, 4 bản ghi mẫu: một lần mở lạnh qua `adb shell am start -W` báo 3.363 ms, PSS ngay sau khi mở khoảng 270 MiB, APK debug khoảng 136 MiB. Đây là số đo một lần của prototype trên giả lập. Cần đo nhiều lượt ở profile/release trên máy thật, với lịch sử lớn, để đánh giá thời gian khung hình và bộ nhớ.
 
 Khi duyệt thao tác, tách vùng đọc số liệu khỏi nút điều hướng. Kiểm tra chạm vào số liệu ở Tổng quan giữ nguyên màn hình, bấm hàng trong Lịch sử mở đúng mẫu và nút xóa mở xác nhận, và quay lại từ Giấy phép về thẳng Cài đặt. Đây là kiểm thử hành vi giao diện. Đánh giá khả dụng với người dùng mới cần quan sát họ thực hiện các tác vụ mà không được chỉ trước vị trí nút.
+
+## Kiểm tra luồng camera M2
+
+Android Emulator `ShrimpMetric_API35`, Android 35 x86_64, bản debug. Build trên hệ thống tệp Linux của WSL khi Gradle báo lỗi ghi DEX trên ổ Windows. Bản kiểm tra đã chụp offline, lưu một ảnh và ghi nhận 6 frame trong metadata. Đối chiếu màn Kết quả với commit M1 `638e9bb`: dùng lại dòng số mô phỏng, khu vực ảnh và nút lưu đã duyệt. Nguồn ảnh ở AVD là cảnh camera ảo.
+
+Cần xác nhận chất lượng ảnh, tỷ lệ đủ frame, độ trễ, RAM và nhiệt trên điện thoại thật ở chế độ profile hoặc release. AI, OpenCV và phép tổng hợp chỉ số qua nhiều frame sẽ được triển khai theo yêu cầu của từng tính năng.

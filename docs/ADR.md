@@ -20,9 +20,9 @@ Các mục **Đã chốt** phản ánh yêu cầu của người dùng. Các m�
 
 ## ADR-003 · Chụp theo yêu cầu và phân tích cục bộ
 
-**Trạng thái** · Xử lý trên thiết bị đã chốt. Chụp từng ảnh và đánh giá LiteRT là đề xuất.
+**Trạng thái** · Xử lý trên thiết bị và thu nhiều frame mỗi lần bấm chụp đã chốt. LiteRT sẽ được đánh giá ở M3.
 
-**Bối cảnh và quyết định** · Ưu tiên tốc độ, độ mượt và nhiệt khi chụp lặp lại. Bắt đầu bằng preview theo yêu cầu, chụp ảnh, giải phóng camera rồi xử lý. Dùng số nhập/xác nhận thủ công khi chưa có AI đủ tin cậy. Đánh giá LiteRT với model và thiết bị thật.
+**Bối cảnh và quyết định** · Ưu tiên tốc độ, độ mượt và nhiệt khi chụp lặp lại. Mở preview theo yêu cầu. Khi bấm chụp, lấy 5–6 frame cách quãng qua image stream trong khoảng 1,8 giây, tắt camera rồi chuẩn bị một ảnh đại diện. M2 giữ frame trong RAM và lưu ảnh đại diện JPEG khi người dùng xác nhận. AI và OpenCV có thể nhận cùng lô frame ở lớp xử lý; tiêu chí chọn frame hợp lệ và tổng hợp kết quả sẽ được kiểm chứng theo từng chỉ số. Trong M2 dùng số mô phỏng theo baseline M1 cho tới khi người dùng yêu cầu luồng xác nhận hoặc phân tích cụ thể. Đánh giá LiteRT với model và thiết bị thật.
 
 **Đánh đổi và xem xét lại** · Phân tích theo ảnh không có phản hồi tức thời khi đang ngắm. Chỉ xem xét luồng liên tục nếu quy trình chụp cần tính năng đó và có số đo hiệu năng. ML Kit có điều khoản và số liệu sử dụng SDK riêng, hiện là phương án tham khảo. [LiteRT](https://github.com/google-ai-edge/LiteRT) · [Điều khoản ML Kit](https://developers.google.com/ml-kit/terms)
 

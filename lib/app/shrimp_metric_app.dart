@@ -5,6 +5,9 @@ import '../demo/sample_preview.dart';
 import '../demo/sample_measurement.dart';
 import '../features/analysis/presentation/analysis_screen.dart';
 import '../features/capture/presentation/capture_screen.dart';
+import '../features/capture/presentation/demo_capture_screen.dart';
+import '../features/history/data/measurement_store.dart';
+import '../features/results/domain/local_measurement.dart';
 import '../features/history/presentation/history_screen.dart';
 import '../features/overview/presentation/overview_screen.dart';
 import '../features/results/presentation/result_screen.dart';
@@ -13,7 +16,9 @@ import '../features/settings/presentation/settings_screen.dart';
 import 'shrimp_metric_scroll_behavior.dart';
 
 class ShrimpMetricApp extends StatelessWidget {
-  const ShrimpMetricApp({super.key});
+  const ShrimpMetricApp({this.demoCapture = false, super.key});
+
+  final bool demoCapture;
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +73,15 @@ class ShrimpMetricApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color(0xFFF8FAF6),
       ),
-      home: const _Home(),
+      home: _Home(demoCapture: demoCapture),
     );
   }
 }
 
 class _Home extends StatefulWidget {
-  const _Home();
+  const _Home({required this.demoCapture});
+
+  final bool demoCapture;
 
   @override
   State<_Home> createState() => _HomeState();
@@ -114,9 +121,89 @@ class _HomeState extends State<_Home> {
     ),
   ];
 
-  void capture() async {
-    final count = await Navigator.of(context)
-        .push<int>(MaterialPageRoute(builder: (_) => const CaptureScreen()));
+  final _store = MeasurementStore();
+  late final Future<void> _historyReady;
+  bool _capturing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _historyReady = widget.demoCapture ? Future.value() : _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    try {
+      final saved = await _store.load();
+      if (!mounted) return;
+      setState(() {
+        samples.insertAll(0, saved.map(_asSample));
+        for (final entry in saved) {
+          if (entry.sampleNumber >= _nextSampleId) {
+            _nextSampleId = entry.sampleNumber + 1;
+          }
+        }
+      });
+    } catch (_) {
+      // The built-in samples remain available if local storage cannot be read.
+    }
+  }
+
+  SampleMeasurement _asSample(LocalMeasurement saved) => SampleMeasurement(
+    id: saved.sampleNumber,
+    count: saved.count,
+    measuredAt: saved.measuredAt,
+    hasPreview: true,
+    imagePath: saved.imagePath,
+    storageId: saved.id,
+  );
+
+  Future<void> _deleteSample(int id) async {
+    final sample = samples.firstWhere((sample) => sample.id == id);
+    try {
+      if (sample.storageId case final storageId?) {
+        await _store.delete(storageId);
+      }
+      if (mounted) {
+        setState(() => samples.remove(sample));
+      }
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Không xóa được lần đo. Hãy thử lại.')),
+      );
+    }
+  }
+
+  Future<void> capture() async {
+    if (!widget.demoCapture) {
+      if (_capturing) return;
+      _capturing = true;
+      final navigator = Navigator.of(context);
+      LocalMeasurement? saved;
+      try {
+        await _historyReady;
+        if (!mounted) return;
+        saved = await navigator.push<LocalMeasurement>(
+          MaterialPageRoute(
+            builder: (_) =>
+                CaptureScreen(store: _store, sampleNumber: _nextSampleId),
+          ),
+        );
+      } finally {
+        _capturing = false;
+      }
+      if (!mounted || saved == null) return;
+      final measurement = saved;
+      setState(() {
+        samples.insert(0, _asSample(measurement));
+        _nextSampleId++;
+        index = 1;
+      });
+      return;
+    }
+    final count = await Navigator.of(
+      context,
+    ).push<int>(MaterialPageRoute(builder: (_) => const DemoCaptureScreen()));
     if (!mounted || count == null) return;
     setState(() {
       samples.insert(
@@ -177,12 +264,7 @@ class _HomeState extends State<_Home> {
                     ),
                   ),
                 ),
-                1 => HistoryScreen(
-                  samples: samples,
-                  onDelete: (id) => setState(
-                    () => samples.removeWhere((sample) => sample.id == id),
-                  ),
-                ),
+                1 => HistoryScreen(samples: samples, onDelete: _deleteSample),
                 2 => AnalysisScreen(
                   samples: samples,
                   initialMetric: _analysisMetric,

@@ -15,7 +15,7 @@ void main() {
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
-      await tester.pumpWidget(const ShrimpMetricApp());
+      await tester.pumpWidget(const ShrimpMetricApp(demoCapture: true));
       expect(find.byType(StretchingOverscrollIndicator), findsNothing);
       await tester.drag(find.byType(ListView), const Offset(0, 220));
       await tester.pumpAndSettle();
@@ -123,7 +123,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
-    await tester.pumpWidget(const ShrimpMetricApp());
+    await tester.pumpWidget(const ShrimpMetricApp(demoCapture: true));
     await tester.tap(find.text('Cài đặt'));
     await tester.pumpAndSettle();
     LicenseRegistry.addLicense(
@@ -158,7 +158,7 @@ void main() {
   });
 
   testWidgets('Confirms deletion and handles empty history', (tester) async {
-    await tester.pumpWidget(const ShrimpMetricApp());
+    await tester.pumpWidget(const ShrimpMetricApp(demoCapture: true));
     await tester.tap(find.text('Lịch sử'));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Xóa mẫu 4'));

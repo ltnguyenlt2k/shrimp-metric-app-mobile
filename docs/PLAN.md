@@ -22,9 +22,9 @@ App Flutter cho iPhone và Android, phát triển và kiểm thử Android trư�
 
 ## 2. Luồng chụp, xác nhận và lưu cục bộ
 
-1. Chỉ xin quyền khi vào luồng chụp. Mở preview theo thao tác, cho chụp lại, xử lý mất quyền và vòng đời khi rời màn hình hoặc đưa app xuống nền. Giải phóng camera khi kết thúc phiên chụp. Dùng cùng bộ ảnh mẫu để kiểm tra luồng trên giả lập và chụp thật để kiểm tra chất lượng đầu vào.
-2. Lưu ảnh gốc theo chính sách lưu đã chốt, tạo thumbnail riêng. Chuẩn hóa chiều xoay ảnh và kích thước đầu vào xử lý. Có giới hạn ảnh và kiểm tra điều kiện chụp phù hợp với quy trình mẫu. Hiệu chỉnh ban đầu có thể hướng dẫn căn khung và ánh sáng. Chỉ quy đổi ra mm khi có mốc vật lý cùng mặt phẳng hoặc thiết lập được xác thực.
-3. Màn hình kết quả cho xem ảnh, nhập hoặc xác nhận số đếm, lưu và mở lại lịch sử. Giữ riêng nguồn số liệu và giá trị người dùng xác nhận. Dữ liệu demo có nhãn rõ và tách khỏi lịch sử đo thật. Lịch sử hỗ trợ chi tiết và xóa mẫu. Kiểm tra lưu thất bại, thiếu ảnh, hết dung lượng, thao tác lặp và dữ liệu còn đọc được sau nâng cấp.
+1. Chỉ xin quyền khi vào luồng chụp. Mở preview theo thao tác, lấy 5–6 frame cách quãng trong khoảng 1,8 giây và hiển thị một ảnh đại diện, cho chụp lại, xử lý mất quyền và vòng đời khi rời màn hình hoặc đưa app xuống nền. Giải phóng camera khi kết thúc phiên chụp. Dùng cùng bộ ảnh mẫu để kiểm tra luồng trên giả lập và chụp thật để kiểm tra chất lượng đầu vào.
+2. M2 lưu một JPEG đại diện khi xác nhận, dùng bản decode kích thước nhỏ cho danh sách. Các frame còn lại chỉ tồn tại trong phiên xử lý. Chính sách giữ ảnh gốc để huấn luyện thuộc luồng đóng góp. Chuẩn hóa chiều xoay ảnh và kích thước đầu vào xử lý. Có giới hạn ảnh và kiểm tra điều kiện chụp phù hợp với quy trình mẫu. Hiệu chỉnh ban đầu có thể hướng dẫn căn khung và ánh sáng. Chỉ quy đổi ra mm khi có mốc vật lý cùng mặt phẳng hoặc thiết lập được xác thực.
+3. Giữ màn Kết quả và Lịch sử của baseline M1 (638e9bb). Ảnh từ camera thay ảnh minh họa ở vị trí có sẵn. Số đếm và chỉ số vẫn mô phỏng, lưu trong lịch sử với nguồn mô phỏng. Chỉ thay đổi giao diện khi người dùng duyệt. Lịch sử hỗ trợ chi tiết và xóa mẫu. Kiểm tra lưu thất bại, thiếu ảnh, hết dung lượng, thao tác lặp và dữ liệu còn đọc được sau nâng cấp.
 4. Hiện nút **Đóng góp mẫu** trên kết quả đã lưu và trang chi tiết lịch sử. Hành vi đề xuất là mở thông báo “Tính năng đang được chuẩn bị. Ảnh của bạn vẫn lưu trên thiết bị.” Chạm nút không gửi ảnh, tạo hàng đợi hoặc ghi trạng thái đã đóng góp.
 
 ## 3. AI đếm tôm trên thiết bị và bản thử Android

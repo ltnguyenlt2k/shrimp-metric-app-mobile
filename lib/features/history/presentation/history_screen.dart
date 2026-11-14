@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:material_ui/material_ui.dart';
 
 import '../../../demo/sample_measurement.dart';
@@ -91,13 +93,25 @@ class HistoryScreen extends StatelessWidget {
                     leading: sample.hasPreview
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              'assets/demo/shrimp-tray.jpg',
-                              cacheWidth: thumbnailPixels,
+                            child: Image(
+                              image: ResizeImage.resizeIfNeeded(
+                                thumbnailPixels,
+                                null,
+                                sample.imagePath == null
+                                    ? const AssetImage(
+                                        'assets/demo/shrimp-tray.jpg',
+                                      )
+                                    : FileImage(File(sample.imagePath!)),
+                              ),
+
                               width: 52,
                               height: 52,
                               fit: BoxFit.cover,
                               excludeFromSemantics: true,
+                              errorBuilder: (_, _, _) => const SizedBox.square(
+                                dimension: 52,
+                                child: Icon(Icons.image_not_supported_outlined),
+                              ),
                             ),
                           )
                         : const SizedBox.square(

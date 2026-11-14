@@ -44,9 +44,10 @@ const _regions = [
 final demoDetectionCount = _regions.length;
 
 class SamplePreview extends StatelessWidget {
-  const SamplePreview({this.marked = false, super.key});
+  const SamplePreview({this.marked = false, this.photo, super.key});
 
   final bool marked;
+  final Widget? photo;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +58,14 @@ class SamplePreview extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              'assets/demo/shrimp-tray.jpg',
-              fit: BoxFit.fill,
-              semanticLabel: 'Ảnh minh họa khay tôm',
-            ),
+            if (photo case final photo?)
+              RotatedBox(quarterTurns: -1, child: photo)
+            else
+              Image.asset(
+                'assets/demo/shrimp-tray.jpg',
+                fit: BoxFit.fill,
+                semanticLabel: 'Ảnh minh họa khay tôm',
+              ),
             if (marked) const CustomPaint(painter: _DetectionPainter()),
           ],
         ),
