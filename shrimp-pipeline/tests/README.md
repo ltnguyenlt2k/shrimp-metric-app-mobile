@@ -35,3 +35,10 @@ Video `count-tray-review.mp4` chạy model hiện tại trên bảy ảnh tôm s
 - **Tham chiếu quy trình:** Tomota và ảnh màn hình video cho thấy bố cục chụp, kết quả và khung tôm. Ảnh gốc và quyền dùng cho dataset chưa xác nhận. [Tomota S3+](https://tomota.vn/tomota-s3-plus)
 
 Vòng xanh là điểm cực đại do model dự đoán, không phải biên cơ thể. `Reference: Unverified` nghĩa là chưa có số đếm đối chứng cho ảnh. Model v1 chỉ thử nhiệm vụ đếm. Phân nhóm mẫu theo kích cỡ cần số đo hoặc thông tin giai đoạn do nguồn xác nhận.
+
+
+## Tiêu chí review detector và nhận diện loài
+
+Model đếm v1 dự đoán điểm tâm. Kết quả trên khay PL cho thấy bỏ sót rõ rệt. Ứng viên kế tiếp cho luồng khay cần định vị từng cá thể thấy được bằng bounding box, hoặc mask kèm box. Đánh giá box với nhãn vẽ tay để phân biệt phát hiện đúng, báo nhầm và bỏ sót. Báo thêm sai số đếm theo loài, giai đoạn và mật độ. Trong video review, ghi rõ box dự đoán và box đối chứng, kèm tổng số tương ứng. Khay PL dày có thể dùng nhánh đếm điểm riêng nếu được kiểm chứng trên tập PL có nhãn.
+
+Dùng các box đủ rõ để cắt từng con và chạy bộ phân loại tôm sú/tôm thẻ. Tổng hợp bằng chứng từ các crop qua 5–6 frame hợp lệ để trả một loài cho cả khay. Khi thiếu bằng chứng, trả chưa xác định loài. Đếm độc lập từng frame rồi lấy trung bình, còn box hiển thị thuộc ảnh đại diện. Đo độ chính xác định vị và độ chính xác loài cấp khay riêng. Dataset huấn luyện hoặc kiểm thử loài cần hai loài chụp trong điều kiện tương đương để giảm nguy cơ model dựa vào nền hoặc thiết bị.
