@@ -124,17 +124,26 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
                 const SizedBox(height: 16),
               ],
-              const Text('Tổng số tôm · Dữ liệu mô phỏng'),
-              Text(
-                '${widget.count} con',
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+              Wrap(
+                spacing: 8,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const Text('Tổng số tôm'),
+                  Text(
+                    '${widget.count} con',
+                    style: theme.textTheme.titleLarge,
+                  ),
+                ],
               ),
               const SizedBox(height: 12),
               if (hasPreview)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surfaceContainerLow,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: theme.colorScheme.outlineVariant),
+                  ),
+                  clipBehavior: Clip.antiAlias,
                   child: preview(
                     marked: marked,
                     width: MediaQuery.sizeOf(context).width - 40,

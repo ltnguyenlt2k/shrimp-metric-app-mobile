@@ -102,12 +102,12 @@ class _CaptureScreenState extends State<CaptureScreen>
             generation != _generation) {
           return;
         }
-        // Remove the preview before disposing its native controller.
         final navigator = Navigator.of(context);
-        setState(() => _reviewing = true);
-        await _session.close();
         final frameCount = frames.length;
         final jpeg = await prepareSample(frames);
+        if (!mounted || !_active || generation != _generation) return;
+        setState(() => _reviewing = true);
+        await _session.close();
         if (!mounted || !_active || generation != _generation) return;
         // The capture operation must finish while the result route is open.
         unawaited(
@@ -211,88 +211,109 @@ class _CaptureScreenState extends State<CaptureScreen>
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         backgroundColor: const Color(0xFF0B2426),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              'assets/demo/shrimp-tray.jpg',
-              fit: BoxFit.cover,
-              color: const Color(0xD00B2426),
-              colorBlendMode: BlendMode.srcOver,
-              excludeFromSemantics: true,
-            ),
-            SafeArea(
-              minimum: const EdgeInsets.all(12),
-              child: Column(
+        body: SafeArea(
+          minimum: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        tooltip: 'Quay lại',
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.close, color: Colors.white),
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Chụp mẫu',
-                          style: textTheme.titleLarge?.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+                  IconButton(
+                    tooltip: 'Quay lại',
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close, color: Colors.white),
                   ),
-                  const Text('Camera', style: TextStyle(color: Colors.white70)),
                   Expanded(
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: DecoratedBox(
-                              position: DecorationPosition.foreground,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: const Color(0xFF96E1CB),
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(12),
-                                ),
-                                child: ready
-                                    ? CameraPreview(controller!)
-                                    : const SizedBox.shrink(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (processing)
-                          const ColoredBox(
-                            color: Color(0xB3001719),
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  CircularProgressIndicator(
-                                    color: Color(0xFF96E1CB),
-                                  ),
-                                  SizedBox(height: 16),
-                                  Text(
-                                    'Đang xử lý ảnh mẫu…',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                      ],
+                    child: Text(
+                      'Chụp mẫu',
+                      style: textTheme.titleLarge?.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  if (!processing) ...[
+                ],
+              ),
+              const Text('Camera', style: TextStyle(color: Colors.white70)),
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: DecoratedBox(
+                          position: DecorationPosition.foreground,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xFF96E1CB),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(12),
+                            ),
+                            child: ready
+                                ? CameraPreview(controller!)
+                                : const SizedBox.shrink(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (processing)
+                      Positioned(
+                        left: 24,
+                        right: 24,
+                        bottom: 16,
+                        child: Center(
+                          child: DecoratedBox(
+                            decoration: const BoxDecoration(
+                              color: Color(0xED0B2426),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              child: Semantics(
+                                liveRegion: true,
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox.square(
+                                      dimension: 18,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Color(0xFF96E1CB),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Flexible(
+                                      child: Text(
+                                        'Đang xử lý ảnh mẫu…',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: !processing,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Column(
+                  children: [
                     Text(
                       _message ?? 'Giữ trọn khay trong khung',
                       textAlign: TextAlign.center,
@@ -310,11 +331,11 @@ class _CaptureScreenState extends State<CaptureScreen>
                       icon: const Icon(Icons.camera_alt_outlined, size: 30),
                     ),
                   ],
-                  const SizedBox(height: 12),
-                ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+            ],
+          ),
         ),
       ),
     );
