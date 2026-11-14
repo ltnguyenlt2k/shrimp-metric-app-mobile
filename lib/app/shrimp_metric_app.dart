@@ -82,6 +82,7 @@ class _Home extends StatefulWidget {
 
 class _HomeState extends State<_Home> {
   int index = 0;
+  SampleMetric _analysisMetric = SampleMetric.count;
   int _nextSampleId = 5;
   late final samples = [
     SampleMeasurement(
@@ -162,7 +163,10 @@ class _HomeState extends State<_Home> {
               child: switch (index) {
                 0 => OverviewScreen(
                   samples: samples,
-                  onAnalysis: () => setState(() => index = 2),
+                  onAnalysis: () => setState(() {
+                    _analysisMetric = SampleMetric.size;
+                    index = 2;
+                  }),
                   onCapture: capture,
                   onHistory: () => Navigator.of(context).push<void>(
                     MaterialPageRoute(
@@ -179,7 +183,10 @@ class _HomeState extends State<_Home> {
                     () => samples.removeWhere((sample) => sample.id == id),
                   ),
                 ),
-                2 => AnalysisScreen(samples: samples),
+                2 => AnalysisScreen(
+                  samples: samples,
+                  initialMetric: _analysisMetric,
+                ),
                 _ => const SettingsScreen(),
               },
             ),
@@ -187,7 +194,10 @@ class _HomeState extends State<_Home> {
         ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: index,
-          onDestinationSelected: (value) => setState(() => index = value),
+          onDestinationSelected: (value) => setState(() {
+            if (value == 2 && index != 2) _analysisMetric = SampleMetric.count;
+            index = value;
+          }),
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.grid_view_rounded),

@@ -7,6 +7,7 @@ class SettingsScreen extends StatelessWidget {
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
+        scrollable: true,
         title: Text(title),
         content: Text(body),
         actions: [
@@ -23,6 +24,7 @@ class SettingsScreen extends StatelessWidget {
     final openLicenses = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
+        scrollable: true,
         title: const Text('Thông tin app'),
         content: const Text('ShrimpMetric · 0.1.0'),
         actions: [

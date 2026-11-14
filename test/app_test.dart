@@ -33,6 +33,18 @@ void main() {
       expect(find.text('Kết quả'), findsOneWidget);
       await tester.pageBack();
       await tester.pumpAndSettle();
+      final analysis = find.widgetWithText(OutlinedButton, 'Mở phân tích');
+      await tester.scrollUntilVisible(analysis, 160);
+      await tester.tap(analysis);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, 'Cỡ tôm'))
+            .selected,
+        isTrue,
+      );
+      await tester.tap(find.text('Tổng quan'));
+      await tester.pumpAndSettle();
       final capture = find.widgetWithText(FilledButton, 'Chụp mẫu');
       await tester.drag(find.byType(ListView), const Offset(0, 500));
       await tester.pumpAndSettle();
@@ -61,10 +73,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Lịch sử phân tích'), findsOneWidget);
       await tester.tap(find.text('Mẫu 5 · 38 con'));
+
       await tester.pumpAndSettle();
-      expect(find.text('Lịch sử phân tích'), findsOneWidget);
-      await tester.tap(find.widgetWithText(OutlinedButton, 'Xem mẫu').first);
-      await tester.pumpAndSettle();
+      expect(find.textContaining('Mẫu 5 ·'), findsOneWidget);
       final contribute = find.text('Đóng góp mẫu');
       await tester.scrollUntilVisible(contribute, 120);
       await tester.pumpAndSettle();

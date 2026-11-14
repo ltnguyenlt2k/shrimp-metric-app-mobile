@@ -83,46 +83,48 @@ class HistoryScreen extends StatelessWidget {
         return Column(
           key: ValueKey(sample.id),
           children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: sample.hasPreview
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/demo/shrimp-tray.jpg',
-                        cacheWidth: thumbnailPixels,
-                        width: 52,
-                        height: 52,
-                        fit: BoxFit.cover,
-                        excludeFromSemantics: true,
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: sample.hasPreview
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(
+                              'assets/demo/shrimp-tray.jpg',
+                              cacheWidth: thumbnailPixels,
+                              width: 52,
+                              height: 52,
+                              fit: BoxFit.cover,
+                              excludeFromSemantics: true,
+                            ),
+                          )
+                        : const SizedBox.square(
+                            dimension: 52,
+                            child: Icon(Icons.image_not_supported_outlined),
+                          ),
+                    title: Text('Mẫu ${sample.id} · ${sample.count} con'),
+                    subtitle: Text('${sample.dateLabel} · ${sample.timeLabel}'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push<void>(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ResultScreen(
+                          count: sample.count,
+                          measurement: sample,
+                        ),
                       ),
-                    )
-                  : const SizedBox.square(
-                      dimension: 52,
-                      child: Icon(Icons.image_not_supported_outlined),
                     ),
-              title: Text('Mẫu ${sample.id} · ${sample.count} con'),
-              subtitle: Text('${sample.dateLabel} · ${sample.timeLabel}'),
-              trailing: IconButton(
-                tooltip: 'Xóa mẫu ${sample.id}',
-                icon: const Icon(Icons.delete_outline),
-                color: theme.colorScheme.error,
-                onPressed: () => _confirmDelete(context, sample),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: OutlinedButton.icon(
-                icon: const Icon(Icons.arrow_forward),
-                label: const Text('Xem mẫu'),
-                onPressed: () => Navigator.push<void>(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) =>
-                        ResultScreen(count: sample.count, measurement: sample),
                   ),
                 ),
-              ),
+                IconButton(
+                  tooltip: 'Xóa mẫu ${sample.id}',
+                  icon: const Icon(Icons.delete_outline),
+                  color: theme.colorScheme.error,
+                  onPressed: () => _confirmDelete(context, sample),
+                ),
+              ],
             ),
             const Divider(),
           ],

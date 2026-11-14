@@ -96,4 +96,4 @@ Kiểu chữ chính dùng cỡ 26 cho tên màn, 19 cho tên mục, 15–16 cho 
 
 Baseline thăm dò M1 trên Android Emulator API 35 x86_64, debug, 4 bản ghi mẫu: một lần mở lạnh qua `adb shell am start -W` báo 3.363 ms, PSS ngay sau khi mở khoảng 270 MiB, APK debug khoảng 136 MiB. Đây là số đo một lần của prototype trên giả lập. Cần đo nhiều lượt ở profile/release trên máy thật, với lịch sử lớn, để đánh giá thời gian khung hình và bộ nhớ.
 
-Khi duyệt thao tác, tách vùng đọc số liệu khỏi nút điều hướng. Kiểm tra chạm vào số liệu ở Tổng quan và hàng thông tin ở Lịch sử không mở trang, nút xem vẫn mở đúng mẫu, và quay lại từ Giấy phép về thẳng Cài đặt. Đây là kiểm thử hành vi giao diện. Đánh giá khả dụng với người dùng mới cần quan sát họ thực hiện các tác vụ mà không được chỉ trước vị trí nút.
+Khi duyệt thao tác, tách vùng đọc số liệu khỏi nút điều hướng. Kiểm tra chạm vào số liệu ở Tổng quan giữ nguyên màn hình, bấm hàng trong Lịch sử mở đúng mẫu và nút xóa mở xác nhận, và quay lại từ Giấy phép về thẳng Cài đặt. Đây là kiểm thử hành vi giao diện. Đánh giá khả dụng với người dùng mới cần quan sát họ thực hiện các tác vụ mà không được chỉ trước vị trí nút.

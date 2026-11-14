@@ -5,9 +5,14 @@ import '../../results/presentation/result_screen.dart';
 import 'widgets/measurement_chart.dart';
 
 class AnalysisScreen extends StatefulWidget {
-  const AnalysisScreen({required this.samples, super.key});
+  const AnalysisScreen({
+    required this.samples,
+    required this.initialMetric,
+    super.key,
+  });
 
   final List<SampleMeasurement> samples;
+  final SampleMetric initialMetric;
 
   @override
   State<AnalysisScreen> createState() => _AnalysisScreenState();
@@ -15,7 +20,7 @@ class AnalysisScreen extends StatefulWidget {
 
 class _AnalysisScreenState extends State<AnalysisScreen> {
   int? _days;
-  SampleMetric _metric = SampleMetric.count;
+  late SampleMetric _metric = widget.initialMetric;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +115,6 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                         : 'Trung bình theo lần đo',
                   ),
                   const SizedBox(height: 16),
-                  const SizedBox(height: 12),
                   MeasurementChart(samples: samples, metric: _metric),
                 ],
               ),
@@ -119,30 +123,19 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           const SizedBox(height: 24),
           Text('Chi tiết từng lần đo', style: theme.textTheme.titleLarge),
           for (final sample in samples)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  title: Text('${sample.dateLabel} · Mẫu ${sample.id}'),
-                  subtitle: Text(
-                    '${sample.timeLabel} · ${_metric.format(_metric.value(sample))}',
-                  ),
+            ListTile(
+              title: Text('${sample.dateLabel} · Mẫu ${sample.id}'),
+              subtitle: Text(
+                '${sample.timeLabel} · ${_metric.format(_metric.value(sample))}',
+              ),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.push<void>(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      ResultScreen(count: sample.count, measurement: sample),
                 ),
-                OutlinedButton.icon(
-                  icon: const Icon(Icons.arrow_forward),
-                  label: const Text('Xem mẫu'),
-                  onPressed: () => Navigator.push<void>(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ResultScreen(
-                        count: sample.count,
-                        measurement: sample,
-                      ),
-                    ),
-                  ),
-                ),
-                const Divider(),
-              ],
+              ),
             ),
         ],
       ],
