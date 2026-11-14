@@ -109,3 +109,7 @@ Khi duyệt thao tác, tách vùng đọc số liệu khỏi nút điều hướ
 Android Emulator `ShrimpMetric_API35`, Android 35 x86_64, bản debug. Build trên hệ thống tệp Linux của WSL khi Gradle báo lỗi ghi DEX trên ổ Windows. Bản kiểm tra đã chụp offline, lưu một ảnh và ghi nhận 6 frame trong metadata. Đối chiếu màn Kết quả với commit M1 `638e9bb`: dùng lại dòng số mô phỏng, khu vực ảnh và nút lưu đã duyệt. Nguồn ảnh ở AVD là cảnh camera ảo.
 
 Cần xác nhận chất lượng ảnh, tỷ lệ đủ frame, độ trễ, RAM và nhiệt trên điện thoại thật ở chế độ profile hoặc release. AI, OpenCV và phép tổng hợp chỉ số qua nhiều frame sẽ được triển khai theo yêu cầu của từng tính năng.
+
+### Kiểm tra quyền hệ điều hành
+
+Trên Android API 35, dùng `adb shell pm revoke com.ltnguyenlt2k.shrimp_metric android.permission.CAMERA` rồi `adb shell pm clear-permission-flags com.ltnguyenlt2k.shrimp_metric android.permission.CAMERA user-set user-fixed` để mô phỏng lần đầu xin quyền mà giữ lịch sử trên giả lập. Đã xác nhận hộp thoại hệ thống khi bấm Chụp mẫu, hướng dẫn khi từ chối, hỏi lại theo thao tác và mở camera sau khi cấp quyền. Kiểm tra manifest sau khi hợp nhất bằng `adb shell dumpsys package com.ltnguyenlt2k.shrimp_metric`. Camera là quyền runtime hiện dùng. Ảnh lưu trong thư mục riêng của app. Đã rà khai báo camera iOS, còn chờ kiểm thử trên iPhone. [Android runtime permissions](https://developer.android.com/training/permissions/requesting) · [Flutter camera](https://pub.dev/packages/camera)

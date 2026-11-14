@@ -70,7 +70,8 @@ class _CaptureScreenState extends State<CaptureScreen>
         await _session.open();
       } on CameraException catch (error) {
         _message = switch (error.code) {
-          'CameraAccessDenied' || 'CameraAccessDeniedWithoutPrompt' =>
+          'CameraAccessDenied' => 'Cần quyền camera để chụp mẫu. Bấm nút camera để thử lại hoặc cấp quyền trong Cài đặt điện thoại.',
+          'CameraAccessDeniedWithoutPrompt' =>
             'Hãy cho phép ShrimpMetric dùng camera trong Cài đặt điện thoại.',
           'CameraAccessRestricted' => 'Camera bị giới hạn trên thiết bị này.',
           _ => 'Không mở được camera. Hãy thử lại.',
@@ -321,7 +322,7 @@ class _CaptureScreenState extends State<CaptureScreen>
                     ),
                     const SizedBox(height: 12),
                     IconButton.filled(
-                      tooltip: 'Chụp ảnh mẫu',
+                      tooltip: ready ? 'Chụp ảnh mẫu' : 'Thử mở camera lại',
                       style: IconButton.styleFrom(
                         minimumSize: const Size.square(68),
                         backgroundColor: Colors.white,

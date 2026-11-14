@@ -11,6 +11,9 @@
 - Bộ skill và quy trình dự án phải dùng chung cho nhiều coding agent, tối thiểu Codex và Claude Code. Phạm vi gồm quy trình làm việc, UI, kiểm thử trên giả lập, bảo mật và hiệu năng.
 - Hiện đang trao đổi, nghiên cứu và ghi lại quyết định. Chỉ triển khai khi người dùng yêu cầu rõ ràng.
 
+- **AI đa frame, thực hiện sau.** Mỗi khay chỉ chứa một loài. App lấy 5–6 frame trong một lần chụp, lọc frame lỗi và dùng AI tổng hợp bằng chứng để xác định một loài cho cả khay (tôm sú, tôm thẻ hoặc chưa xác định). Người dùng không cần chọn loài trước. Đếm trên từng frame hợp lệ rồi lấy trung bình cho khay. Hiển thị một ảnh đại diện và khung nhận diện thuộc ảnh đó. Giữ số đếm khi chưa xác định được loài, chỉ tính chỉ số phụ thuộc loài khi đủ điều kiện. Chi tiết tham khảo trong tài liệu hybrid AI.
+- **Quyền điện thoại.** Chỉ yêu cầu quyền hệ điều hành tại thao tác thực sự cần quyền. Lần đầu bấm Chụp mẫu, hệ điều hành hỏi quyền camera trước khi mở preview. Nếu từ chối hoặc thu hồi, người dùng vẫn có thể quay lại các tab. Nếu hệ điều hành không hỏi lại, hướng dẫn cấp quyền trong Cài đặt. Chỉ yêu cầu quyền cần thiết cho tính năng đang dùng.
+
 ## Kết quả tra cứu và đề xuất đang cân nhắc
 
 - Android Emulator hỗ trợ camera mô phỏng. iOS Simulator chạy qua Xcode trên macOS. Có thể dùng cùng bộ ảnh mẫu để kiểm thử luồng ảnh trên hai nền tảng. Kiểm chứng camera, độ trễ, RAM và nhiệt khi dùng lặp lại trên máy thật. [Android Emulator Camera](https://developer.android.com/studio/run/emulator-use-camera) · [Apple Simulator](https://developer.apple.com/documentation/Xcode/running-your-app-on-simulated-or-physical-devices) · [Flutter profiling](https://docs.flutter.dev/perf/ui-performance)
