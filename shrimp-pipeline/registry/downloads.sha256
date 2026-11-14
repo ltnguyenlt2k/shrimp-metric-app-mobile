@@ -1,0 +1,6 @@
+83e188f5043e695129844bf53c21807f9d1b1be9a4d8915af96f7dfb62953f9d  data/raw/vannamei-anatomical-v1.zip
+89aebcb122d7054ec451af70f625057234ea551cd19bcabdffd794e21317d87f  data/raw/vannamei-biomass-v2.zip
+35d6a3c4dbadf53bdc25fe00cdb6cd8b0a05df183066369d07e8619a2ad8c393  data/raw/csiro-black-tiger-v1.tar
+047dcff4addef86ea5bc2eff13c9614dc11f47ab1160d0a71a25e7db994f4e1f  checkpoints/pretrained/mobilenet-v3-small-imagenet1k-v1.pth
+ec670f7ee9e20bd7931e15f15b7016f7fe531baaab81f2e6153382d046111885  checkpoints/pretrained/rtmdet-ins-tiny-coco.pth
+78e30dcce0c6f594eaff0d6977b84b4103688b4aff0ad1aa16008a8cc854a7fb  checkpoints/pretrained/rtmdet-tiny-coco.pth
