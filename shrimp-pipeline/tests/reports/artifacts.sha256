@@ -1,0 +1,5 @@
+3a06fe2af32622599e04580252b69269236d1d3e80b15b2822151a90a239024b  artifacts/count-v1/count-fp16-storage.onnx
+55c43e8cb3149fb6fafa172fdaad0c0b2a4c6f8015af00522eac21df1c8bed2c  artifacts/count-v1/count-int8.onnx
+f2bf952d6b1c724248d9dd705ce1cd603d8b619f5098b62f0c851349c39f827f  artifacts/count-v1/count.onnx
+d1efe9fbefe7ec44b124062ec246ae3b2bb48ffe360fd8c23f03225f125b0c83  artifacts/weight-v1/weight.json
+c6c61fd2901f800cced1aaf0bbe7307a280b48ba3062c3b1f29c6b3cd6197356  artifacts/external/vannamei-commons.jpg

@@ -1,0 +1,6 @@
+# Install torch==2.7.1 and torchvision==0.22.1 first from the CPU/CUDA wheel index.
+numpy==2.5.4
+Pillow==13.0.0
+openpyxl==3.1.5
+onnx==1.18.0
+onnxruntime==1.22.1

@@ -1,0 +1,1200 @@
+{
+  "samples": 170,
+  "covered": 163,
+  "mae_g": 2.9066109425064277,
+  "bias_g": -0.8660777820477399,
+  "rmse_g": 3.732212034955808,
+  "validation": "leave-one-database-out",
+  "predictions": [
+    {
+      "group": "DB1",
+      "specimen": 1,
+      "cm": 12.2,
+      "actual_g": 33,
+      "predicted_g": 39.12239402040164
+    },
+    {
+      "group": "DB1",
+      "specimen": 2,
+      "cm": 14.4,
+      "actual_g": 33,
+      "predicted_g": null
+    },
+    {
+      "group": "DB1",
+      "specimen": 3,
+      "cm": 12.24,
+      "actual_g": 31,
+      "predicted_g": 39.58133768262229
+    },
+    {
+      "group": "DB1",
+      "specimen": 4,
+      "cm": 12.4,
+      "actual_g": 34,
+      "predicted_g": 41.45591080399696
+    },
+    {
+      "group": "DB1",
+      "specimen": 5,
+      "cm": 11,
+      "actual_g": 19,
+      "predicted_g": 27.052643288644425
+    },
+    {
+      "group": "DB1",
+      "specimen": 6,
+      "cm": 12.36,
+      "actual_g": 32,
+      "predicted_g": 40.98140821188326
+    },
+    {
+      "group": "DB1",
+      "specimen": 7,
+      "cm": 10.44,
+      "actual_g": 23,
+      "predicted_g": 22.457353085745986
+    },
+    {
+      "group": "DB1",
+      "specimen": 8,
+      "cm": 11.97,
+      "actual_g": 32,
+      "predicted_g": 36.557392579393905
+    },
+    {
+      "group": "DB1",
+      "specimen": 9,
+      "cm": 13.64,
+      "actual_g": 40,
+      "predicted_g": null
+    },
+    {
+      "group": "DB1",
+      "specimen": 10,
+      "cm": 12.19,
+      "actual_g": 32,
+      "predicted_g": 39.00825893552101
+    },
+    {
+      "group": "DB1",
+      "specimen": 11,
+      "cm": 12.19,
+      "actual_g": 30,
+      "predicted_g": 39.00825893552101
+    },
+    {
+      "group": "DB1",
+      "specimen": 12,
+      "cm": 13.16,
+      "actual_g": 41,
+      "predicted_g": null
+    },
+    {
+      "group": "DB1",
+      "specimen": 13,
+      "cm": 11.27,
+      "actual_g": 27,
+      "predicted_g": 29.493883544142015
+    },
+    {
+      "group": "DB1",
+      "specimen": 14,
+      "cm": 12.3,
+      "actual_g": 36,
+      "predicted_g": 40.2769970194281
+    },
+    {
+      "group": "DB1",
+      "specimen": 15,
+      "cm": 10.9,
+      "actual_g": 25,
+      "predicted_g": 26.186555537148372
+    },
+    {
+      "group": "DB1",
+      "specimen": 16,
+      "cm": 12.78,
+      "actual_g": 34,
+      "predicted_g": null
+    },
+    {
+      "group": "DB1",
+      "specimen": 17,
+      "cm": 12.09,
+      "actual_g": 30,
+      "predicted_g": 37.88004187792752
+    },
+    {
+      "group": "DB1",
+      "specimen": 18,
+      "cm": 11.33,
+      "actual_g": 31,
+      "predicted_g": 30.057171069060285
+    },
+    {
+      "group": "DB1",
+      "specimen": 19,
+      "cm": 12.58,
+      "actual_g": 35,
+      "predicted_g": null
+    },
+    {
+      "group": "DB1",
+      "specimen": 20,
+      "cm": 11.79,
+      "actual_g": 27,
+      "predicted_g": 34.63616241502009
+    },
+    {
+      "group": "DB1",
+      "specimen": 21,
+      "cm": 10.68,
+      "actual_g": 27,
+      "predicted_g": 24.35160417756555
+    },
+    {
+      "group": "DB1",
+      "specimen": 22,
+      "cm": 11.32,
+      "actual_g": 28,
+      "predicted_g": 29.962756996482256
+    },
+    {
+      "group": "DB2",
+      "specimen": 1,
+      "cm": 10.5,
+      "actual_g": 22,
+      "predicted_g": 21.604387777169975
+    },
+    {
+      "group": "DB2",
+      "specimen": 2,
+      "cm": 11.5,
+      "actual_g": 29,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 3,
+      "cm": 11,
+      "actual_g": 27,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 4,
+      "cm": 11.5,
+      "actual_g": 32,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 5,
+      "cm": 11.5,
+      "actual_g": 32,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 6,
+      "cm": 11.9,
+      "actual_g": 37,
+      "predicted_g": 33.16065181500525
+    },
+    {
+      "group": "DB2",
+      "specimen": 7,
+      "cm": 12.2,
+      "actual_g": 38,
+      "predicted_g": 36.110912046651556
+    },
+    {
+      "group": "DB2",
+      "specimen": 8,
+      "cm": 12.2,
+      "actual_g": 39,
+      "predicted_g": 36.110912046651556
+    },
+    {
+      "group": "DB2",
+      "specimen": 9,
+      "cm": 11,
+      "actual_g": 30,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 10,
+      "cm": 11,
+      "actual_g": 31,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 11,
+      "cm": 10.5,
+      "actual_g": 22,
+      "predicted_g": 21.604387777169975
+    },
+    {
+      "group": "DB2",
+      "specimen": 12,
+      "cm": 11,
+      "actual_g": 29,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 13,
+      "cm": 11,
+      "actual_g": 30,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 14,
+      "cm": 11.7,
+      "actual_g": 35,
+      "predicted_g": 31.29132894270824
+    },
+    {
+      "group": "DB2",
+      "specimen": 15,
+      "cm": 11.6,
+      "actual_g": 33,
+      "predicted_g": 30.385226934654153
+    },
+    {
+      "group": "DB2",
+      "specimen": 16,
+      "cm": 12.3,
+      "actual_g": 38,
+      "predicted_g": 37.13427248591679
+    },
+    {
+      "group": "DB2",
+      "specimen": 17,
+      "cm": 11.6,
+      "actual_g": 31,
+      "predicted_g": 30.385226934654153
+    },
+    {
+      "group": "DB2",
+      "specimen": 18,
+      "cm": 10.7,
+      "actual_g": 30,
+      "predicted_g": 23.045911922443487
+    },
+    {
+      "group": "DB2",
+      "specimen": 19,
+      "cm": 11.4,
+      "actual_g": 32,
+      "predicted_g": 28.62899050136726
+    },
+    {
+      "group": "DB2",
+      "specimen": 20,
+      "cm": 11.5,
+      "actual_g": 31,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 21,
+      "cm": 11,
+      "actual_g": 30,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 22,
+      "cm": 10,
+      "actual_g": 20,
+      "predicted_g": 18.281221782228247
+    },
+    {
+      "group": "DB2",
+      "specimen": 23,
+      "cm": 11.5,
+      "actual_g": 30,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 24,
+      "cm": 11.2,
+      "actual_g": 30,
+      "predicted_g": 26.945852284810606
+    },
+    {
+      "group": "DB2",
+      "specimen": 25,
+      "cm": 10.7,
+      "actual_g": 31,
+      "predicted_g": 23.045911922443487
+    },
+    {
+      "group": "DB2",
+      "specimen": 26,
+      "cm": 11.5,
+      "actual_g": 35,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 27,
+      "cm": 11.7,
+      "actual_g": 32,
+      "predicted_g": 31.29132894270824
+    },
+    {
+      "group": "DB2",
+      "specimen": 28,
+      "cm": 11.6,
+      "actual_g": 39,
+      "predicted_g": 30.385226934654153
+    },
+    {
+      "group": "DB2",
+      "specimen": 29,
+      "cm": 11.7,
+      "actual_g": 31,
+      "predicted_g": 31.29132894270824
+    },
+    {
+      "group": "DB2",
+      "specimen": 30,
+      "cm": 11.5,
+      "actual_g": 30,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 31,
+      "cm": 11.8,
+      "actual_g": 32,
+      "predicted_g": 32.216393539484294
+    },
+    {
+      "group": "DB2",
+      "specimen": 32,
+      "cm": 11.6,
+      "actual_g": 30,
+      "predicted_g": 30.385226934654153
+    },
+    {
+      "group": "DB2",
+      "specimen": 33,
+      "cm": 11.5,
+      "actual_g": 33,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 34,
+      "cm": 11.5,
+      "actual_g": 32,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 35,
+      "cm": 11.5,
+      "actual_g": 31,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 36,
+      "cm": 12.3,
+      "actual_g": 36,
+      "predicted_g": 37.13427248591679
+    },
+    {
+      "group": "DB2",
+      "specimen": 37,
+      "cm": 11,
+      "actual_g": 27,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 38,
+      "cm": 11.8,
+      "actual_g": 32,
+      "predicted_g": 32.216393539484294
+    },
+    {
+      "group": "DB2",
+      "specimen": 39,
+      "cm": 11.5,
+      "actual_g": 28,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 40,
+      "cm": 11.5,
+      "actual_g": 33,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 41,
+      "cm": 10.9,
+      "actual_g": 27,
+      "predicted_g": 24.554230105759515
+    },
+    {
+      "group": "DB2",
+      "specimen": 42,
+      "cm": 11.5,
+      "actual_g": 27,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 43,
+      "cm": 4,
+      "actual_g": 1,
+      "predicted_g": null
+    },
+    {
+      "group": "DB2",
+      "specimen": 44,
+      "cm": 6.4,
+      "actual_g": 6,
+      "predicted_g": null
+    },
+    {
+      "group": "DB2",
+      "specimen": 45,
+      "cm": 11,
+      "actual_g": 28,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 46,
+      "cm": 11.8,
+      "actual_g": 36,
+      "predicted_g": 32.216393539484294
+    },
+    {
+      "group": "DB2",
+      "specimen": 47,
+      "cm": 11.5,
+      "actual_g": 35,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB2",
+      "specimen": 48,
+      "cm": 11.7,
+      "actual_g": 36,
+      "predicted_g": 31.29132894270824
+    },
+    {
+      "group": "DB2",
+      "specimen": 49,
+      "cm": 11.2,
+      "actual_g": 31,
+      "predicted_g": 26.945852284810606
+    },
+    {
+      "group": "DB2",
+      "specimen": 50,
+      "cm": 11.4,
+      "actual_g": 28,
+      "predicted_g": 28.62899050136726
+    },
+    {
+      "group": "DB2",
+      "specimen": 51,
+      "cm": 11,
+      "actual_g": 29,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 52,
+      "cm": 11.6,
+      "actual_g": 33,
+      "predicted_g": 30.385226934654153
+    },
+    {
+      "group": "DB2",
+      "specimen": 53,
+      "cm": 11.7,
+      "actual_g": 35,
+      "predicted_g": 31.29132894270824
+    },
+    {
+      "group": "DB2",
+      "specimen": 54,
+      "cm": 11.1,
+      "actual_g": 29,
+      "predicted_g": 26.13112622441927
+    },
+    {
+      "group": "DB2",
+      "specimen": 55,
+      "cm": 12,
+      "actual_g": 33,
+      "predicted_g": 34.12433568972897
+    },
+    {
+      "group": "DB2",
+      "specimen": 56,
+      "cm": 10.3,
+      "actual_g": 29,
+      "predicted_g": 20.22788783161509
+    },
+    {
+      "group": "DB2",
+      "specimen": 57,
+      "cm": 11,
+      "actual_g": 30,
+      "predicted_g": 25.33399388452563
+    },
+    {
+      "group": "DB2",
+      "specimen": 58,
+      "cm": 11.5,
+      "actual_g": 35,
+      "predicted_g": 29.497857259820176
+    },
+    {
+      "group": "DB3",
+      "specimen": 1,
+      "cm": 12.5,
+      "actual_g": 37,
+      "predicted_g": 39.12171448473497
+    },
+    {
+      "group": "DB3",
+      "specimen": 2,
+      "cm": 11.5,
+      "actual_g": 31,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 3,
+      "cm": 11.5,
+      "actual_g": 36.5,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 4,
+      "cm": 10.6,
+      "actual_g": 25,
+      "predicted_g": 22.421931055295314
+    },
+    {
+      "group": "DB3",
+      "specimen": 5,
+      "cm": 11.3,
+      "actual_g": 29,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 6,
+      "cm": 12,
+      "actual_g": 35,
+      "predicted_g": 34.08499764632871
+    },
+    {
+      "group": "DB3",
+      "specimen": 7,
+      "cm": 10.5,
+      "actual_g": 27,
+      "predicted_g": 21.715755977290378
+    },
+    {
+      "group": "DB3",
+      "specimen": 8,
+      "cm": 11.5,
+      "actual_g": 33,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 9,
+      "cm": 9.4,
+      "actual_g": 17,
+      "predicted_g": 14.94559794617551
+    },
+    {
+      "group": "DB3",
+      "specimen": 10,
+      "cm": 11.7,
+      "actual_g": 28,
+      "predicted_g": 31.29258412562304
+    },
+    {
+      "group": "DB3",
+      "specimen": 11,
+      "cm": 11.8,
+      "actual_g": 36,
+      "predicted_g": 32.20476200428328
+    },
+    {
+      "group": "DB3",
+      "specimen": 12,
+      "cm": 11,
+      "actual_g": 32,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 13,
+      "cm": 11,
+      "actual_g": 28,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 14,
+      "cm": 10.3,
+      "actual_g": 26,
+      "predicted_g": 20.350602393618292
+    },
+    {
+      "group": "DB3",
+      "specimen": 15,
+      "cm": 11.3,
+      "actual_g": 32,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 16,
+      "cm": 10.2,
+      "actual_g": 26,
+      "predicted_g": 19.691211201752708
+    },
+    {
+      "group": "DB3",
+      "specimen": 17,
+      "cm": 11.3,
+      "actual_g": 33,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 18,
+      "cm": 12,
+      "actual_g": 38,
+      "predicted_g": 34.08499764632871
+    },
+    {
+      "group": "DB3",
+      "specimen": 19,
+      "cm": 11.6,
+      "actual_g": 34,
+      "predicted_g": 30.398744596089095
+    },
+    {
+      "group": "DB3",
+      "specimen": 20,
+      "cm": 11.1,
+      "actual_g": 30,
+      "predicted_g": 26.197109642296436
+    },
+    {
+      "group": "DB3",
+      "specimen": 21,
+      "cm": 11.5,
+      "actual_g": 36,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 22,
+      "cm": 11.3,
+      "actual_g": 36,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 23,
+      "cm": 11.5,
+      "actual_g": 30,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 24,
+      "cm": 11.2,
+      "actual_g": 28,
+      "predicted_g": 27.0024735790164
+    },
+    {
+      "group": "DB3",
+      "specimen": 25,
+      "cm": 11.3,
+      "actual_g": 30,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 26,
+      "cm": 11.4,
+      "actual_g": 28,
+      "predicted_g": 28.66521990755493
+    },
+    {
+      "group": "DB3",
+      "specimen": 27,
+      "cm": 11.4,
+      "actual_g": 34,
+      "predicted_g": 28.66521990755493
+    },
+    {
+      "group": "DB3",
+      "specimen": 28,
+      "cm": 11.4,
+      "actual_g": 38,
+      "predicted_g": 28.66521990755493
+    },
+    {
+      "group": "DB3",
+      "specimen": 29,
+      "cm": 11.7,
+      "actual_g": 33,
+      "predicted_g": 31.29258412562304
+    },
+    {
+      "group": "DB3",
+      "specimen": 30,
+      "cm": 11.7,
+      "actual_g": 33,
+      "predicted_g": 31.29258412562304
+    },
+    {
+      "group": "DB3",
+      "specimen": 31,
+      "cm": 11.5,
+      "actual_g": 32,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 32,
+      "cm": 12.5,
+      "actual_g": 30,
+      "predicted_g": 39.12171448473497
+    },
+    {
+      "group": "DB3",
+      "specimen": 33,
+      "cm": 11,
+      "actual_g": 25,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 34,
+      "cm": 11,
+      "actual_g": 25,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 35,
+      "cm": 11,
+      "actual_g": 29,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 36,
+      "cm": 11.5,
+      "actual_g": 33,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 37,
+      "cm": 11.4,
+      "actual_g": 33,
+      "predicted_g": 28.66521990755493
+    },
+    {
+      "group": "DB3",
+      "specimen": 38,
+      "cm": 11.5,
+      "actual_g": 30,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 39,
+      "cm": 12,
+      "actual_g": 35,
+      "predicted_g": 34.08499764632871
+    },
+    {
+      "group": "DB3",
+      "specimen": 40,
+      "cm": 11,
+      "actual_g": 28,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 41,
+      "cm": 11.3,
+      "actual_g": 32,
+      "predicted_g": 27.825106156737238
+    },
+    {
+      "group": "DB3",
+      "specimen": 42,
+      "cm": 11,
+      "actual_g": 29,
+      "predicted_g": 25.40880252704386
+    },
+    {
+      "group": "DB3",
+      "specimen": 43,
+      "cm": 10,
+      "actual_g": 20,
+      "predicted_g": 18.417773926726937
+    },
+    {
+      "group": "DB3",
+      "specimen": 44,
+      "cm": 12,
+      "actual_g": 33,
+      "predicted_g": 34.08499764632871
+    },
+    {
+      "group": "DB3",
+      "specimen": 45,
+      "cm": 7.5,
+      "actual_g": 9,
+      "predicted_g": 6.97313060323192
+    },
+    {
+      "group": "DB3",
+      "specimen": 46,
+      "cm": 11.2,
+      "actual_g": 31,
+      "predicted_g": 27.0024735790164
+    },
+    {
+      "group": "DB3",
+      "specimen": 47,
+      "cm": 11.5,
+      "actual_g": 35,
+      "predicted_g": 29.523028072187238
+    },
+    {
+      "group": "DB3",
+      "specimen": 48,
+      "cm": 12,
+      "actual_g": 36,
+      "predicted_g": 34.08499764632871
+    },
+    {
+      "group": "DB3",
+      "specimen": 49,
+      "cm": 11.4,
+      "actual_g": 30,
+      "predicted_g": 28.66521990755493
+    },
+    {
+      "group": "DB3",
+      "specimen": 50,
+      "cm": 11.6,
+      "actual_g": 30,
+      "predicted_g": 30.398744596089095
+    },
+    {
+      "group": "DB4",
+      "specimen": 1,
+      "cm": 8.5,
+      "actual_g": 9,
+      "predicted_g": 11.299499858745595
+    },
+    {
+      "group": "DB4",
+      "specimen": 2,
+      "cm": 8.2,
+      "actual_g": 9,
+      "predicted_g": 10.038872127389553
+    },
+    {
+      "group": "DB4",
+      "specimen": 3,
+      "cm": 8.1,
+      "actual_g": 8,
+      "predicted_g": 9.641432915331313
+    },
+    {
+      "group": "DB4",
+      "specimen": 4,
+      "cm": 9,
+      "actual_g": 12,
+      "predicted_g": 13.638991922938052
+    },
+    {
+      "group": "DB4",
+      "specimen": 5,
+      "cm": 8.5,
+      "actual_g": 10,
+      "predicted_g": 11.299499858745595
+    },
+    {
+      "group": "DB4",
+      "specimen": 6,
+      "cm": 9,
+      "actual_g": 12,
+      "predicted_g": 13.638991922938052
+    },
+    {
+      "group": "DB4",
+      "specimen": 7,
+      "cm": 7.9,
+      "actual_g": 8,
+      "predicted_g": 8.87964530054667
+    },
+    {
+      "group": "DB4",
+      "specimen": 8,
+      "cm": 8.1,
+      "actual_g": 9,
+      "predicted_g": 9.641432915331313
+    },
+    {
+      "group": "DB4",
+      "specimen": 9,
+      "cm": 8.1,
+      "actual_g": 8,
+      "predicted_g": 9.641432915331313
+    },
+    {
+      "group": "DB4",
+      "specimen": 10,
+      "cm": 8.44,
+      "actual_g": 9,
+      "predicted_g": 11.039031669486985
+    },
+    {
+      "group": "DB4",
+      "specimen": 11,
+      "cm": 8.36,
+      "actual_g": 10,
+      "predicted_g": 10.698282824195251
+    },
+    {
+      "group": "DB4",
+      "specimen": 12,
+      "cm": 8.18,
+      "actual_g": 9,
+      "predicted_g": 9.958488657405363
+    },
+    {
+      "group": "DB4",
+      "specimen": 13,
+      "cm": 8.63,
+      "actual_g": 10,
+      "predicted_g": 11.878474501908729
+    },
+    {
+      "group": "DB4",
+      "specimen": 14,
+      "cm": 7.87,
+      "actual_g": 7,
+      "predicted_g": 8.769115669263769
+    },
+    {
+      "group": "DB4",
+      "specimen": 15,
+      "cm": 7.36,
+      "actual_g": 7,
+      "predicted_g": 7.0333831162398885
+    },
+    {
+      "group": "DB4",
+      "specimen": 16,
+      "cm": 7.36,
+      "actual_g": 7,
+      "predicted_g": 7.0333831162398885
+    },
+    {
+      "group": "DB4",
+      "specimen": 17,
+      "cm": 8.5,
+      "actual_g": 10,
+      "predicted_g": 11.299499858745595
+    },
+    {
+      "group": "DB4",
+      "specimen": 18,
+      "cm": 7.56,
+      "actual_g": 7,
+      "predicted_g": 7.682420050917836
+    },
+    {
+      "group": "DB4",
+      "specimen": 19,
+      "cm": 7.95,
+      "actual_g": 9,
+      "predicted_g": 9.066011008690287
+    },
+    {
+      "group": "DB4",
+      "specimen": 20,
+      "cm": 8.5,
+      "actual_g": 9,
+      "predicted_g": 11.299499858745595
+    },
+    {
+      "group": "DB5",
+      "specimen": 1,
+      "cm": 8.26,
+      "actual_g": 9,
+      "predicted_g": 10.383156013911641
+    },
+    {
+      "group": "DB5",
+      "specimen": 2,
+      "cm": 8.1,
+      "actual_g": 8,
+      "predicted_g": 9.740406254357866
+    },
+    {
+      "group": "DB5",
+      "specimen": 3,
+      "cm": 8.73,
+      "actual_g": 11,
+      "predicted_g": 12.440745729386997
+    },
+    {
+      "group": "DB5",
+      "specimen": 4,
+      "cm": 7.96,
+      "actual_g": 7,
+      "predicted_g": 9.2011127493661
+    },
+    {
+      "group": "DB5",
+      "specimen": 5,
+      "cm": 8.34,
+      "actual_g": 6,
+      "predicted_g": 10.715306171053939
+    },
+    {
+      "group": "DB5",
+      "specimen": 6,
+      "cm": 8.14,
+      "actual_g": 9,
+      "predicted_g": 9.898427487487625
+    },
+    {
+      "group": "DB5",
+      "specimen": 7,
+      "cm": 8.5,
+      "actual_g": 10,
+      "predicted_g": 11.401600127358195
+    },
+    {
+      "group": "DB5",
+      "specimen": 8,
+      "cm": 8.29,
+      "actual_g": 9,
+      "predicted_g": 10.506862296831393
+    },
+    {
+      "group": "DB5",
+      "specimen": 9,
+      "cm": 8.11,
+      "actual_g": 9,
+      "predicted_g": 9.779746216633958
+    },
+    {
+      "group": "DB5",
+      "specimen": 10,
+      "cm": 8.28,
+      "actual_g": 9,
+      "predicted_g": 10.465513878470723
+    },
+    {
+      "group": "DB5",
+      "specimen": 11,
+      "cm": 8.47,
+      "actual_g": 10,
+      "predicted_g": 11.270662585667585
+    },
+    {
+      "group": "DB5",
+      "specimen": 12,
+      "cm": 7.25,
+      "actual_g": 7,
+      "predicted_g": 6.780881599067367
+    },
+    {
+      "group": "DB5",
+      "specimen": 13,
+      "cm": 8.98,
+      "actual_g": 11,
+      "predicted_g": 13.642856197298673
+    },
+    {
+      "group": "DB5",
+      "specimen": 14,
+      "cm": 7.94,
+      "actual_g": 8,
+      "predicted_g": 9.12580246148643
+    },
+    {
+      "group": "DB5",
+      "specimen": 15,
+      "cm": 8.97,
+      "actual_g": 11,
+      "predicted_g": 13.593286644942138
+    },
+    {
+      "group": "DB5",
+      "specimen": 16,
+      "cm": 8.25,
+      "actual_g": 9,
+      "predicted_g": 10.34214622188364
+    },
+    {
+      "group": "DB5",
+      "specimen": 17,
+      "cm": 8.34,
+      "actual_g": 10,
+      "predicted_g": 10.715306171053939
+    },
+    {
+      "group": "DB5",
+      "specimen": 18,
+      "cm": 8.85,
+      "actual_g": 11,
+      "predicted_g": 13.008160373223442
+    },
+    {
+      "group": "DB5",
+      "specimen": 19,
+      "cm": 8.07,
+      "actual_g": 9,
+      "predicted_g": 9.62304534373394
+    },
+    {
+      "group": "DB5",
+      "specimen": 20,
+      "cm": 7.56,
+      "actual_g": 7,
+      "predicted_g": 7.774824024007382
+    }
+  ]
+}

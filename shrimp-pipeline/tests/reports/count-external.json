@@ -1,0 +1,16 @@
+[
+  {
+    "source": "commons",
+    "image": "vannamei-commons.jpg",
+    "label": 1,
+    "predicted": 1,
+    "runtime_ms": 1.8696089973673224,
+    "end_to_end_ms": 24.90926900645718,
+    "points": [
+      [
+        905.1428571428571,
+        1426.2857142857142
+      ]
+    ]
+  }
+]

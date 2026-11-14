@@ -27,3 +27,7 @@ Giữ ghi công, liên kết CC BY 4.0 và thông tin thay đổi khi chia sẻ 
 - ZIP mask tôm thẻ qua kiểm tra giải nén và khớp cả 782 hash nội bộ do tác giả cung cấp.
 - Ba checkpoint khớp tiền tố SHA-256 trong tên tệp chính thức. Chỉ kiểm tệp, quyền sử dụng được theo dõi riêng trong danh mục.
 - ZIP Vannamei Biomass có 1.465.185.448 byte, 5.507 ảnh PNG và 5 bảng XLSX. Kiểm tra CRC toàn bộ ZIP đã qua.
+
+## Huấn luyện và review
+
+Xem [hướng dẫn kiểm thử và báo cáo v1](tests/README.md) để chạy lại hai baseline đã xuất.
