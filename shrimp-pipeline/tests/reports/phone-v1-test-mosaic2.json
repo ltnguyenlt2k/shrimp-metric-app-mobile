@@ -1,0 +1,133 @@
+{
+ "model": "phone-v1",
+ "split": "test",
+ "mode": "auto",
+ "threshold": 0.2,
+ "match": "box IoU >= 0.5",
+ "sources": {
+  "all": {
+   "images": 12,
+   "animals": 435,
+   "animals_per_image_median": 40.5,
+   "count_mae": 1.0,
+   "count_bias": -0.333,
+   "count_mape_percent": 2.76,
+   "count_total_error_percent": -0.92,
+   "exact_share": 0.333,
+   "precision": 0.9397,
+   "recall": 0.931,
+   "f1": 0.9353
+  },
+  "mosaic-2x2": {
+   "images": 12,
+   "animals": 435,
+   "animals_per_image_median": 40.5,
+   "count_mae": 1.0,
+   "count_bias": -0.333,
+   "count_mape_percent": 2.76,
+   "count_total_error_percent": -0.92,
+   "exact_share": 0.333,
+   "precision": 0.9397,
+   "recall": 0.931,
+   "f1": 0.9353
+  }
+ },
+ "images": [
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-0",
+   "truth": 45,
+   "predicted": 46,
+   "matched": 44,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-1",
+   "truth": 42,
+   "predicted": 42,
+   "matched": 37,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-2",
+   "truth": 40,
+   "predicted": 40,
+   "matched": 39,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-3",
+   "truth": 41,
+   "predicted": 41,
+   "matched": 38,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-4",
+   "truth": 42,
+   "predicted": 40,
+   "matched": 38,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-5",
+   "truth": 22,
+   "predicted": 21,
+   "matched": 21,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-6",
+   "truth": 33,
+   "predicted": 34,
+   "matched": 31,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-7",
+   "truth": 39,
+   "predicted": 40,
+   "matched": 39,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-8",
+   "truth": 46,
+   "predicted": 47,
+   "matched": 44,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-9",
+   "truth": 42,
+   "predicted": 40,
+   "matched": 40,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-10",
+   "truth": 33,
+   "predicted": 30,
+   "matched": 24,
+   "mode": "pass1-1024"
+  },
+  {
+   "source": "mosaic-2x2",
+   "image": "mosaic-11",
+   "truth": 10,
+   "predicted": 10,
+   "matched": 10,
+   "mode": "pass1-1024"
+  }
+ ]
+}

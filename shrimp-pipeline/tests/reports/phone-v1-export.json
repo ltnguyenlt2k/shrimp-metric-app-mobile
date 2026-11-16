@@ -1,0 +1,62 @@
+{
+ "file": "artifacts/phone-v1/shrimp-lite.onnx",
+ "sha256": "3a1979ee9358bb904f12e4898b2b7a9dd3ed76a293e9b165617643556b46cd99",
+ "megabytes": 11.6,
+ "host": "ONNX Runtime CPU on the development PC; no phone was measured",
+ "sizes": {
+  "pass1_768x1024": {
+   "max_output_difference_vs_pytorch": 8e-05,
+   "peak_process_memory_mb": 239,
+   "latency_by_threads": {
+    "1": {
+     "median_ms": 163.4,
+     "p95_ms": 181.0
+    },
+    "2": {
+     "median_ms": 87.7,
+     "p95_ms": 98.1
+    },
+    "4": {
+     "median_ms": 54.0,
+     "p95_ms": 60.8
+    }
+   }
+  },
+  "pass2_tile_864x1152": {
+   "max_output_difference_vs_pytorch": 0.0001,
+   "peak_process_memory_mb": 317,
+   "latency_by_threads": {
+    "1": {
+     "median_ms": 192.6,
+     "p95_ms": 214.5
+    },
+    "2": {
+     "median_ms": 116.3,
+     "p95_ms": 137.4
+    },
+    "4": {
+     "median_ms": 75.7,
+     "p95_ms": 95.5
+    }
+   }
+  },
+  "pass2_full_1536x2048": {
+   "max_output_difference_vs_pytorch": 0.00026,
+   "peak_process_memory_mb": 457,
+   "latency_by_threads": {
+    "1": {
+     "median_ms": 660.7,
+     "p95_ms": 698.9
+    },
+    "2": {
+     "median_ms": 403.6,
+     "p95_ms": 432.9
+    },
+    "4": {
+     "median_ms": 283.5,
+     "p95_ms": 316.0
+    }
+   }
+  }
+ }
+}

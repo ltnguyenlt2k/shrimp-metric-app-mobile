@@ -1,0 +1,123 @@
+{
+ "model": "lite-v1",
+ "input": [
+  1,
+  3,
+  768,
+  1024
+ ],
+ "threshold": 0.2,
+ "host_cpu": "see tests/README.md; phone latency is not measured here",
+ "files": {
+  "fp32": {
+   "megabytes": 11.6,
+   "max_output_difference_vs_pytorch": 0.0001,
+   "test_accuracy": {
+    "all": {
+     "images": 178,
+     "count_mae": 1.006,
+     "count_mape_percent": 23.64,
+     "precision": 0.7932,
+     "recall": 0.8779
+    },
+    "csiro": {
+     "images": 82,
+     "count_mae": 1.927,
+     "count_mape_percent": 38.88,
+     "precision": 0.6942,
+     "recall": 0.813
+    },
+    "jala": {
+     "images": 41,
+     "count_mae": 0.268,
+     "count_mape_percent": 2.63,
+     "precision": 0.9559,
+     "recall": 0.9582
+    },
+    "thenho": {
+     "images": 7,
+     "count_mae": 0.143,
+     "count_mape_percent": 1.79,
+     "precision": 0.931,
+     "recall": 0.9643
+    },
+    "vannamei": {
+     "images": 48,
+     "count_mae": 0.188,
+     "count_mape_percent": 18.75,
+     "precision": 0.8421,
+     "recall": 1.0
+    }
+   },
+   "latency_by_threads": {
+    "1": {
+     "median_ms": 137.3,
+     "p95_ms": 152.5
+    },
+    "2": {
+     "median_ms": 78.4,
+     "p95_ms": 85.2
+    },
+    "4": {
+     "median_ms": 51.7,
+     "p95_ms": 54.0
+    }
+   }
+  },
+  "int8": {
+   "megabytes": 3.39,
+   "max_output_difference_vs_pytorch": 7.558,
+   "test_accuracy": {
+    "all": {
+     "images": 178,
+     "count_mae": 1.191,
+     "count_mape_percent": 30.53,
+     "precision": 0.6715,
+     "recall": 0.7101
+    },
+    "csiro": {
+     "images": 82,
+     "count_mae": 1.756,
+     "count_mape_percent": 29.53,
+     "precision": 0.5452,
+     "recall": 0.5452
+    },
+    "jala": {
+     "images": 41,
+     "count_mae": 0.707,
+     "count_mape_percent": 7.0,
+     "precision": 0.8727,
+     "recall": 0.9263
+    },
+    "thenho": {
+     "images": 7,
+     "count_mae": 2.143,
+     "count_mape_percent": 46.43,
+     "precision": 0.5814,
+     "recall": 0.8929
+    },
+    "vannamei": {
+     "images": 48,
+     "count_mae": 0.5,
+     "count_mape_percent": 50.0,
+     "precision": 0.625,
+     "recall": 0.9375
+    }
+   },
+   "latency_by_threads": {
+    "1": {
+     "median_ms": 147.7,
+     "p95_ms": 162.1
+    },
+    "2": {
+     "median_ms": 90.2,
+     "p95_ms": 95.7
+    },
+    "4": {
+     "median_ms": 67.1,
+     "p95_ms": 81.7
+    }
+   }
+  }
+ }
+}

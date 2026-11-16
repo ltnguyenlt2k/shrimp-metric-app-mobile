@@ -1,0 +1,77 @@
+{
+ "model": "phone-v1",
+ "split": "test",
+ "mode": "auto",
+ "threshold": 0.2,
+ "match": "box IoU >= 0.5",
+ "sources": {
+  "all": {
+   "images": 5,
+   "animals": 426,
+   "animals_per_image_median": 91.0,
+   "count_mae": 2.6,
+   "count_bias": -2.6,
+   "count_mape_percent": 3.22,
+   "count_total_error_percent": -3.05,
+   "exact_share": 0.2,
+   "precision": 0.9346,
+   "recall": 0.9061,
+   "f1": 0.9201
+  },
+  "mosaic-3x3": {
+   "images": 5,
+   "animals": 426,
+   "animals_per_image_median": 91.0,
+   "count_mae": 2.6,
+   "count_bias": -2.6,
+   "count_mape_percent": 3.22,
+   "count_total_error_percent": -3.05,
+   "exact_share": 0.2,
+   "precision": 0.9346,
+   "recall": 0.9061,
+   "f1": 0.9201
+  }
+ },
+ "images": [
+  {
+   "source": "mosaic-3x3",
+   "image": "mosaic-0",
+   "truth": 98,
+   "predicted": 97,
+   "matched": 95,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-3x3",
+   "image": "mosaic-1",
+   "truth": 91,
+   "predicted": 85,
+   "matched": 81,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-3x3",
+   "image": "mosaic-2",
+   "truth": 66,
+   "predicted": 63,
+   "matched": 59,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-3x3",
+   "image": "mosaic-3",
+   "truth": 95,
+   "predicted": 95,
+   "matched": 87,
+   "mode": "pass2-4tiles"
+  },
+  {
+   "source": "mosaic-3x3",
+   "image": "mosaic-4",
+   "truth": 76,
+   "predicted": 73,
+   "matched": 64,
+   "mode": "pass2-4tiles"
+  }
+ ]
+}

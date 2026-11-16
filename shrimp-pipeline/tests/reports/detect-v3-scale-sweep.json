@@ -1,0 +1,90 @@
+{
+ "model": "detect-v3",
+ "sources": "jala,thenho",
+ "images": 48,
+ "scales": [
+  1.0,
+  0.75,
+  0.5,
+  0.35,
+  0.25,
+  0.18,
+  0.12,
+  0.08
+ ],
+ "note": "length_px is the labelled body length after shrinking; length error compares the predicted mask with the label mask of the same animal",
+ "bins": [
+  {
+   "length_px": "0-12",
+   "animals": 110,
+   "found_share": 0.336,
+   "length_error_median_percent": 20.1,
+   "length_error_p90_percent": 35.2,
+   "body_width_px_median": 1.5
+  },
+  {
+   "length_px": "12-16",
+   "animals": 94,
+   "found_share": 0.745,
+   "length_error_median_percent": 10.3,
+   "length_error_p90_percent": 18.5,
+   "body_width_px_median": 2.0
+  },
+  {
+   "length_px": "16-24",
+   "animals": 238,
+   "found_share": 0.929,
+   "length_error_median_percent": 5.2,
+   "length_error_p90_percent": 15.1,
+   "body_width_px_median": 2.8
+  },
+  {
+   "length_px": "24-32",
+   "animals": 331,
+   "found_share": 0.955,
+   "length_error_median_percent": 4.1,
+   "length_error_p90_percent": 12.4,
+   "body_width_px_median": 3.7
+  },
+  {
+   "length_px": "32-48",
+   "animals": 459,
+   "found_share": 0.965,
+   "length_error_median_percent": 3.6,
+   "length_error_p90_percent": 9.7,
+   "body_width_px_median": 5.3
+  },
+  {
+   "length_px": "48-64",
+   "animals": 349,
+   "found_share": 0.989,
+   "length_error_median_percent": 2.5,
+   "length_error_p90_percent": 8.2,
+   "body_width_px_median": 7.6
+  },
+  {
+   "length_px": "64-96",
+   "animals": 491,
+   "found_share": 0.998,
+   "length_error_median_percent": 2.2,
+   "length_error_p90_percent": 7.1,
+   "body_width_px_median": 10.6
+  },
+  {
+   "length_px": "96-160",
+   "animals": 606,
+   "found_share": 0.998,
+   "length_error_median_percent": 2.6,
+   "length_error_p90_percent": 6.6,
+   "body_width_px_median": 16.4
+  },
+  {
+   "length_px": ">=160",
+   "animals": 802,
+   "found_share": 0.999,
+   "length_error_median_percent": 2.7,
+   "length_error_p90_percent": 6.3,
+   "body_width_px_median": 33.0
+  }
+ ]
+}

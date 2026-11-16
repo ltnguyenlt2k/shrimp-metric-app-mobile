@@ -1,5 +1,7 @@
 # Bàn giao ShrimpMetric cho Claude Code
 
+Phần AI đã đi tiếp sau bản bàn giao này. Trạng thái, quyết định và số đo hiện tại nằm ở [ngữ cảnh pipeline AI](AI-PIPELINE.md); đọc file đó trước khi làm việc trong `shrimp-pipeline/`.
+
 ## Phạm vi và nguyên tắc
 
 - App Flutter cho iPhone và Android, phát triển và kiểm thử Android trước. Dùng cửa sổ Android Emulator trực tiếp trên Windows qua WSLg. Đọc AGENTS.md và skill dùng chung trước khi sửa app.
