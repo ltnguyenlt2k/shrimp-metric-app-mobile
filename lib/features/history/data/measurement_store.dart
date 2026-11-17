@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
+import '../../processing/domain/sample_analysis.dart';
 import '../../results/domain/local_measurement.dart';
 
 class MeasurementStore {
@@ -32,6 +33,10 @@ class MeasurementStore {
             count: metadata['count'] as int,
             frameCount: metadata['frameCount'] as int,
             imagePath: '${entry.path}/image.jpg',
+            analysis: switch (metadata['analysis']) {
+              final Map<String, dynamic> json => SampleAnalysis.fromJson(json),
+              _ => null,
+            },
           ),
         );
       }
@@ -46,6 +51,7 @@ class MeasurementStore {
     required int sampleNumber,
     required int frameCount,
     required DateTime measuredAt,
+    SampleAnalysis? analysis,
   }) async {
     final root = await _root();
     final pending = await root.createTemp('.pending-');
@@ -61,7 +67,8 @@ class MeasurementStore {
           'count': count,
           'sampleNumber': sampleNumber,
           'frameCount': frameCount,
-          'countSource': 'simulation',
+          'countSource': analysis == null ? 'simulation' : 'model',
+          'analysis': ?analysis?.toJson(),
         }),
         flush: true,
       );
@@ -73,6 +80,7 @@ class MeasurementStore {
         count: count,
         frameCount: frameCount,
         imagePath: '${folder.path}/image.jpg',
+        analysis: analysis,
       );
     } catch (_) {
       if (await pending.exists()) await pending.delete(recursive: true);

@@ -113,3 +113,31 @@ Cần xác nhận chất lượng ảnh, tỷ lệ đủ frame, độ trễ, RAM
 ### Kiểm tra quyền hệ điều hành
 
 Trên Android API 35, dùng `adb shell pm revoke com.ltnguyenlt2k.shrimp_metric android.permission.CAMERA` rồi `adb shell pm clear-permission-flags com.ltnguyenlt2k.shrimp_metric android.permission.CAMERA user-set user-fixed` để mô phỏng lần đầu xin quyền mà giữ lịch sử trên giả lập. Đã xác nhận hộp thoại hệ thống khi bấm Chụp mẫu, hướng dẫn khi từ chối, hỏi lại theo thao tác và mở camera sau khi cấp quyền. Kiểm tra manifest sau khi hợp nhất bằng `adb shell dumpsys package com.ltnguyenlt2k.shrimp_metric`. Camera là quyền runtime hiện dùng. Ảnh lưu trong thư mục riêng của app. Đã rà khai báo camera iOS, còn chờ kiểm thử trên iPhone. [Android runtime permissions](https://developer.android.com/training/permissions/requesting) · [Flutter camera](https://pub.dev/packages/camera)
+
+## AI trên thiết bị và camera giả lập (M3)
+
+Ngữ cảnh, số đo và cách đổi model nằm ở [ngữ cảnh pipeline AI](AI-PIPELINE.md), mục 5b–5c.
+
+- `flutter_onnxruntime` 1.9.0, MIT, kèm ONNX Runtime 1.28.0 (MIT). Android tối thiểu API 21, iOS tối thiểu 16.0. Chạy model trên luồng nền. [Nguồn](https://pub.dev/packages/flutter_onnxruntime/versions/1.9.0)
+- `assets/models/shrimp-lite.onnx` và `shrimp-lite.json`: model phone-v1 do dự án train (`shrimp-pipeline/`), nguồn dữ liệu và checkpoint khởi tạo ghi ở `shrimp-pipeline/registry/sources.tsv`. `length-weight-tables.json` là bản sao của `shrimp-pipeline/pipeline/length_weight_tables.json`.
+- Bản release cần `android/app/proguard-rules.pro` (giữ lớp `ai.onnxruntime.**`); thiếu nó app sập khi chạy model. Bước lint của bản release đang tắt vì công cụ lint sập.
+
+Camera giả lập đưa ảnh thật vào đúng luồng chụp và phân tích của app:
+
+```bash
+# tạo ảnh test và kết quả đối chiếu (trong shrimp-pipeline, dùng train-venv)
+python tests/app_fixtures.py
+# build và cài bản debug có camera giả lập, mở app một lần để app tạo thư mục
+flutter build apk --debug --dart-define=SIM_CAMERA=true
+adb install -r build/app/outputs/flutter-apk/app-debug.apk
+adb shell am start -n com.ltnguyenlt2k.shrimp_metric/.MainActivity
+adb push shrimp-pipeline/artifacts/app-sim/scenes/. /sdcard/Android/data/com.ltnguyenlt2k.shrimp_metric/files/sim-camera/
+```
+
+Ảnh phải là JPEG ngang 4:3 (1024 × 768 hoặc 2048 × 1536). Mỗi lần bấm chụp lấy ảnh kế tiếp theo tên file. Nếu thư mục `sim-camera` do `adb` tạo ra trước khi app chạy, app không đọc được; trên giả lập sửa bằng `adb root` rồi `chown` thư mục về tài khoản của app. Tên file `NN-<nguồn>-<số con thật>.jpg` cho biết nhãn.
+
+Đo hiệu năng: `flutter build apk --release -t lib/bench_main.dart --target-platform android-x64`, cài và mở app, đọc các dòng `BENCH` trong `adb logcat` hoặc file `bench.json` trong thư mục ngoài của app. Kết quả lần đo 2026-11-16 ở mục 5c của ngữ cảnh pipeline AI. Số trên giả lập không thay cho số đo trên điện thoại thật.
+
+## Bản phát hành thử
+
+Ghi chú từng bản nằm ở `docs/releases/`. Bản 0.3.0 (tag `v0.3.0`) build bằng `flutter build apk --release --split-per-abi --target-platform android-arm64,android-arm,android-x64`, ký bằng khóa debug, đính APK và `SHA256SUMS.txt` vào GitHub Release. Trước khi phát hành rộng cần khóa ký riêng và đo trên điện thoại thật.

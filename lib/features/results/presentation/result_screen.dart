@@ -5,18 +5,24 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../../demo/sample_preview.dart';
 import '../../../demo/sample_measurement.dart';
+import '../../processing/domain/sample_analysis.dart';
+import 'widgets/gut_fullness_card.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
     required this.count,
     this.measurement,
     this.jpeg,
+    this.analysis,
     this.onSave,
     super.key,
   });
 
   final int count;
   final Uint8List? jpeg;
+
+  /// Model result of a fresh capture. Saved records carry theirs in [measurement].
+  final SampleAnalysis? analysis;
   final Future<void> Function()? onSave;
   final SampleMeasurement? measurement;
 
@@ -49,13 +55,22 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final analysis = widget.analysis ?? widget.measurement?.analysis;
     final sample =
         widget.measurement ??
-        SampleMeasurement(
-          id: 0,
-          count: widget.count,
-          measuredAt: DateTime.now(),
-        );
+        (analysis == null
+            ? SampleMeasurement(
+                id: 0,
+                count: widget.count,
+                measuredAt: DateTime.now(),
+              )
+            : SampleMeasurement(
+                id: 0,
+                count: widget.count,
+                measuredAt: DateTime.now(),
+                averageWeightGrams: analysis.weightGrams ?? 0,
+                averageLengthMm: analysis.lengthMm ?? 0,
+              ));
     final hasPreview = widget.measurement?.hasPreview ?? true;
     final ImageProvider? provider = switch ((widget.jpeg, sample.imagePath)) {
       (final bytes?, _) => MemoryImage(bytes),
@@ -65,15 +80,21 @@ class _ResultScreenState extends State<ResultScreen> {
     Widget preview({required bool marked, required double width}) {
       return SamplePreview(
         marked: marked,
+        boxes: analysis?.boxes,
         photo: provider == null
             ? null
             : Image(
                 image: ResizeImage.resizeIfNeeded(
-                  (width * MediaQuery.devicePixelRatioOf(context)).ceil(),
+                  // Model pictures are landscape and drawn turned, so their
+                  // long side spans 4/3 of the layout width.
+                  (width *
+                          (analysis == null ? 1 : 4 / 3) *
+                          MediaQuery.devicePixelRatioOf(context))
+                      .ceil(),
                   null,
                   provider,
                 ),
-                fit: BoxFit.contain,
+                fit: analysis == null ? BoxFit.contain : BoxFit.fill,
                 semanticLabel: 'Ảnh mẫu gốc',
                 excludeFromSemantics: width == 42,
                 errorBuilder: (_, _, _) =>
@@ -181,10 +202,12 @@ class _ResultScreenState extends State<ResultScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    metric.format(
-                                      metric.value(sample),
-                                      includeUnit: false,
-                                    ),
+                                    analysis != null && metric.value(sample) == 0
+                                        ? '—'
+                                        : metric.format(
+                                            metric.value(sample),
+                                            includeUnit: false,
+                                          ),
                                     style: theme.textTheme.titleLarge?.copyWith(
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -202,6 +225,19 @@ class _ResultScreenState extends State<ResultScreen> {
                   );
                 },
               ),
+              if (analysis != null) ...[
+                if (analysis.calibration == 'nominal') ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    'Kích cỡ tính theo tỉ lệ danh định của thùng, chưa hiệu chỉnh bằng marker.',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+                const SizedBox(height: 16),
+                Text('Độ đầy ruột', style: theme.textTheme.titleMedium),
+                const SizedBox(height: 8),
+                GutFullnessCard(analysis: analysis),
+              ],
               if (hasPreview)
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,

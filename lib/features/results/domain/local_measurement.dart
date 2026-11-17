@@ -1,3 +1,5 @@
+import '../../processing/domain/sample_analysis.dart';
+
 class LocalMeasurement {
   const LocalMeasurement({
     required this.id,
@@ -6,6 +8,7 @@ class LocalMeasurement {
     required this.count,
     required this.frameCount,
     required this.imagePath,
+    this.analysis,
   });
 
   final String id;
@@ -14,4 +17,7 @@ class LocalMeasurement {
   final int count;
   final int frameCount;
   final String imagePath;
+
+  /// Null for records saved before the on-device model.
+  final SampleAnalysis? analysis;
 }

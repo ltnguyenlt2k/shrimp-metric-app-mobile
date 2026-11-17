@@ -44,13 +44,32 @@ const _regions = [
 final demoDetectionCount = _regions.length;
 
 class SamplePreview extends StatelessWidget {
-  const SamplePreview({this.marked = false, this.photo, super.key});
+  const SamplePreview({this.marked = false, this.photo, this.boxes, super.key});
 
   final bool marked;
   final Widget? photo;
 
+  /// Boxes found by the model, as left, top, right, bottom fractions of a
+  /// landscape 4:3 [photo]. Null for the demo image and for older records.
+  final List<double>? boxes;
+
   @override
   Widget build(BuildContext context) {
+    if (boxes case final boxes?) {
+      return RotatedBox(
+        quarterTurns: 1,
+        child: AspectRatio(
+          aspectRatio: 4 / 3,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              ?photo,
+              if (marked) CustomPaint(painter: _BoxPainter(boxes)),
+            ],
+          ),
+        ),
+      );
+    }
     return RotatedBox(
       quarterTurns: 1,
       child: AspectRatio(
@@ -72,6 +91,34 @@ class SamplePreview extends StatelessWidget {
       ),
     );
   }
+}
+
+class _BoxPainter extends CustomPainter {
+  const _BoxPainter(this.boxes);
+
+  final List<double> boxes;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final outline = Paint()
+      ..color = const Color(0xFF005D50)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2;
+    final fill = Paint()..color = const Color(0x3300A889);
+    for (var i = 0; i + 3 < boxes.length; i += 4) {
+      final box = Rect.fromLTRB(
+        boxes[i] * size.width,
+        boxes[i + 1] * size.height,
+        boxes[i + 2] * size.width,
+        boxes[i + 3] * size.height,
+      );
+      canvas.drawRect(box, fill);
+      canvas.drawRect(box, outline);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_BoxPainter oldDelegate) => oldDelegate.boxes != boxes;
 }
 
 class _DetectionPainter extends CustomPainter {

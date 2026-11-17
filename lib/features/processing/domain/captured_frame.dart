@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-enum FrameFormat { yuv420, bgra8888 }
+enum FrameFormat { yuv420, bgra8888, rgb888 }
 
 class FramePlane {
   const FramePlane(this.bytes, this.rowStride, this.pixelStride);

@@ -1,13 +1,14 @@
 name: shrimp_metric
 description: "Ứng dụng chụp và phân tích mẫu tôm."
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.3.0+3
 
 environment:
   sdk: ^3.14.0
 
 dependencies:
   camera: ^0.12.2
+  flutter_onnxruntime: ^1.9.0
   flutter:
     sdk: flutter
   image: ^4.12.0
@@ -24,3 +25,4 @@ flutter:
   assets:
     - assets/branding/shrimpmetric-icon.png
     - assets/demo/shrimp-tray.jpg
+    - assets/models/

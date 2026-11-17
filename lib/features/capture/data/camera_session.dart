@@ -3,15 +3,39 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../processing/domain/captured_frame.dart';
 
-class CameraSession {
+/// Development switch: read frames from photographs instead of the lens.
+const simulatedCamera = bool.fromEnvironment('SIM_CAMERA');
+
+/// Where the capture screen gets its preview and its burst of frames.
+abstract class FrameSource {
+  bool get ready;
+
+  Widget preview();
+
+  Future<void> open();
+
+  void interrupt();
+
+  Future<List<CapturedFrame>> capture();
+
+  Future<void> close();
+}
+
+class CameraSession implements FrameSource {
   CameraController? _controller;
   Completer<void>? _interrupted;
 
-  CameraController? get controller => _controller;
+  @override
+  bool get ready => _controller?.value.isInitialized == true;
 
+  @override
+  Widget preview() => CameraPreview(_controller!);
+
+  @override
   Future<void> open() async {
     final cameras = await availableCameras();
     final rear = cameras.where(
@@ -21,7 +45,9 @@ class CameraSession {
 
     final controller = CameraController(
       rear.first,
-      ResolutionPreset.high,
+      // The canonical tray image is 2048 x 1536, so the stream needs more
+      // than 1080p. Devices fall back to the closest size they support.
+      ResolutionPreset.ultraHigh,
       enableAudio: false,
       imageFormatGroup: Platform.isIOS
           ? ImageFormatGroup.bgra8888
@@ -36,11 +62,13 @@ class CameraSession {
     }
   }
 
+  @override
   void interrupt() {
     final interrupted = _interrupted;
     if (interrupted != null && !interrupted.isCompleted) interrupted.complete();
   }
 
+  @override
   Future<List<CapturedFrame>> capture() async {
     final camera = _controller!;
     final frames = <CapturedFrame>[];
@@ -130,6 +158,7 @@ class CameraSession {
     return (sensor - device + 360) % 360;
   }
 
+  @override
   Future<void> close() async {
     final controller = _controller;
     _controller = null;

@@ -1,3 +1,5 @@
+import '../features/processing/domain/sample_analysis.dart';
+
 class SampleMeasurement {
   const SampleMeasurement({
     required this.id,
@@ -8,6 +10,7 @@ class SampleMeasurement {
     this.hasPreview = false,
     this.imagePath,
     this.storageId,
+    this.analysis,
   });
 
   final int id;
@@ -19,7 +22,11 @@ class SampleMeasurement {
   final double averageWeightGrams;
   final double averageLengthMm;
 
-  double get shrimpPerKg => 1000 / averageWeightGrams;
+  /// Set when the numbers come from the on-device model.
+  final SampleAnalysis? analysis;
+
+  double get shrimpPerKg =>
+      averageWeightGrams > 0 ? 1000 / averageWeightGrams : 0;
 
   String get dateLabel =>
       '${measuredAt.day}/${measuredAt.month}/${measuredAt.year}';

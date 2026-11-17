@@ -4,21 +4,23 @@ import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
-import '../../../demo/sample_preview.dart';
 import '../../history/data/measurement_store.dart';
-import '../../processing/application/prepare_sample.dart';
+import '../../processing/application/sample_analyzer.dart';
 import '../../results/domain/local_measurement.dart';
 import '../../results/presentation/result_screen.dart';
 import '../data/camera_session.dart';
+import '../data/simulated_camera.dart';
 
 class CaptureScreen extends StatefulWidget {
   const CaptureScreen({
     required this.store,
+    required this.analyzer,
     required this.sampleNumber,
     super.key,
   });
 
   final MeasurementStore store;
+  final SampleAnalyzer analyzer;
   final int sampleNumber;
 
   @override
@@ -27,7 +29,9 @@ class CaptureScreen extends StatefulWidget {
 
 class _CaptureScreenState extends State<CaptureScreen>
     with WidgetsBindingObserver {
-  final _session = CameraSession();
+  final FrameSource _session = simulatedCamera
+      ? SimulatedCamera()
+      : CameraSession();
   Future<void> _operation = Future.value();
   var _active = true;
   var _opening = true;
@@ -105,7 +109,8 @@ class _CaptureScreenState extends State<CaptureScreen>
         }
         final navigator = Navigator.of(context);
         final frameCount = frames.length;
-        final jpeg = await prepareSample(frames);
+        final sample = await widget.analyzer.analyse(frames);
+        final jpeg = sample.jpeg;
         if (!mounted || !_active || generation != _generation) return;
         setState(() => _reviewing = true);
         await _session.close();
@@ -116,12 +121,14 @@ class _CaptureScreenState extends State<CaptureScreen>
               .push<LocalMeasurement>(
                 MaterialPageRoute(
                   builder: (context) => ResultScreen(
-                    count: demoDetectionCount,
+                    count: sample.analysis.count,
                     jpeg: jpeg,
+                    analysis: sample.analysis,
                     onSave: () async {
                       final result = await widget.store.save(
                         jpeg: jpeg,
-                        count: demoDetectionCount,
+                        count: sample.analysis.count,
+                        analysis: sample.analysis,
                         sampleNumber: widget.sampleNumber,
                         frameCount: frameCount,
                         measuredAt: measuredAt,
@@ -202,12 +209,11 @@ class _CaptureScreenState extends State<CaptureScreen>
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final processing = _busy;
-    final controller = _session.controller;
     final ready =
         _active &&
         !_opening &&
         !_reviewing &&
-        controller?.value.isInitialized == true;
+        _session.ready;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
@@ -255,7 +261,7 @@ class _CaptureScreenState extends State<CaptureScreen>
                               Radius.circular(12),
                             ),
                             child: ready
-                                ? CameraPreview(controller!)
+                                ? _session.preview()
                                 : const SizedBox.shrink(),
                           ),
                         ),

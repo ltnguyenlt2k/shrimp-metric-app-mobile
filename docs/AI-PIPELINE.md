@@ -112,6 +112,72 @@ Camera 8 MP (3264 × 2448) đủ cho ảnh chuẩn nếu khay chiếm từ kho�
 
 Khối lượng tỉ lệ với khoảng lũy thừa ba chiều dài: sai 2,2% chiều dài thành khoảng 6–7% khối lượng mỗi con.
 
+## 5b. Thùng chụp và ý nghĩa với hiệu chỉnh
+
+Nguồn: repo `D:\02_Projects\12.box-shrimp-metric-3d` (`build.py` là model tham số, `xuat-gia-cong/KICH-THUOC.txt` là kích thước gia công), đọc ngày 2026-11-16. Thùng theo dáng Tomota S3+, nhựa ASA, ba chi tiết.
+
+| Thông số | Giá trị | Ghi chú |
+|---|---|---|
+| Phủ bì | 516 × 368 × 468 mm | |
+| Khay đáy (ngoài) | 505,4 × 355,4 × 185 mm | Vách côn vào phía đáy |
+| Sàn trong của khay | 386 × 269 mm, bo góc 27 mm | `LB - 2T`, `WB - 2T`; tỉ lệ 1,435, hơi dẹt hơn 4:3 |
+| Ống kính đến sàn khay | 457,5 mm | Điện thoại nằm trên nắp, lỗ camera 64 × 60 mm |
+| Mực nước | 50–60 mm | `WATER = 60` là tối đa |
+| Marker | 4 thanh 30 × 15 mm ở bốn góc | Dán trên mặt vát nghiêng 55°, mép dưới cao hơn sàn 65 mm (trên mặt nước) |
+| Ống kính thiết kế | Hẹp nhất tương đương 28 mm | Vùng nhìn ở sàn khoảng 565 × 424 mm |
+
+Rút ra cho ảnh chuẩn:
+
+- Nếu ảnh chuẩn 2048 × 1536 phủ đúng chiều dài sàn 386 mm thì tỉ lệ là **53,1 px/cm**: tôm dài 64 px ≈ **12,1 mm**, 48 px ≈ 9,0 mm. Chiều rộng ảnh ứng với 289 mm, rộng hơn sàn (269 mm) khoảng 10 mm mỗi bên.
+- Với ống kính 28 mm, sàn chiếm khoảng 68% bề ngang khung hình. Luồng ảnh 3840 px ngang cho sàn khoảng 2.620 px (đủ cho 2048); luồng 1920 px chỉ cho khoảng 1.310 px, khi đó app dùng ảnh chuẩn 1024 × 768 và không có lượt 2. Ống kính rộng hơn (23–26 mm) thì sàn chiếm ít khung hình hơn.
+
+Rút ra cho bước hiệu chỉnh marker (chưa làm):
+
+- **Marker không nằm trên mặt phẳng đo.** Tâm marker cao hơn sàn khoảng 71 mm, nên tỉ lệ đo tại marker lớn hơn tại sàn khoảng 18% (457,5 / 386,4). Bước hiệu chỉnh phải quy tỉ lệ về mặt phẳng tôm bằng hình học của thùng, không lấy thẳng px/cm từ marker.
+- **Tôm bơi ở độ cao khác nhau trong 50–60 mm nước.** Con ở sát mặt nước gần ống kính hơn con ở sát đáy, nên cùng chiều dài thật mà khác nhau khoảng 13–15% số pixel (chưa tính khúc xạ). Khúc xạ làm đáy trông nông hơn (60 mm nước trông như khoảng 45 mm), thu hẹp chênh lệch này còn khoảng 10%. Nếu lấy tỉ lệ ở giữa lớp nước thì sai số chiều dài do không biết độ cao con tôm là khoảng ±5%, tức khoảng ±15% khối lượng từng con. Đây là ước tính hình học, chưa đo. Nước nông hơn thì sai số này giảm tương ứng.
+- Marker nằm trên mặt nghiêng 55° nên trong ảnh bị co theo một chiều; cần dùng vị trí 4 marker (hoặc 4 góc của từng marker) chứ không dùng kích thước nhìn thấy của một marker.
+- Ánh sáng vào qua các khe trên vách thân; chưa có số liệu về chói trên mặt nước.
+
+## 5c. Tích hợp vào app
+
+Luồng trong app (`lib/features/`), cùng thứ tự với pipeline trên PC:
+
+1. `capture/data/camera_session.dart`: camera lấy 5–6 frame. `FrameSource` là giao diện chung; `simulated_camera.dart` là camera giả lập đọc ảnh từ máy (bật bằng `--dart-define=SIM_CAMERA=true`).
+2. `processing/application/calibration.dart`: `TrayCalibration` là chỗ dành cho hiệu chỉnh marker. Hiện là `NominalBoxCalibration`: cắt phần 4:3 ở giữa, đưa về 2048 × 1536 (hoặc 1024 × 768 khi camera không đủ pixel) và dùng tỉ lệ danh định `chiều rộng ảnh / 38,6 cm`. Kết quả được đánh dấu `calibration: nominal`.
+3. `processing/application/sample_analyzer.dart`: chạy `assets/models/shrimp-lite.onnx` bằng `flutter_onnxruntime` trên từng frame (lượt 1, và 4 ô của lượt 2 khi tôm nhỏ), rồi lấy trung bình các frame đạt chất lượng.
+4. `processing/application/shrimp_lite.dart`: bản Dart của phần ghép tâm, đo dài/rộng, độ đầy ruột và bảng khối lượng. `test/shrimp_lite_test.dart` đối chiếu nó với kết quả của code Python trên cùng dữ liệu (`shrimp-pipeline/tests/app_fixtures.py` sinh dữ liệu đối chiếu).
+5. `results/`: màn Kết quả hiện số đếm, khung nhận diện thật, cỡ tôm, khối lượng, chiều dài và mục Độ đầy ruột; bản ghi lưu kèm phiên bản model.
+
+**Đổi model:** thay hai file `assets/models/shrimp-lite.onnx` và `shrimp-lite.json` (do `tests/export_lite.py` ghi ra). Không phải sửa code nếu đầu vào/đầu ra giữ nguyên dạng ở mục 4; nếu đổi dạng thì sửa `shrimp_lite.dart` và chạy lại test đối chiếu.
+
+### Kiểm chứng trên giả lập Android (2026-11-16)
+
+Thiết bị: Android Emulator `ShrimpMetric_API35` (Android 15, x86_64, 4 CPU ảo, 2,5 GB RAM) trên PC i7-13650HX. Bản **release**, model phone-v1. Camera giả lập đọc 16 ảnh ở `shrimp-pipeline/artifacts/app-sim/scenes/` (11 ảnh khay test JALA/TheNho, 3 ảnh ghép thử tôm nhỏ, 2 ảnh khay không nhãn); mỗi ảnh là một lần chụp 6 frame có xê dịch và đổi sáng nhẹ. Chạy bằng `lib/bench_main.dart`; số liệu ở `shrimp-pipeline/tests/reports/app-emulator-bench.json`.
+
+| Hạng mục | Kết quả |
+|---|---|
+| Số đếm frame gốc, app so với pipeline PC trên cùng file | Trùng 16/16 ảnh |
+| Sai số đếm so với nhãn (14 ảnh có nhãn, sau khi lấy trung bình 6 frame) | App 1,6%; PC một frame 1,4% |
+| Chiều dài trung bình, app so với PC | Lệch trong ±1,4% ở 15/16 ảnh; một ảnh không nhãn lệch −6,6% |
+| Thời gian một lần chụp 6 frame, tôm vừa/lớn (chỉ lượt 1, 6 lần chạy model) | Trung bình 1,5 giây (1,1–3,0) |
+| Thời gian một lần chụp 6 frame, tôm nhỏ (lượt 2, 25 lần chạy model) | Trung bình 5,4 giây |
+| Trong đó thời gian chạy model | 0,75 giây và 3,7 giây |
+| Nạp model lần đầu | 0,24 giây |
+| RAM đỉnh của tiến trình (RSS) | 460 MB; PSS khi đang chạy khoảng 333 MB, sau khi xong 164 MB |
+| Dung lượng APK release | arm64-v8a 58,7 MB; armeabi-v7a 48,1 MB; x86_64 66,1 MB (trước khi có AI chưa đo lại) |
+
+Cách đọc các số này:
+
+- Giả lập chạy bằng CPU máy tính nên **thời gian không đại diện cho điện thoại**. Ước lượng thô, chưa đo: điện thoại tầm trung chậm hơn 3–5 lần, tức khoảng 5–8 giây cho tôm vừa/lớn và 16–27 giây cho tôm nhỏ. Con số tôm nhỏ là quá chậm và cần tối ưu (xem mục 9).
+- Ảnh 2048 × 1536 tốn thêm khoảng 1,5 giây xử lý bằng Dart (đổi ảnh, đo, độ đầy ruột) so với ảnh 1024 × 768.
+- Ảnh test không chụp trong thùng của dự án, nên cỡ tôm, khối lượng và chiều dài hiển thị trên giả lập chỉ để kiểm tra đường tính, không phải số đo thật.
+- 6 frame giả lập là cùng một ảnh xê dịch nhẹ, không phải tôm bơi thật giữa các frame.
+
+Hai lỗi chỉ lộ ra ở bản release, đã sửa trong `android/app/`:
+
+- R8 đổi tên lớp Java của ONNX Runtime làm app sập khi chạy model. `proguard-rules.pro` giữ nguyên `ai.onnxruntime.**`.
+- Bước lint của bản release sập trong chính công cụ lint sau khi thêm plugin; đã tắt `checkReleaseBuilds`.
+
 ## 6. Dữ liệu
 
 Đang dùng để train và test (chia nhóm, seed 37, dùng chung cho mọi model):
@@ -187,5 +253,9 @@ Trạng thái: **thử nghiệm, chưa kiểm chứng**. Trên 435 con test khay
 - Bước hiệu chỉnh marker (ảnh chuẩn, px/cm) chưa có; chưa biết kích thước khay.
 - Phép đo chiều dài từ mask chưa đối chiếu với thước thật. Vạch thước trong bảng đọc bằng mắt từ ảnh (±0,2 cm).
 - Chưa nhận loài. Độ đầy ruột chưa kiểm chứng.
-- Code ghép tâm phía app (Dart/Kotlin/Swift) chưa viết; `model.py:decode` là bản tham chiếu.
-- Chưa tích hợp gì vào app Flutter. Cần người dùng duyệt kết quả trước.
+- App đã chạy model trên giả lập Android (mục 5c). Chưa chạy trên điện thoại thật và chưa build iOS; `flutter_onnxruntime` yêu cầu iOS 16 trở lên.
+- Camera thật trong app đã đổi sang luồng `ultraHigh` để đủ pixel cho ảnh chuẩn 2048; chưa kiểm tra trên máy thật (tốc độ lấy frame, RAM, nhiệt).
+- Lượt 2 cho tôm nhỏ chạy 4 ô trên cả 6 frame (25 lần chạy model). Hướng giảm: chạy lượt 2 trên ít frame hơn, dùng bộ tăng tốc (NNAPI/XNNPACK/Core ML), hoặc QAT để có INT8.
+- Phần xử lý ảnh bằng Dart ở 2048 × 1536 còn chậm; có thể chuyển sang mã native nếu đo trên máy thật thấy cần.
+- Dung lượng APK tăng chủ yếu do thư viện ONNX Runtime và file model 11,6 MB.
+- Mục Độ đầy ruột và dòng ghi chú tỉ lệ danh định trong màn Kết quả là phần giao diện mới, chờ người dùng duyệt.

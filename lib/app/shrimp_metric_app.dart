@@ -7,6 +7,7 @@ import '../features/analysis/presentation/analysis_screen.dart';
 import '../features/capture/presentation/capture_screen.dart';
 import '../features/capture/presentation/demo_capture_screen.dart';
 import '../features/history/data/measurement_store.dart';
+import '../features/processing/application/sample_analyzer.dart';
 import '../features/results/domain/local_measurement.dart';
 import '../features/history/presentation/history_screen.dart';
 import '../features/overview/presentation/overview_screen.dart';
@@ -122,6 +123,7 @@ class _HomeState extends State<_Home> {
   ];
 
   final _store = MeasurementStore();
+  final _analyzer = SampleAnalyzer();
   late final Future<void> _historyReady;
   bool _capturing = false;
 
@@ -155,6 +157,13 @@ class _HomeState extends State<_Home> {
     hasPreview: true,
     imagePath: saved.imagePath,
     storageId: saved.id,
+    analysis: saved.analysis,
+    averageWeightGrams: saved.analysis == null
+        ? 0.456
+        : saved.analysis!.weightGrams ?? 0,
+    averageLengthMm: saved.analysis == null
+        ? 34.2
+        : saved.analysis!.lengthMm ?? 0,
   );
 
   Future<void> _deleteSample(int id) async {
@@ -186,7 +195,11 @@ class _HomeState extends State<_Home> {
         saved = await navigator.push<LocalMeasurement>(
           MaterialPageRoute(
             builder: (_) =>
-                CaptureScreen(store: _store, sampleNumber: _nextSampleId),
+                CaptureScreen(
+                  store: _store,
+                  analyzer: _analyzer,
+                  sampleNumber: _nextSampleId,
+                ),
           ),
         );
       } finally {
